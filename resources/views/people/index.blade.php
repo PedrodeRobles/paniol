@@ -23,10 +23,20 @@
                 <th>Sector</th>
             </tr>
             <tbody>
-                @foreach ($people as $person)
+                @foreach ($person as $person)
                     <tr>
                         <td>{{ $person->name }}</td>
                         <td>{{ $person->place }}</td>
+                        <td>
+                            <form action="{{ route('people.destroy', $person) }}" method="POST">
+                                @method('DELETE')
+                                @csrf
+                                <input 
+                                    type="submit"
+                                    value="Delete"
+                                    onclick="return confirm('¿Quieres eliminar a esta persona?')">
+                            </form>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\People;
+use App\Models\Person;
 use Illuminate\Http\Request;
 
-class PeopleController extends Controller
+class PersonController extends Controller
 {
     public function index()
     {
-        $people = People::latest()->get();
+        $person = Person::latest()->get();
 
         return view('people.index', [
-            'people' => $people
+            'person' => $person
         ]);
     }
 
@@ -28,7 +28,7 @@ class PeopleController extends Controller
             'place' => 'required',
         ]);
 
-        $person = People::create([
+        $person = Person::create([
             'name'  => $request->name,
             'place' => $request->place,
         ]);
@@ -41,27 +41,27 @@ class PeopleController extends Controller
         //
     }
 
-    public function edit(People $people)
+    public function edit(Person $person)
     {
-        return view('people.edit', compact('people'));
+        return view('people.edit', compact('person'));
     }
 
-    public function update(Request $request, People $people)
+    public function update(Request $request, Person $person)
     {
         $request->validate([
             'name'  => 'required',
             'place' => 'required',
         ]);
 
-        $people->update($request->all());
+        $person->update($request->all());
 
         return redirect()->route('people.index');
     }
 
-    public function destroy(People $people)
+    public function destroy(Person $person)
     {
-        $people->delete();
+        $person->delete();
 
-        return redirect()->route('people.index');
+        return back();
     }
 }

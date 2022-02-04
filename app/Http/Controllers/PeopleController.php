@@ -9,7 +9,11 @@ class PeopleController extends Controller
 {
     public function index()
     {
-        return view('people.index');
+        $people = People::latest()->get();
+
+        return view('people.index', [
+            'people' => $people
+        ]);
     }
 
     public function create()

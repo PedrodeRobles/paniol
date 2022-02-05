@@ -17,14 +17,15 @@ class CreateThingsTable extends Migration
             $table->id();
 
             $table->bigInteger('type_id')->unsigned();
+            // $table->bigInteger('condition_id')->unsigned();
 
             $table->string('name');
             $table->text('description')->nullable();
-            $table->boolean("status")->default(0);
 
             $table->timestamps();
 
             $table->foreign('type_id')->references('id')->on('types');
+            // $table->foreign('condition_id')->references('id')->on('conditions');
         });
     }
 

@@ -31,7 +31,7 @@
                             @endif
                         </td>
                         <td>{{ $thing->name }}</td>
-                        <td>{{ $thing->status }}</td>
+                        <td>{{ $thing->condition }}</td>
                         <td>
                             <button><a href="{{ route('thing.show', $thing) }}">Ver</a></button>
                         </td>

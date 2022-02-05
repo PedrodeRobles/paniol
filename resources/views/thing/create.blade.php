@@ -15,11 +15,18 @@
             @endforeach
         </select>
 
-
         <label for="">Nombre *</label>
         <input type="text" name="name">
+
+        <select name="state_id">
+            @foreach ($states as $state)
+                <option value="{{ $state->id }}">{{ $state->state }}</option>
+            @endforeach
+        </select>
+
         <label for="">Descripción</label>
         <textarea name="description" cols="30" rows="10"></textarea>
+
         <input type="submit" value="Agregar">
         @csrf
     </form>

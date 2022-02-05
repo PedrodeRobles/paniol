@@ -31,7 +31,13 @@
                             @endif
                         </td>
                         <td>{{ $thing->name }}</td>
-                        <td>{{ $thing->condition }}</td>
+                        <td>
+                            @if ($thing->state_id == 1)
+                                <p>En Pañol</p>
+                            @elseif ($thing->state_id == 2)
+                                <p>En Uso</p>
+                            @endif
+                        </td>
                         <td>
                             <button><a href="{{ route('thing.show', $thing) }}">Ver</a></button>
                         </td>

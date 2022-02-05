@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PersonController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\ThingController;
+use App\Http\Controllers\StateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,5 +30,8 @@ Route::resource('people', PersonController::class);
 Route::resource('type', TypeController::class);
 
 Route::resource('thing', ThingController::class);
+
+Route::resource('state', StateController::class);
+
 
 

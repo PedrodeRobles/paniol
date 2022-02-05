@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Thing;
 use App\Models\Type;
+use App\Models\State;
 use Illuminate\Http\Request;
 
 class ThingController extends Controller
@@ -20,8 +21,12 @@ class ThingController extends Controller
     public function create()
     {
         $types = Type::all(); 
+        $states = State::all(); 
 
-        return view('thing.create', ['types' => $types]);
+        return view('thing.create', [
+            'types' => $types,
+            'states' => $states
+        ]);
     }
 
     public function store(Request $request)
@@ -29,13 +34,13 @@ class ThingController extends Controller
         $request->validate([
             'type_id' => 'required',
             'name' => 'required',
+            'state_id' => 'required',
         ]);
-
-        // $request->type()->things()->create($request->all());
 
         $thing = Thing::create([
             'name'  => $request->name,
             'type_id' => $request->type_id,
+            'state_id' => $request->state_id,
         ]);
 
         return redirect()->route('thing.index');
@@ -48,7 +53,14 @@ class ThingController extends Controller
 
     public function edit(Thing $thing)
     {
-        return view('thing.edit');
+        $types = Type::all(); 
+        $states = State::all();
+
+        return view('thing.edit', [
+            'types' => $types,
+            'states' => $states,
+            'thing' => $thing
+        ]);
     }
 
     public function update(Request $request, Thing $thing)
@@ -56,9 +68,10 @@ class ThingController extends Controller
         $request->validate([
             'type_id' => 'required',
             'name' => 'required',
+            'state_id' => 'required',
         ]);
 
-        $thing->update();
+        $thing->update($request->all());
 
         return redirect()->route('thing.index');
     }

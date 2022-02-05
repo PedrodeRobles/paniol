@@ -21,7 +21,15 @@
             <tbody>
                 @foreach ($thing as $thing)
                     <tr>
-                        <td>{{ $thing->type_id}}</td>
+                        <td>
+                            @if ($thing->type_id == 1)
+                                <p>Audio</p>
+                            @elseif ($thing->type_id == 2)
+                                <p>Herramienta</p>
+                                @elseif ($thing->type_id == 3)
+                                <p>Informática</p>
+                            @endif
+                        </td>
                         <td>{{ $thing->name }}</td>
                         <td>{{ $thing->status }}</td>
                         <td>

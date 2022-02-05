@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTypesTable extends Migration
+class CreateThingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,18 @@ class CreateTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('types', function (Blueprint $table) {
+        Schema::create('things', function (Blueprint $table) {
             $table->id();
 
-            // $table->bigInteger('user_id')->unsigned();
-            $table->string('type');
+            $table->bigInteger('type_id')->unsigned();
+
+            $table->string('name');
+            $table->text('description')->nullable();
+            $table->boolean("status")->default(0);
 
             $table->timestamps();
 
-            // $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('type_id')->references('id')->on('types');
         });
     }
 
@@ -32,6 +35,6 @@ class CreateTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('types');
+        Schema::dropIfExists('things');
     }
 }

@@ -22,7 +22,10 @@ class TypeController extends Controller
             'type' => 'required'
         ]);
 
-        $request->user()->types()->create($request->all());
+        $type = Type::create([
+            'type'  => $request->type,
+        ]);
+
         return back();
     }
 

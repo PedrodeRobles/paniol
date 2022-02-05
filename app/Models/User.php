@@ -61,8 +61,8 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    public function types()
-    {
-        return $this->hasMany(Type::class);
-    }
+    // public function types()
+    // {
+    //     return $this->hasMany(Type::class);
+    // }
 }

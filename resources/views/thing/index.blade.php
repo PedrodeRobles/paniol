@@ -9,7 +9,12 @@
 <body>
     <h1>Materiales del pañol</h1>
 
-    <button><a href="{{ route('thing.create') }}">Agregar material</a></button>
+    {{-- Search form --}}
+    <h2>Buscar Material</h2>
+    <form action="">
+        <input type="search" name="search" placeholder="Buscar">
+        <button type="submit">Buscar</button>
+    </form>
 
     <table>
         <thead>
@@ -19,7 +24,7 @@
                 <th>Estado</th>
             </tr>
             <tbody>
-                @foreach ($thing as $thing)
+                @foreach ($things as $thing)
                     <tr>
                         <td>{{ $thing->name }}</td>
                         <td>

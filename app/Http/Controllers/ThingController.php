@@ -6,16 +6,31 @@ use App\Models\Thing;
 use App\Models\Type;
 use App\Models\State;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ThingController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $thing = Thing::latest()->get();
+        if ($request) {
+            $query = trim($request->get('search'));
 
-        return view('thing.index', [
-            'thing' => $thing
-        ]);
+            $things =Thing::where('name', 'LIKE', '%' . $query . '%')
+                ->orderBy('id', 'asc')
+                ->get();
+
+                return view('thing.index', [
+                    'things' => $things,
+                    'search' => $query
+                ]);
+        }
+
+        // $things = Thing::latest()->get();
+
+        // return view('thing.index', [
+        //     'things' => $things,
+        //     'text' => $text
+        // ]);
     }
 
     public function create()

@@ -9,15 +9,9 @@
 <body>
 
     <form action="{{ route('thing.update', $thing) }}" method="POST" enctype="multipart/form-data">
-        <label for="">Tipo de material *</label>
-        <select name="type_id">
-            @foreach ($types as $type)
-                <option value="{{ $type->id }}">{{ $type->type }}</option>
-            @endforeach
-        </select>
 
         <label for="">Nombre *</label>
-        <input type="text" name="name">
+        <input type="text" name="name" value="{{ old('name', $thing->name) }}">
 
         <select name="state_id">
             @foreach ($states as $state)
@@ -26,7 +20,7 @@
         </select>
 
         <label for="">Descripción</label>
-        <textarea name="description" cols="30" rows="10"></textarea>
+        <textarea name="description" cols="30" rows="10">{{ old('description' ,$thing->description) }}</textarea>
 
         @csrf
         @method('PUT')

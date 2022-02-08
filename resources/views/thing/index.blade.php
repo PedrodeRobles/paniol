@@ -14,23 +14,23 @@
     <table>
         <thead>
             <tr>
-                <th>Tipo de material</th>
                 <th>Nombre</th>
+                <th>Tipo de material</th>
                 <th>Estado</th>
             </tr>
             <tbody>
                 @foreach ($thing as $thing)
                     <tr>
+                        <td>{{ $thing->name }}</td>
                         <td>
                             @if ($thing->type_id == 1)
                                 <p>Audio</p>
                             @elseif ($thing->type_id == 2)
                                 <p>Herramienta</p>
-                                @elseif ($thing->type_id == 3)
+                            @elseif ($thing->type_id == 3)
                                 <p>Informática</p>
                             @endif
                         </td>
-                        <td>{{ $thing->name }}</td>
                         <td>
                             @if ($thing->state_id == 1)
                                 <p>En Pañol</p>

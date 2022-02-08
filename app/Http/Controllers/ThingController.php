@@ -48,7 +48,7 @@ class ThingController extends Controller
 
     public function show(Thing $thing)
     {
-        return view('thing.show');
+        return view('thing.show', compact('thing'));
     }
 
     public function edit(Thing $thing)
@@ -66,7 +66,6 @@ class ThingController extends Controller
     public function update(Request $request, Thing $thing)
     {
         $request->validate([
-            'type_id' => 'required',
             'name' => 'required',
             'state_id' => 'required',
         ]);

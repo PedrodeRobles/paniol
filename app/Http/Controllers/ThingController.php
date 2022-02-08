@@ -14,19 +14,25 @@ class ThingController extends Controller
     {
         if ($request) {
             $query = trim($request->get('search'));
-            if($query == 'audio') {
+            if($query == 'EN USO') {
+                $query = 2;
+            } elseif ($query == 'en uso') {
+                $query = 2;
+            } elseif ($query == 'EN PAÑOL') {
+                $query = 1;
+            } elseif ($query == 'en pañol') {
                 $query = 1;
             }
 
-            $things =Thing::where('name', 'LIKE', '%' . $query . '%')
-                ->orWhere('state_id', 'LIKE', '%' . $query . '%')
-                ->orderBy('id', 'asc')
-                ->get();
+                $things =Thing::where('name', 'LIKE', '%' . $query . '%')
+                    ->orWhere('state_id', 'LIKE', '%' . $query . '%')
+                    ->orderBy('id', 'asc')
+                    ->get();
 
-                return view('thing.index', [
-                    'things' => $things,
-                    'search' => $query
-                ]);
+                    return view('thing.index', [
+                        'things' => $things,
+                        'search' => $query
+                    ]);
         }
 
         // $things = Thing::latest()->get();

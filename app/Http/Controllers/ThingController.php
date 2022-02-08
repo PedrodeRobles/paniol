@@ -43,15 +43,19 @@ class ThingController extends Controller
         // ]);
     }
 
-    public function create()
+    public function create(Request $request)
     {
         $types = Type::all(); 
         $states = State::all(); 
 
-        return view('thing.create', [
-            'types' => $types,
-            'states' => $states
-        ]);
+        if($request->user()->id == 1 || 2 || 3 || 4 ) {
+            return view('thing.create', [
+                'types' => $types,
+                'states' => $states
+            ]);
+        } else {
+            return abort(403);
+        }
     }
 
     public function store(Request $request)

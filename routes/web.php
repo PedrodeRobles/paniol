@@ -25,13 +25,12 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::resource('people', PersonController::class);
+Route::resource('people', PersonController::class)->middleware('auth');
 
-Route::resource('type', TypeController::class);
+Route::resource('type', TypeController::class)->middleware('auth');
+
+Route::resource('state', StateController::class)->middleware('auth');
 
 Route::resource('thing', ThingController::class);
-
-Route::resource('state', StateController::class);
-
 
 

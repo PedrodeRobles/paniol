@@ -16,6 +16,8 @@
         <button type="submit">Buscar</button>
     </form>
 
+    <button><a href="{{ route('thing.create') }}">Agregar material</a></button>
+
     <table>
         <thead>
             <tr>

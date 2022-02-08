@@ -16,6 +16,7 @@ class ThingController extends Controller
             $query = trim($request->get('search'));
 
             $things =Thing::where('name', 'LIKE', '%' . $query . '%')
+                ->orWhere('state_id', 'LIKE', '%' . $query . '%')
                 ->orderBy('id', 'asc')
                 ->get();
 

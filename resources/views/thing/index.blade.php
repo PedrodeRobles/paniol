@@ -30,20 +30,10 @@
                     <tr>
                         <td>{{ $thing->name }}</td>
                         <td>
-                            @if ($thing->type_id == 1)
-                                <p>Audio</p>
-                            @elseif ($thing->type_id == 2)
-                                <p>Herramienta</p>
-                            @elseif ($thing->type_id == 3)
-                                <p>Informática</p>
-                            @endif
+                            {{ $thing->type->type}}
                         </td>
                         <td>
-                            @if ($thing->state_id == 1)
-                                <p>En Pañol</p>
-                            @elseif ($thing->state_id == 2)
-                                <p>En Uso</p>
-                            @endif
+                            {{ $thing->state->state }}
                         </td>
                         <td>
                             <button><a href="{{ route('thing.show', $thing) }}">Ver</a></button>

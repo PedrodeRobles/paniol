@@ -14,6 +14,9 @@ class ThingController extends Controller
     {
         if ($request) {
             $query = trim($request->get('search'));
+            if($query == 'audio') {
+                $query = 1;
+            }
 
             $things =Thing::where('name', 'LIKE', '%' . $query . '%')
                 ->orWhere('state_id', 'LIKE', '%' . $query . '%')

@@ -28,23 +28,4 @@ class Thing extends Model
     {
         return $this->belongsTo(State::class);
     }
-
-    //Query Scopes
-    // public function scopeName($query, $name)
-    // {
-    //     if($name)
-    //         return $query->where('name', 'LIKE', "%$name%");
-    // }
-
-    // public function scopeType($query, $type_id)
-    // {
-    //     if($type_id)
-    //         return $query->where('type_id', 'LIKE', "%$type_id%");
-    // }
-
-    // public function scopeState($query, $state)
-    // {
-    //     if($state)
-    //         return $query->where('state', 'LIKE', "%$state%");
-    // }
 }

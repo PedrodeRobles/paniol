@@ -14,7 +14,7 @@
     <form action="{{ route('order.store') }}" method="POST">
         <label for="">Nombre del material</label>
         {{-- <input type="text" name="name_of_thing"> --}}
-        <select name="name_of_thing">
+        <select name="thing_id">
             @foreach ($things as $thing)
                 @if ($thing->state_id != 2)
                     <option value="{{ $thing->id }}">{{ $thing->name }}</option>
@@ -39,7 +39,7 @@
             <tbody>
                 @foreach ($orders as $order)
                     <tr>
-                        <td>{{ $order->name_of_thing }}</td>
+                        <td>{{ $order->thing->name }}</td>
                         <td>
                             {{ $order->identifier}}
                         </td>

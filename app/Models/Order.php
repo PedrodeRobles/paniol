@@ -13,11 +13,11 @@ class Order extends Model
 
     protected $fillable = [
         'identifier',
-        'name_of_thing'
+        'thing_id'
     ];
 
-    public function things()
+    public function thing()
     {
-        return $this->hasMany(Thing::class);
+        return $this->belongsTo(Thing::class);
     }
 }

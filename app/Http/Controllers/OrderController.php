@@ -28,7 +28,7 @@ class OrderController extends Controller
     {
         $request->validate([
             'identifier' => 'required',
-            'name_of_thing' => 'required',
+            'thing_id' => 'required',
         ]);
 
         Order::create($request->all());
@@ -49,7 +49,8 @@ class OrderController extends Controller
     public function update(Request $request, Order $order)
     {
         $request->validate([
-            'identifier' => 'required'
+            'identifier' => 'required',
+            'thing_id' => 'required',
         ]);
 
         $order->update($request->all());

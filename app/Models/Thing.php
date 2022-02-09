@@ -16,7 +16,6 @@ class Thing extends Model
     protected $fillable = [
         'type_id',
         'state_id',
-        'order_id',
         'name',
         'description',
     ];
@@ -31,8 +30,8 @@ class Thing extends Model
         return $this->belongsTo(State::class);
     }
 
-    public function order()
+    public function orders()
     {
-        return $this->belongsTo(Order::class);
+        return $this->hasOne(Order::class);
     }
 }

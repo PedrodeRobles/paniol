@@ -6,7 +6,6 @@ use App\Models\Thing;
 use App\Models\Type;
 use App\Models\State;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class ThingController extends Controller
 {

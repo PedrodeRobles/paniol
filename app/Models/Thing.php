@@ -32,6 +32,6 @@ class Thing extends Model
 
     public function orders()
     {
-        return $this->hasOne(Order::class);
+        return $this->hasMany(Order::class);
     }
 }

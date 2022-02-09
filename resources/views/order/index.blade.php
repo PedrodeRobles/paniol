@@ -50,7 +50,7 @@
                             <button><a href="{{ route('thing.edit', $thing) }}">Editar</a></button>
                         </td>
                         <td>
-                            <form action="{{ route('thing.destroy', $thing) }}" method="POST">
+                            <form action="{{ route('order.destroy', $order) }}" method="POST">
                                 @method('DELETE')
                                 @csrf
                                 <input 

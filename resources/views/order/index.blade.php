@@ -16,9 +16,9 @@
         {{-- <input type="text" name="name_of_thing"> --}}
         <select name="thing_id">
             @foreach ($things as $thing)
-                @if ($thing->state_id != 2)
-                    <option value="{{ $thing->id }}">{{ $thing->name }}</option>
-                @endif
+                    @if ($thing->state_id != 2)
+                        <option value="{{ $thing->id }}">{{ $thing->name }}</option>
+                    @endif
             @endforeach
         </select>
 

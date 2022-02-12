@@ -13,7 +13,7 @@ class Order extends Model
 
     protected $fillable = [
         'identifier',
-        'thing_id'
+        'thing_id',
     ];
 
     public function thing()

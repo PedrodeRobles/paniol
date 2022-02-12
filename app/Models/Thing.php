@@ -18,6 +18,7 @@ class Thing extends Model
         'state_id',
         'name',
         'description',
+        'visibility',
     ];
 
     public function type()

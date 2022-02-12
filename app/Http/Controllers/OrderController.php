@@ -19,10 +19,10 @@ class OrderController extends Controller
         ]);
     }
 
-    public function create()
-    {
-        return view('order.create');
-    }
+    // public function create()
+    // {
+    //     return view('order.create');
+    // }
 
     public function store(Request $request)
     {
@@ -41,15 +41,15 @@ class OrderController extends Controller
         return redirect()->route('order.index');
     }
 
-    public function show(Order $order)
-    {
-        return view('order.show', compact('order'));
-    }
+    // public function show(Order $order)
+    // {
+    //     return view('order.show', compact('order'));
+    // }
 
-    public function edit(Order $order)
-    {
-        return view('order.edit', compact('order'));
-    }
+    // public function edit(Order $order)
+    // {
+    //     return view('order.edit', compact('order'));
+    // }
 
     public function update(Request $request, Order $order)
     {

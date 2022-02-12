@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\Transaction;
+
 use App\Models\Thing;
 
 class Order extends Model
@@ -19,5 +21,10 @@ class Order extends Model
     public function thing()
     {
         return $this->belongsTo(Thing::class);
+    }
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
     }
 }

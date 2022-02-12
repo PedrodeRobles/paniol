@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\Transaction;
+
 class Person extends Model
 {
     use HasFactory;
@@ -13,4 +15,9 @@ class Person extends Model
         'name',
         'place',
     ];
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
 }

@@ -28,27 +28,31 @@ class OrderController extends Controller
     {
         $request->validate([
             'identifier' => 'required',
-            'thing_id' => 'required',
         ]);
 
         Order::create($request->all());
 
         // Cambiar el state_id del 'Thing' que seleccione
-        $thing = Thing::find($request->thing_id);
-        $thing->state_id = 2;
-        $thing->save();
+        // $thing = Thing::find($request->thing_id);
+        // $thing->state_id = 2;
+        // $thing->save();
+
 
         return redirect()->route('order.index');
     }
 
-    // public function show(Order $order)
-    // {
-    //     return view('order.show', compact('order'));
-    // }
+    public function show(Order $order)
+    {
+        $things = Thing::all();
+
+        return view('order.show', compact('order', 'things'));
+    }
 
     // public function edit(Order $order)
     // {
-    //     return view('order.edit', compact('order'));
+    //     $things = Thing::all();
+
+    //     return view('order.edit', compact('order', 'things'));
     // }
 
     public function update(Request $request, Order $order)
@@ -65,9 +69,9 @@ class OrderController extends Controller
 
     public function destroy(Order $order)
     {
-        $thing = Thing::find($order->thing_id);
-        $thing->state_id = 1;
-        $thing->save();
+        // $thing = Thing::find($order->thing_id);
+        // $thing->state_id = 1;
+        // $thing->save();
 
         $order->delete();
 

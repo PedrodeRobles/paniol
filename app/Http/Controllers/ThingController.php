@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\Thing;
 use App\Models\Type;
 use App\Models\State;
@@ -11,6 +12,8 @@ class ThingController extends Controller
 {
     public function index(Request $request)
     {
+        $orders = Order::latest()->get();
+
         if ($request) {
             $query = trim($request->get('search'));
             if($query == 'EN USO') {
@@ -30,7 +33,8 @@ class ThingController extends Controller
 
                     return view('thing.index', [
                         'things' => $things,
-                        'search' => $query
+                        'search' => $query,
+                        'orders' => $orders
                     ]);
         }
 
@@ -46,11 +50,13 @@ class ThingController extends Controller
     {
         $types = Type::all(); 
         $states = State::all(); 
+        $orders = Order::all(); 
 
         if($request->user()->id == 1 || 2 || 3 || 4 ) {
             return view('thing.create', [
                 'types' => $types,
-                'states' => $states
+                'states' => $states,
+                'orders' => $orders,
             ]);
         } else {
             return abort(403);
@@ -69,6 +75,7 @@ class ThingController extends Controller
             'name'  => $request->name,
             'type_id' => $request->type_id,
             'state_id' => $request->state_id,
+            'order_id' => 3,
         ]);
 
         return redirect()->route('thing.index');

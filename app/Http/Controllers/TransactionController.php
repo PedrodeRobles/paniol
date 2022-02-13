@@ -13,11 +13,13 @@ class TransactionController extends Controller
     {
         $orders = Order::latest()->get();
         $people = Person::all();
+        $transactions = Transaction::all();
         
 
         return view('transaction.index', [
             'orders' => $orders,
-            'people' => $people
+            'people' => $people,
+            'transactions' => $transactions,
         ]);
     }
 
@@ -33,7 +35,9 @@ class TransactionController extends Controller
             'person_id' => 'required',
         ]);
 
-        Transaction::create($request->all());
+        Transaction::create([
+            'user_id' => auth()->user()->id,
+            ] + $request->all());
 
         return redirect()->route('transaction.index');
     }

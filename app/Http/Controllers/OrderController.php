@@ -33,6 +33,11 @@ class OrderController extends Controller
 
         Order::create($request->all());
 
+        // Cambiar el state_id del 'Thing' que seleccione
+        $thing = Thing::find($request->thing_id);
+        $thing->state_id = 2;
+        $thing->save();
+
         return redirect()->route('order.index');
     }
 
@@ -60,6 +65,10 @@ class OrderController extends Controller
 
     public function destroy(Order $order)
     {
+        $thing = Thing::find($order->thing_id);
+        $thing->state_id = 1;
+        $thing->save();
+
         $order->delete();
 
         return redirect()->route('order.index');

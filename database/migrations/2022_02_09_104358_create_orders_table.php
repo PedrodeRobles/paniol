@@ -18,6 +18,7 @@ class CreateOrdersTable extends Migration
 
             $table->bigInteger('thing_id')->unsigned();
             $table->string('identifier');
+            $table->string('state')->default('2');
 
             $table->timestamps();
 

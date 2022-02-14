@@ -64,4 +64,9 @@ class OrderController extends Controller
 
         return redirect()->route('order.index');
     }
+
+    public function hola(Order $order)
+    {
+        return view('order.show', compact('order'));
+    }
 }

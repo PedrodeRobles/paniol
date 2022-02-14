@@ -16,13 +16,10 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
 
-            $table->bigInteger('thing_id')->unsigned();
             $table->string('identifier');
             $table->string('state')->default('2');
 
             $table->timestamps();
-
-            $table->foreign('thing_id')->references('id')->on('things');
         });
     }
 

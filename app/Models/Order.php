@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\Transaction;
+
 use App\Models\Thing;
 
 class Order extends Model
@@ -13,11 +15,15 @@ class Order extends Model
 
     protected $fillable = [
         'identifier',
-        'thing_id',
     ];
 
-    public function thing()
+    public function things()
     {
-        return $this->belongsTo(Thing::class);
+        return $this->hasMany(Thing::class);
+    }
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
     }
 }

@@ -7,25 +7,24 @@
     <title>Pañol</title>
 </head>
 <body>
-    <h1>Generar orden</h1>
+    <h1>GENERAR PEDIDO</h1>
 
     {{-- FORMULARIO PARA GENERAR ORDENES --}}
-    {{-- <h2>Buscar Material</h2>
-    <form action="{{ route('order.store') }}" method="POST">
-        <label for="">Nombre del material</label> --}}
-        {{-- <input type="text" name="name_of_thing"> --}}
-        {{-- <select name="thing_id">
-            @foreach ($things as $thing)
-                    @if ($thing->state_id != 2)
-                        <option value="{{ $thing->id }}">{{ $thing->name }}</option>
-                    @endif
+    <h2>Formulario</h2>
+    <form action="{{ route('transaction.store') }}" method="POST">
+        <label for="">Identificador de orden</label>
+        <select name="order_id">
+            @foreach ($orders as $order)
+                <option value="{{ $order->id }}">{{ $order->identifier }}</option>
             @endforeach
-        </select> --}}
+        </select>
 
-
-    <form action="{{ route('order.store') }}" method="POST">
-        <label>Nombre de orden</label>
-        <input type="text" name="identifier">
+        <label for="">Persona que retira pedido</label>
+        <select name="person_id">
+            @foreach ($people as $person)
+                <option value="{{ $person->id }}">{{ $person->name }}</option>
+            @endforeach
+        </select>
 
         <input type="submit" value="Agregar">
         @csrf
@@ -38,20 +37,22 @@
             <tr>
                 <th>Nombre</th>
                 <th>Identificador</th>
-                <th>Agregar Cosas</th>
             </tr>
             <tbody>
-                @foreach ($orders as $order)
+                @foreach ($transactions as $transaction)
                     <tr>
-                        <td>{{ $order->id }}</td>
+                        <td>{{ $transaction->person->name }}</td>
                         <td>
-                            <button><a href="{{ route('order.show', $order) }}">Ver</a></button>
+                            {{ $transaction->order->identifier}}
                         </td>
                         <td>
-                            <button><a href="{{ route('order.edit', $order) }}">Editar</a></button>
+                            <button><a href="{{ route('transaction.show', $transaction) }}">Ver</a></button>
                         </td>
                         <td>
-                            <form action="{{ route('order.destroy', $order) }}" method="POST">
+                            <button><a href="{{ route('transaction.edit', $transaction) }}">Editar</a></button>
+                        </td>
+                        <td>
+                            <form action="{{ route('transaction.destroy', $transaction) }}" method="POST">
                                 @method('DELETE')
                                 @csrf
                                 <input 

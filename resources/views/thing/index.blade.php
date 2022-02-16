@@ -43,7 +43,11 @@
                             <form action="{{ route('thing.update', $thing) }}" method="POST" enctype="multipart/form-data">
                                 <select name="order_id">
                                     @foreach ($orders as $order)
-                                        <option value="{{ $order->id }}">{{ $order->id }}</option>
+                                        @if ($order->id == 1)
+                                            <option value="{{ $order->id }}">Pañol</option>
+                                        @else
+                                            <option value="{{ $order->id }}">{{ $order->id }}</option>
+                                        @endif
                                     @endforeach
                                 </select>
                                 @csrf

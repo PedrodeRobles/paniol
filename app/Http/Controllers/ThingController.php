@@ -75,7 +75,7 @@ class ThingController extends Controller
             'name'  => $request->name,
             'type_id' => $request->type_id,
             'state_id' => $request->state_id,
-            'order_id' => 3,
+            'order_id' => 1,
         ]);
 
         return redirect()->route('thing.index');
@@ -101,8 +101,7 @@ class ThingController extends Controller
     public function update(Request $request, Thing $thing)
     {
         $request->validate([
-            'name' => 'required',
-            'state_id' => 'required',
+            'order_id' => 'required',
         ]);
 
         $thing->update($request->all());

@@ -24,6 +24,7 @@
                 <th>Nombre</th>
                 <th>Tipo de material</th>
                 <th>Estado</th>
+                <th>Numero de orden</th>
             </tr>
             <tbody>
                 @foreach ($things as $thing)
@@ -34,6 +35,21 @@
                         </td>
                         <td>
                             {{ $thing->state->state }}
+                        </td>
+                        <td>
+                            {{ $thing->order_id }}
+                        </td>
+                        <td>
+                            <form action="{{ route('thing.update', $thing) }}" method="POST" enctype="multipart/form-data">
+                                <select name="order_id">
+                                    @foreach ($orders as $order)
+                                        <option value="{{ $order->id }}">{{ $order->id }}</option>
+                                    @endforeach
+                                </select>
+                                @csrf
+                                @method('PUT')
+                                <input type="submit" value="Actualizar">
+                            </form>
                         </td>
                         <td>
                             <button><a href="{{ route('thing.show', $thing) }}">Ver</a></button>

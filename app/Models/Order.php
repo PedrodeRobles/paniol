@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Transaction;
 
 use App\Models\Thing;
+use App\Models\User;
+use App\Models\Person;
 
 class Order extends Model
 {
@@ -15,6 +17,9 @@ class Order extends Model
 
     protected $fillable = [
         'identifier',
+        'user_id',
+        'person_id',
+        'return',
     ];
 
     public function things()
@@ -25,5 +30,15 @@ class Order extends Model
     public function transactions()
     {
         return $this->hasMany(Transaction::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function person()
+    {
+        return $this->belongsTo(Person::class);
     }
 }

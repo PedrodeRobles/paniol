@@ -72,10 +72,10 @@ class OrderController extends Controller
         //     'thing_id' => 'required',
         // ]);
 
-        $thing = Thing::find($order->id);
-        $thing->order_id = 1;
-        $thing->save();
-
+        $things = Thing::where('order_id', $order->id)->get();
+        $things->toQuery()->update([
+            'order_id' => 1
+        ]);
 
         $order->return = 1;
 
@@ -89,10 +89,6 @@ class OrderController extends Controller
         // $thing = Thing::find($order->thing_id);
         // $thing->state_id = 1;
         // $thing->save();
-        
-        $thing = Thing::find($order->things->order_id);
-        $thing->order_id = 1;
-        $thing->save();
 
         $order->delete();
 

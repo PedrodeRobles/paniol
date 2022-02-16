@@ -38,12 +38,12 @@
             <tr>
                 <th>Nombre</th>
                 <th>Identificador</th>
-                <th>Agregar Cosas</th>
             </tr>
             <tbody>
                 @foreach ($orders as $order)
                     <tr>
                         <td>{{ $order->id }}</td>
+                        <td>{{ $order->identifier }}</td>
                         <td>
                             <button><a href="{{ route('order.show', $order) }}">Ver</a></button>
                         </td>

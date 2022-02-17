@@ -1,5 +1,5 @@
 /*
-! tailwindcss v3.0.18 | MIT License | https://tailwindcss.com
+! tailwindcss v3.0.23 | MIT License | https://tailwindcss.com
 *//*
 1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
 2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
@@ -1045,6 +1045,9 @@ select {
 .inline-flex {
   display: inline-flex;
 }
+.table {
+  display: table;
+}
 .grid {
   display: grid;
 }
@@ -1297,6 +1300,9 @@ select {
 .border-b {
   border-bottom-width: 1px;
 }
+.border-r {
+  border-right-width: 1px;
+}
 .border-gray-300 {
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
@@ -1315,6 +1321,10 @@ select {
 .border-gray-100 {
   --tw-border-opacity: 1;
   border-color: rgb(243 244 246 / var(--tw-border-opacity));
+}
+.border-gray-400 {
+  --tw-border-opacity: 1;
+  border-color: rgb(156 163 175 / var(--tw-border-opacity));
 }
 .bg-white {
   --tw-bg-opacity: 1;
@@ -1363,6 +1373,14 @@ select {
 .bg-gray-200 {
   --tw-bg-opacity: 1;
   background-color: rgb(229 231 235 / var(--tw-bg-opacity));
+}
+.bg-gray-900 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(17 24 39 / var(--tw-bg-opacity));
+}
+.bg-red-800 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(153 27 27 / var(--tw-bg-opacity));
 }
 .bg-opacity-25 {
   --tw-bg-opacity: 0.25;
@@ -1514,6 +1532,10 @@ select {
   font-size: 1.25rem;
   line-height: 1.75rem;
 }
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
 .font-medium {
   font-weight: 500;
 }
@@ -1537,6 +1559,9 @@ select {
 }
 .tracking-widest {
   letter-spacing: 0.1em;
+}
+.tracking-wider {
+  letter-spacing: 0.05em;
 }
 .text-gray-500 {
   --tw-text-opacity: 1;

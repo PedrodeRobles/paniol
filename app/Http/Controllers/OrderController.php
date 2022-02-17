@@ -74,7 +74,8 @@ class OrderController extends Controller
 
         $things = Thing::where('order_id', $order->id)->get();
         $things->toQuery()->update([
-            'order_id' => 1
+            'order_id' => 1,
+            'state_id' => 1,
         ]);
 
         $order->return = 1;

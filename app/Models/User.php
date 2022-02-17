@@ -10,7 +10,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 
-use App\Models\Transaction;
+use App\Models\Order;
 
 class User extends Authenticatable
 {
@@ -61,8 +61,8 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    public function transactions()
+    public function orders()
     {
-        return $this->hasMany(Transaction::class);
+        return $this->hasMany(Order::class);
     }
 }

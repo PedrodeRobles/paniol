@@ -4,26 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <title>Pañol</title>
 </head>
 <body>
-    <h1>Generar orden</h1>
+    <h1 class="text-4xl text-center">Generar orden</h1>
 
     {{-- FORMULARIO PARA GENERAR ORDENES --}}
-    {{-- <h2>Buscar Material</h2>
     <form action="{{ route('order.store') }}" method="POST">
-        <label for="">Nombre del material</label> --}}
-        {{-- <input type="text" name="name_of_thing"> --}}
-        {{-- <select name="thing_id">
-            @foreach ($things as $thing)
-                    @if ($thing->state_id != 2)
-                        <option value="{{ $thing->id }}">{{ $thing->name }}</option>
-                    @endif
+        <label>Persona</label>
+        <select name="person_id">
+            @foreach ($people as $person)
+                <option value="{{ $person->id }}">{{ $person->name }}</option>
             @endforeach
-        </select> --}}
+        </select>
 
 
-    <form action="{{ route('order.store') }}" method="POST">
         <label>Nombre de orden</label>
         <input type="text" name="identifier">
 
@@ -36,19 +32,37 @@
     <table>
         <thead>
             <tr>
-                <th>Nombre</th>
+                <th>ID</th>
+                <th>Persona</th>
                 <th>Identificador</th>
-                <th>Agregar Cosas</th>
+                <th>Return</th>
             </tr>
             <tbody>
                 @foreach ($orders as $order)
+                @if ($order->id == 1)
+                    .
+                @else
                     <tr>
                         <td>{{ $order->id }}</td>
+                        <td>{{ $order->person->name }}</td>
+                        <td>{{ $order->identifier }}</td>
+                        <td>{{ $order->return }}</td>
                         <td>
                             <button><a href="{{ route('order.show', $order) }}">Ver</a></button>
                         </td>
                         <td>
                             <button><a href="{{ route('order.edit', $order) }}">Editar</a></button>
+                        </td>
+                        <td>
+                            @if ($order->return == 0)
+                                <form action="{{ route('order.update', $order) }}" method="POST" enctype="multipart/form-data">
+                                    <input type="submit" value="Devolver">
+                                    @csrf
+                                    @method('PUT')
+                                </form>
+                            @else
+                                <p>Devolvio</p>
+                            @endif
                         </td>
                         <td>
                             <form action="{{ route('order.destroy', $order) }}" method="POST">
@@ -61,6 +75,7 @@
                             </form>
                         </td>
                     </tr>
+                @endif
                 @endforeach
             </tbody>
         </thead>

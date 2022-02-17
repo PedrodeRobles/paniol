@@ -104,6 +104,12 @@ class ThingController extends Controller
             'order_id' => 'required',
         ]);
 
+        if ($request->order_id != 1) {
+            $thing->state_id = 2;
+        } else {
+            $thing->state_id = 1;
+        }
+
         $thing->update($request->all());
 
         return redirect()->route('thing.index');
@@ -111,7 +117,8 @@ class ThingController extends Controller
 
     public function destroy(Thing $thing)
     {
-        $thing->delete();
+        $thing->visibility = 0;
+        $thing->save();
 
         return back();
     }

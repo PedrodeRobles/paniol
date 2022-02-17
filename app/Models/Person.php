@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Models\Transaction;
+use App\Models\Order;
 
 class Person extends Model
 {
@@ -16,8 +17,8 @@ class Person extends Model
         'place',
     ];
 
-    public function transactions()
+    public function orders()
     {
-        return $this->hasMany(Transaction::class);
+        return $this->hasMany(Order::class);
     }
 }

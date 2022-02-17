@@ -37,8 +37,6 @@ Route::resource('thing', ThingController::class);
 
 Route::resource('order', OrderController::class);
 
-Route::resource('transaction', TransactionController::class);
-
 
 
 

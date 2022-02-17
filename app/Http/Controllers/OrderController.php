@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Person;
 use App\Models\Thing;
 use Illuminate\Http\Request;
+use phpDocumentor\Reflection\Types\This;
 
 class OrderController extends Controller
 {
@@ -12,10 +14,12 @@ class OrderController extends Controller
     {
         $orders = Order::latest()->get();
         $things = Thing::all();
+        $people = Person::all();
 
         return view('order.index', [
             'orders' => $orders,
-            'things' => $things
+            'things' => $things,
+            'people' => $people,
         ]);
     }
 
@@ -28,9 +32,15 @@ class OrderController extends Controller
     {
         $request->validate([
             'identifier' => 'required',
+            'person_id' => 'required',
         ]);
 
-        Order::create($request->all());
+        Order::create([
+            'user_id' => auth()->user()->id,
+            'identifier' => $request->identifier,
+            'person_id' => $request->person_id,
+            'return' => 0,
+        ]);
 
         // Cambiar el state_id del 'Thing' que seleccione
         // $thing = Thing::find($request->thing_id);
@@ -55,14 +65,22 @@ class OrderController extends Controller
     //     return view('order.edit', compact('order', 'things'));
     // }
 
-    public function update(Request $request, Order $order)
+    public function update(Request $request, Order $order, Thing $thing)
     {
-        $request->validate([
-            'identifier' => 'required',
-            'thing_id' => 'required',
+        // $request->validate([
+        //     'identifier' => 'required',
+        //     'thing_id' => 'required',
+        // ]);
+
+        $things = Thing::where('order_id', $order->id)->get();
+        $things->toQuery()->update([
+            'order_id' => 1,
+            'state_id' => 1,
         ]);
 
-        $order->update($request->all());
+        $order->return = 1;
+
+        $order->update();
 
         return redirect()->route('order.index');
     }

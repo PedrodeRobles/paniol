@@ -24,11 +24,12 @@
                 <th>Nombre</th>
                 <th>Tipo de material</th>
                 <th>Estado</th>
-                <th>order_id</th>
+                <th>Numero de orden</th>
             </tr>
             <tbody>
                 @foreach ($things as $thing)
-                    <tr>                    
+                @if ($thing->visibility == 1)
+                    <tr>
                         <td>{{ $thing->name }}</td>
                         <td>
                             {{ $thing->type->type}}
@@ -41,13 +42,15 @@
                         </td>
                         <td>
                             <form action="{{ route('thing.update', $thing) }}" method="POST" enctype="multipart/form-data">
-
                                 <select name="order_id">
                                     @foreach ($orders as $order)
-                                        <option value="{{ $order->id }}">{{ $order->id  }}</option>
+                                        @if ($order->id == 1)
+                                            <option value="{{ $order->id }}">Pañol</option>
+                                        @else
+                                            <option value="{{ $order->id }}">{{ $order->id }}</option>
+                                        @endif
                                     @endforeach
                                 </select>
-                                
                                 @csrf
                                 @method('PUT')
                                 <input type="submit" value="Actualizar">
@@ -70,6 +73,10 @@
                             </form>
                         </td>
                     </tr>
+                @else
+                    .
+                @endif
+                    
                 @endforeach
             </tbody>
         </thead>

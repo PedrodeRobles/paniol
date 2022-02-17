@@ -117,7 +117,8 @@ class ThingController extends Controller
 
     public function destroy(Thing $thing)
     {
-        $thing->delete();
+        $thing->visibility = 0;
+        $thing->save();
 
         return back();
     }

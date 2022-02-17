@@ -28,6 +28,7 @@
             </tr>
             <tbody>
                 @foreach ($things as $thing)
+                @if ($thing->visibility == 1)
                     <tr>
                         <td>{{ $thing->name }}</td>
                         <td>
@@ -72,6 +73,10 @@
                             </form>
                         </td>
                     </tr>
+                @else
+                    .
+                @endif
+                    
                 @endforeach
             </tbody>
         </thead>

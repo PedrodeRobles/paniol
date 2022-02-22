@@ -12,7 +12,7 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $orders = Order::latest()->paginate(2);
+        $orders = Order::latest()->paginate(10);
         $things = Thing::all();
         $people = Person::all();
 
@@ -58,12 +58,12 @@ class OrderController extends Controller
         return view('order.show', compact('order', 'things'));
     }
 
-    // public function edit(Order $order)
-    // {
-    //     $things = Thing::all();
+    public function edit(Order $order)
+    {
+        $things = Thing::all();
 
-    //     return view('order.edit', compact('order', 'things'));
-    // }
+        return view('order.edit', compact('order', 'things'));
+    }
 
     public function update(Request $request, Order $order, Thing $thing)
     {

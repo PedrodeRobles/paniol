@@ -12,7 +12,7 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $orders = Order::latest()->get();
+        $orders = Order::latest()->paginate(2);
         $things = Thing::all();
         $people = Person::all();
 

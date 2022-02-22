@@ -78,7 +78,8 @@ class ThingController extends Controller
             'order_id' => 1,
         ]);
 
-        return redirect()->route('thing.index');
+        // return redirect()->route('thing.index');
+        return back();
     }
 
     public function show(Thing $thing)
@@ -123,4 +124,18 @@ class ThingController extends Controller
 
         return back();
     }
+
+    // public function return(Request $request ,Thing $thing)
+    // {
+    //     // $request->validate([
+    //     //     'order_id' => 'required',
+    //     // ]);
+
+    //     $thing->update([
+    //         'order_id' => 1,
+    //         'state_id' => 1,
+    //     ]);
+
+    //     return back();
+    // }
 }

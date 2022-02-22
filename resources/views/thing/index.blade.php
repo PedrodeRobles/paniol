@@ -11,6 +11,11 @@
     <div class="bg-blue-500 h-14 border-b-2 border-t-2 border-black">
         <h1 class="text-center text-4xl">Materiales del pañol</h1>
     </div>
+    
+    <button class="mt-4">
+        <a href="{{ route('order.index') }}" class="bg-blue-600 text-white rounded h-6 py-1 px-2">Ver ordenes</a>
+    </button>
+
 
     {{-- Search form --}}
     <div class="pt-10 pb-6">
@@ -21,9 +26,9 @@
         </form>
     </div>
 
-    <button><a href="{{ route('thing.create') }}" class="bg-blue-400 rounded h-6">Agregar material</a></button>
+    <button><a href="{{ route('thing.create') }}" class="bg-green-500 text-white py-1 px-4 rounded h-6">Agregar material</a></button>
 
-    <table>
+    <table class="mt-4">
         <thead>
             <tr>
                 <th>Nombre</th>

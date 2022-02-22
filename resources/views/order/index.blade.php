@@ -10,6 +10,10 @@
 <body>
     <h1 class="text-4xl text-center">Generar orden</h1>
 
+    <button class="my-4">
+        <a href="{{ route('thing.index') }}" class="bg-blue-600 text-white rounded h-6 py-1 px-2">Elementos</a>
+    </button>
+
     {{-- FORMULARIO PARA GENERAR ORDENES --}}
     <form action="{{ route('order.store') }}" method="POST">
         <label>Persona</label>
@@ -67,7 +71,7 @@
                                     @method('PUT')
                                 </form>
                             @else
-                                <p class="text-green-600">Devolvio</p>
+                                <p class="text-green-600">Entregado</p>
                             @endif
                         </td>
                         <td>

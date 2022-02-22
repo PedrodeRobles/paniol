@@ -6,7 +6,6 @@ use App\Models\Order;
 use App\Models\Person;
 use App\Models\Thing;
 use Illuminate\Http\Request;
-use phpDocumentor\Reflection\Types\This;
 
 class OrderController extends Controller
 {
@@ -58,7 +57,7 @@ class OrderController extends Controller
         return view('order.show', compact('order', 'things'));
     }
 
-    public function edit(Order $order)
+    public function edit(Order $order, Request $request)
     {
         $things = Thing::all();
 
@@ -94,10 +93,5 @@ class OrderController extends Controller
         $order->delete();
 
         return redirect()->route('order.index');
-    }
-
-    public function hola(Order $order)
-    {
-        return view('order.show', compact('order'));
     }
 }

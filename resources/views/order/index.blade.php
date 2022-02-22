@@ -35,6 +35,9 @@
                 <th>ID</th>
                 <th>Persona</th>
                 <th>Identificador</th>
+                <th>Pañolero</th>
+                <th>Fecha</th>
+                <th>Hora de creación</th>
                 <th>Return</th>
             </tr>
             <tbody>
@@ -46,22 +49,25 @@
                         <td>{{ $order->id }}</td>
                         <td>{{ $order->person->name }}</td>
                         <td>{{ $order->identifier }}</td>
+                        <td>{{ $order->user->name }}</td>
+                        <td>{{ $order->created_at->format('d M Y') }}</td>
+                        <td class="text-center">{{ $order->created_at->format(' H:i ') }}</td>
                         <td>{{ $order->return }}</td>
                         <td>
-                            <button><a href="{{ route('order.show', $order) }}">Ver</a></button>
+                            <button class="bg-gray-300 rounded w-14"><a href="{{ route('order.show', $order) }}">Ver</a></button>
                         </td>
                         <td>
-                            <button><a href="{{ route('order.edit', $order) }}">Editar</a></button>
+                            <button class="bg-gray-300 rounded w-14"><a href="{{ route('order.edit', $order) }}">Editar</a></button>
                         </td>
                         <td>
                             @if ($order->return == 0)
                                 <form action="{{ route('order.update', $order) }}" method="POST" enctype="multipart/form-data">
-                                    <input type="submit" value="Devolver">
+                                    <input type="submit" value="Devolver" class="bg-gray-300 rounded w-20 pointer">
                                     @csrf
                                     @method('PUT')
                                 </form>
                             @else
-                                <p>Devolvio</p>
+                                <p class="text-green-600">Devolvio</p>
                             @endif
                         </td>
                         <td>
@@ -69,6 +75,7 @@
                                 @method('DELETE')
                                 @csrf
                                 <input 
+                                    class="bg-red-500 rounded w-14 text-white"
                                     type="submit"
                                     value="Delete"
                                     onclick="return confirm('¿Estas seguro que quieres eliminar este tipo de material?')">

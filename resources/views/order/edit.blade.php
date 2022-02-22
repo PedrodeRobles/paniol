@@ -83,6 +83,7 @@
                     <th>Nombre</th>
                     <th>Tipo de material</th>
                     <th>Estado</th>
+                    <th>Identificador</th>
                     <th>Numero de orden</th>
                 </tr>
                 <tbody>
@@ -97,6 +98,9 @@
                                 {{ $thing->state->state }}
                             </td>
                             <td class="text-center">
+                                {{ $thing->order->identifier }}
+                            </td>
+                            <td class="text-center">
                                 {{ $thing->order_id }}
                             </td>
                             <td>
@@ -107,7 +111,7 @@
                                     </select>
                                     @csrf
                                     @method('PUT')
-                                    <input type="submit" value="Actualizar" class="bg-gray-300 rounded w-20">
+                                    <input type="submit" value="Agregar" class="bg-gray-300 rounded w-20">
                                 </form>
                             </td>
                             {{-- <td>

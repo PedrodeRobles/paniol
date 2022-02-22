@@ -11,7 +11,7 @@
     <div class="bg-blue-500 h-14 border-b-2 border-t-2 border-black">
         <h1 class="text-center text-4xl">Materiales del pañol</h1>
     </div>
-    
+
     <button class="mt-4">
         <a href="{{ route('order.index') }}" class="bg-blue-600 text-white rounded h-6 py-1 px-2">Ver ordenes</a>
     </button>
@@ -50,7 +50,7 @@
                         <td class="text-center">
                             {{ $thing->order_id }}
                         </td>
-                        <td>
+                        {{-- <td>
                             <form action="{{ route('thing.update', $thing) }}" method="POST" enctype="multipart/form-data">
                                 <select name="order_id">
                                     @foreach ($orders as $order)
@@ -65,7 +65,7 @@
                                 @method('PUT')
                                 <input type="submit" value="Actualizar" class="bg-gray-300 rounded w-20">
                             </form>
-                        </td>
+                        </td> --}}
                         <td>
                             <button class="bg-gray-300 rounded w-14"><a href="{{ route('thing.show', $thing) }}">Ver</a></button>
                         </td>

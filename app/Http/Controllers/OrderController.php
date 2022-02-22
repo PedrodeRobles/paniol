@@ -81,7 +81,7 @@ class OrderController extends Controller
 
         $order->update();
 
-        return redirect()->route('order.index');
+        return back();
     }
 
     public function destroy(Order $order)

@@ -7,6 +7,7 @@ use App\Models\Thing;
 use App\Models\Type;
 use App\Models\State;
 use Illuminate\Http\Request;
+use phpDocumentor\Reflection\Types\This;
 
 class ThingController extends Controller
 {
@@ -37,13 +38,6 @@ class ThingController extends Controller
                         'orders' => $orders
                     ]);
         }
-
-        // $things = Thing::latest()->get();
-
-        // return view('thing.index', [
-        //     'things' => $things,
-        //     'text' => $text
-        // ]);
     }
 
     public function create(Request $request)
@@ -71,11 +65,24 @@ class ThingController extends Controller
             'state_id' => 'required',
         ]);
 
-        $thing = Thing::create([
+        $things = Thing::all();
+        $states = State::all();
+
+        $subName = strtoupper(substr($request->name, 0, 3));
+        $num = 1;
+
+        foreach ($things as $thing) {
+            if ($thing->description == $subName . '-' . $num) {
+                $num = $num + 1;
+            }
+        }
+
+        Thing::create([
             'name'  => $request->name,
             'type_id' => $request->type_id,
             'state_id' => $request->state_id,
             'order_id' => 1,
+            'description' => $subName . '-' . $num,
         ]);
 
         // return redirect()->route('thing.index');

@@ -73,7 +73,7 @@
     
         {{-- Search form --}}
         <div class="pt-10 pb-6">
-            <h2 class="text-xl">Buscar Material (Todavía no programe este buscador en esta vista)</h2>
+            <h2 class="text-xl">Buscar Material</h2>
             <form action="">
                 <input type="search" name="search" placeholder="Buscar" class="rounded-md h-7">
                 <button type="submit" class="bg-gray-300 rounded w-14">Buscar</button>
@@ -148,8 +148,7 @@
                                 <td>
                                     <form action="{{ route('thing.update', $thing) }}" method="POST" enctype="multipart/form-data">
                                         <select name="order_id" hidden>
-                                            {{-- <option value="{{ $order->id }}">{{ $order->id }}</option> --}}
-                                            <option value="{{ $returnOrder = 1 }}">{{ $returnOrder  }}</option>
+                                            <option value="{{ $returnThing = 1 }}">{{ $returnThing  }}</option>
                                         </select>
                                         @csrf
                                         @method('PUT')

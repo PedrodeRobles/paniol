@@ -64,7 +64,7 @@
                                     @method('DELETE')
                                     @csrf
                                     <input 
-                                        class="bg-red-500 rounded w-14 text-white"
+                                        class="bg-red-500 rounded w-14 text-white cursor-pointer"
                                         type="submit"
                                         value="Delete"
                                         onclick="return confirm('¿Estas seguro que quieres eliminar este tipo de material?')">
@@ -84,22 +84,6 @@
                             <td class="text-center">
                                 {{ $thing->order_id }}
                             </td>
-                            {{-- <td>
-                                <form action="{{ route('thing.update', $thing) }}" method="POST" enctype="multipart/form-data">
-                                    <select name="order_id">
-                                        @foreach ($orders as $order)
-                                            @if ($order->id == 1)
-                                                <option value="{{ $order->id }}">Pañol</option>
-                                            @else
-                                                <option value="{{ $order->id }}">{{ $order->id }}</option>
-                                            @endif
-                                        @endforeach
-                                    </select>
-                                    @csrf
-                                    @method('PUT')
-                                    <input type="submit" value="Actualizar" class="bg-gray-300 rounded w-20">
-                                </form>
-                            </td> --}}
                             <td>
                                 <button class="bg-gray-300 rounded w-14"><a href="{{ route('thing.show', $thing) }}">Ver</a></button>
                             </td>
@@ -111,7 +95,7 @@
                                     @method('DELETE')
                                     @csrf
                                     <input 
-                                        class="bg-red-500 rounded w-14 text-white"
+                                        class="bg-red-500 rounded w-14 text-white cursor-pointer"
                                         type="submit"
                                         value="Delete"
                                         onclick="return confirm('¿Estas seguro que quieres eliminar este tipo de material?')">

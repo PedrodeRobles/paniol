@@ -6,13 +6,12 @@ use App\Models\Order;
 use App\Models\Person;
 use App\Models\Thing;
 use Illuminate\Http\Request;
-use phpDocumentor\Reflection\Types\This;
 
 class OrderController extends Controller
 {
     public function index()
     {
-        $orders = Order::latest()->get();
+        $orders = Order::latest()->paginate(10);
         $things = Thing::all();
         $people = Person::all();
 
@@ -58,12 +57,12 @@ class OrderController extends Controller
         return view('order.show', compact('order', 'things'));
     }
 
-    // public function edit(Order $order)
-    // {
-    //     $things = Thing::all();
+    public function edit(Order $order, Request $request)
+    {
+        $things = Thing::all();
 
-    //     return view('order.edit', compact('order', 'things'));
-    // }
+        return view('order.edit', compact('order', 'things'));
+    }
 
     public function update(Request $request, Order $order, Thing $thing)
     {
@@ -82,7 +81,7 @@ class OrderController extends Controller
 
         $order->update();
 
-        return redirect()->route('order.index');
+        return back();
     }
 
     public function destroy(Order $order)

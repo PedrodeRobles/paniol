@@ -77,7 +77,7 @@
         </div>
 
         {{-- TABLA DE THINGS --}}
-        <table>
+    <table>
             <thead>
                 <tr>
                     <th>Nombre</th>
@@ -146,7 +146,6 @@
                     @endforeach
                 </tbody>
             </thead>
-        </table>
     </table>
 </body>
 </html>

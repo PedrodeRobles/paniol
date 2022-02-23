@@ -73,6 +73,7 @@
                         </tr>
                     @else
                         <tr class="bg-red-400">
+                            <td>{{ $thing->identifier }}</td>
                             <td>{{ $thing->name }}</td>
                             <td>
                                 {{ $thing->type->type}}

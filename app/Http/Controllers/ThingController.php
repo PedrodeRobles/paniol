@@ -112,7 +112,7 @@ class ThingController extends Controller
 
         $thing->update($request->all());
 
-        return redirect()->route('thing.index');
+        return redirect()->route('order.index');
     }
 
     public function destroy(Thing $thing)

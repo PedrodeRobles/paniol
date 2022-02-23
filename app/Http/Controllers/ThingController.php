@@ -66,13 +66,20 @@ class ThingController extends Controller
         ]);
 
         $things = Thing::all();
-        $states = State::all();
+        $types = Type::all();
 
         $subName = strtoupper(substr($request->name, 0, 3));
         $num = 1;
+        $type_id =  $request->type_id;
+
+        foreach ($types as $type) {
+            if ($type_id == $type->id) {
+                $typeName = strtoupper(substr($type->type, 0, 3));
+            }
+        }
 
         foreach ($things as $thing) {
-            if ($thing->description == $subName . '-' . $num) {
+            if ($thing->description == $typeName . '-' . $subName . '-' . $num) {
                 $num = $num + 1;
             }
         }
@@ -82,7 +89,7 @@ class ThingController extends Controller
             'type_id' => $request->type_id,
             'state_id' => $request->state_id,
             'order_id' => 1,
-            'description' => $subName . '-' . $num,
+            'description' => $typeName . '-' . $subName . '-' . $num,
         ]);
 
         // return redirect()->route('thing.index');

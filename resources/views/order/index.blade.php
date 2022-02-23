@@ -27,70 +27,73 @@
         <label>Nombre de orden</label>
         <input type="text" name="identifier">
 
-        <input type="submit" value="Agregar">
+        <input type="submit" value="Agregar" class="bg-green-500 hover:bg-green-400 rounded-md px-4 py-2 text-white cursor-pointer">
         @csrf
     </form>
 
 
-    {{-- TABLA DE ORDENES --}}
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Persona</th>
-                <th>Identificador</th>
-                <th>Pañolero</th>
-                <th>Fecha</th>
-                <th>Hora de creación</th>
-                <th>Return</th>
-            </tr>
-            <tbody>
-                @foreach ($orders as $order)
-                @if ($order->id == 1)
-                    .
-                @else
-                    <tr>
-                        <td>{{ $order->id }}</td>
-                        <td>{{ $order->person->name }}</td>
-                        <td>{{ $order->identifier }}</td>
-                        <td>{{ $order->user->name }}</td>
-                        <td>{{ $order->created_at->format('d M Y') }}</td>
-                        <td class="text-center">{{ $order->created_at->format(' H:i ') }}</td>
-                        <td>{{ $order->return }}</td>
-                        <td>
-                            <button class="bg-gray-300 rounded w-14"><a href="{{ route('order.show', $order) }}">Ver</a></button>
-                        </td>
-                        <td>
-                            <button class="bg-gray-300 rounded w-14"><a href="{{ route('order.edit', $order) }}">Editar</a></button>
-                        </td>
-                        <td>
-                            @if ($order->return == 0)
-                                <form action="{{ route('order.update', $order) }}" method="POST" enctype="multipart/form-data">
-                                    <input type="submit" value="Devolver" class="bg-gray-300 rounded w-20 pointer">
+    <div class="mt-10 border-2 border-black rounded-md">
+        <h2 class="text-2xl mt-2">Lista de ordenes creadas</h2>
+        {{-- TABLA DE ORDENES --}}
+        <table class="mb-4">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Persona</th>
+                    <th>Identificador</th>
+                    <th>Pañolero</th>
+                    <th>Fecha</th>
+                    <th>Hora de creación</th>
+                    <th>Return</th>
+                </tr>
+                <tbody>
+                    @foreach ($orders as $order)
+                    @if ($order->id == 1)
+                        .
+                    @else
+                        <tr>
+                            <td>{{ $order->id }}</td>
+                            <td>{{ $order->person->name }}</td>
+                            <td>{{ $order->identifier }}</td>
+                            <td>{{ $order->user->name }}</td>
+                            <td>{{ $order->created_at->format('d M Y') }}</td>
+                            <td class="text-center">{{ $order->created_at->format(' H:i ') }}</td>
+                            <td>{{ $order->return }}</td>
+                            <td>
+                                <button class="bg-gray-300 rounded px-2"><a href="{{ route('order.show', $order) }}">Ver</a></button>
+                            </td>
+                            <td>
+                                <button class="bg-green-400 rounded px-2"><a href="{{ route('order.edit', $order) }}">Agregar objetos</a></button>
+                            </td>
+                            <td>
+                                @if ($order->return == 0)
+                                    <form action="{{ route('order.update', $order) }}" method="POST" enctype="multipart/form-data">
+                                        <input type="submit" value="Devolver" class="bg-gray-300 rounded px-2 cursor-pointer">
+                                        @csrf
+                                        @method('PUT')
+                                    </form>
+                                @else
+                                    <p class="text-green-600">Entregado</p>
+                                @endif
+                            </td>
+                            <td>
+                                <form action="{{ route('order.destroy', $order) }}" method="POST">
+                                    @method('DELETE')
                                     @csrf
-                                    @method('PUT')
+                                    <input 
+                                        class="bg-red-500 rounded px-2 text-white"
+                                        type="submit"
+                                        value="Delete"
+                                        onclick="return confirm('¿Estas seguro que quieres eliminar este tipo de material?')">
                                 </form>
-                            @else
-                                <p class="text-green-600">Entregado</p>
-                            @endif
-                        </td>
-                        <td>
-                            <form action="{{ route('order.destroy', $order) }}" method="POST">
-                                @method('DELETE')
-                                @csrf
-                                <input 
-                                    class="bg-red-500 rounded w-14 text-white"
-                                    type="submit"
-                                    value="Delete"
-                                    onclick="return confirm('¿Estas seguro que quieres eliminar este tipo de material?')">
-                            </form>
-                        </td>
-                    </tr>
-                @endif
-                @endforeach
-            </tbody>
-        </thead>
-    </table>
-    {{ $orders->links() }}
+                            </td>
+                        </tr>
+                    @endif
+                    @endforeach
+                </tbody>
+            </thead>
+        </table>
+        {{ $orders->links() }}
+    </div>
 </body>
 </html>

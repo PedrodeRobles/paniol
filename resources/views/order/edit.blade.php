@@ -8,10 +8,14 @@
     <title>Pañol</title>
 </head>
 <body>
-    <h1 class="text-4xl text-center">Editar Orden</h1>
+    <h1 class="text-4xl text-center">Agregar objetos a la orden</h1>
+
+    <button class="my-4 ml-4">
+        <a href="{{ route('order.index') }}" class="bg-blue-600 text-white rounded h-6 py-1 px-2">Ver ordenes</a>
+    </button>
 
     {{-- ORDEN --}}
-    <table>
+    <table class="bg-gray-200 my-4 mx-4">
         <thead>
             <tr>
                 <th>ID</th>
@@ -47,98 +51,101 @@
                             @else
                                 <p class="text-green-600">Entregado</p>
                             @endif
-                        {{-- </td>
-                        <td>
-                            <form action="{{ route('order.destroy', $order) }}" method="POST">
-                                @method('DELETE')
-                                @csrf
-                                <input 
-                                    class="bg-red-500 rounded w-14 text-white"
-                                    type="submit"
-                                    value="Delete"
-                                    onclick="return confirm('¿Estas seguro que quieres eliminar este tipo de material?')">
-                            </form>
-                        </td> --}}
                     </tr>
                 @endif
             </tbody>
         </thead>
     </table>
 
-    <h2 class="text-xl">Agregar elementos a la orden</h2>
+    <div class="mt-10 ml-2 w-4/5 border-2 border-black rounded-xl">
+        <h2 class="text-2xl">Lista de objetos</h2>
     
         {{-- Search form --}}
-        <div class="pt-10 pb-6">
-            <h2 class="text-xl">Buscar Material (Todavía no programe este buscador en esta vista)</h2>
+        <div class="pt-4 pb-6">
+            <h2 class="text-xl">Buscar objeto</h2>
             <form action="">
                 <input type="search" name="search" placeholder="Buscar" class="rounded-md h-7">
                 <button type="submit" class="bg-gray-300 rounded w-14">Buscar</button>
             </form>
         </div>
 
-        {{-- TABLA DE THINGS --}}
+            {{-- TABLA DE THINGS --}}
         <table>
             <thead>
                 <tr>
-                    <th>Nombre</th>
+                    <th>Identificador</th>
+                    <th>Objeto</th>
                     <th>Tipo de material</th>
                     <th>Estado</th>
-                    <th>Identificador</th>
+                    <th>Identificador de orden</th>
                     <th>Numero de orden</th>
                 </tr>
                 <tbody>
                     @foreach ($things as $thing)
                     @if ($thing->visibility == 1)
-                        <tr>
-                            <td>{{ $thing->name }}</td>
-                            <td>
-                                {{ $thing->type->type}}
-                            </td>
-                            <td>
-                                {{ $thing->state->state }}
-                            </td>
-                            <td class="text-center">
-                                {{ $thing->order->identifier }}
-                            </td>
-                            <td class="text-center">
-                                {{ $thing->order_id }}
-                            </td>
-                            <td>
-                                <form action="{{ route('thing.update', $thing) }}" method="POST" enctype="multipart/form-data">
-                                    <select name="order_id">
-                                        <option value="{{ $order->id }}">{{ $order->id }}</option>
-                                        <option value="{{ $returnOrder = 1 }}">{{ $returnOrder  }}</option>
-                                    </select>
-                                    @csrf
-                                    @method('PUT')
-                                    <input type="submit" value="Agregar" class="bg-gray-300 rounded w-20">
-                                </form>
-                            </td>
-                            {{-- <td>
-                                <form action="{{ route('thing.return', $thing) }}" method="POST" enctype="multipart/form-data">
-                                    <input type="submit" value="Devolver" class="bg-gray-300 rounded w-20 pointer">
-                                    @csrf
-                                    @method('PUT')
-                                </form>
-                            </td> --}}
-                            <td>
-                                <button class="bg-gray-300 rounded w-14"><a href="{{ route('thing.show', $thing) }}">Ver</a></button>
-                            </td>
-                            <td>
-                                <button class="bg-gray-300 rounded w-14"><a href="{{ route('thing.edit', $thing) }}">Editar</a></button>
-                            </td>
-                            <td>
-                                <form action="{{ route('thing.destroy', $thing) }}" method="POST">
-                                    @method('DELETE')
-                                    @csrf
-                                    <input 
-                                        class="bg-red-500 rounded w-14 text-white"
-                                        type="submit"
-                                        value="Delete"
-                                        onclick="return confirm('¿Estas seguro que quieres eliminar este tipo de material?')">
-                                </form>
-                            </td>
-                        </tr>
+                        @if ($thing->state_id == 1)
+                            <tr class="bg-blue-400">
+                                <td>{{ $thing->identifier }}</td>
+                                <td>{{ $thing->name }}</td>
+                                <td>
+                                    {{ $thing->type->type}}
+                                </td>
+                                <td>
+                                    {{ $thing->state->state }}
+                                </td>
+                                <td class="text-center">
+                                    {{ $thing->order->identifier }}
+                                </td>
+                                <td class="text-center">
+                                    {{ $thing->order_id }}
+                                </td>
+                                <td>
+                                    <form action="{{ route('thing.update', $thing) }}" method="POST" enctype="multipart/form-data">
+                                        <select name="order_id" hidden>
+                                            <option value="{{ $order->id }}">{{ $order->id }}</option>
+                                            <option value="{{ $returnOrder = 1 }}">{{ $returnOrder  }}</option>
+                                        </select>
+                                        @csrf
+                                        @method('PUT')
+                                        <input type="submit" value="Agregar" class="bg-gray-300 rounded w-20">
+                                    </form>
+                                </td>
+                                <td>
+                                    <button class="bg-gray-300 rounded w-14"><a href="{{ route('thing.show', $thing) }}">Ver</a></button>
+                                </td>
+                            </tr>
+                        @else
+                            <tr class="bg-red-400">
+                                <td>{{ $thing->identifier }}</td>
+                                <td>{{ $thing->name }}</td>
+                                <td>
+                                    {{ $thing->type->type}}
+                                </td>
+                                <td>
+                                    {{ $thing->state->state }}
+                                </td>
+                                <td class="text-center">
+                                    {{ $thing->order->identifier }}
+                                </td>
+                                <td class="text-center">
+                                    {{ $thing->order_id }}
+                                </td>
+                                <td>
+                                    <form action="{{ route('thing.update', $thing) }}" method="POST" enctype="multipart/form-data">
+                                        <select name="order_id" hidden>
+                                            <option value="{{ $returnThing = 1 }}">{{ $returnThing  }}</option>
+                                        </select>
+                                        @csrf
+                                        @method('PUT')
+                                        <input type="submit" value="Devolver" class="bg-gray-300 rounded w-20">
+                                    </form>
+                                </td>
+                                <td>
+                                    <button class="bg-gray-300 rounded w-14"><a href="{{ route('thing.show', $thing) }}">Ver</a></button>
+                                </td>
+                            </tr>
+                        @endif
+                        
                     @else
                         .
                     @endif
@@ -147,6 +154,6 @@
                 </tbody>
             </thead>
         </table>
-    </table>
+    </div>
 </body>
 </html>

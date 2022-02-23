@@ -59,18 +59,22 @@ class OrderController extends Controller
 
     public function edit(Order $order, Request $request)
     {
-        $things = Thing::all();
+        $query = trim($request->get('search'));
 
-        return view('order.edit', compact('order', 'things'));
+        $things =Thing::where('name', 'LIKE', '%' . $query . '%')
+                    ->orWhere('identifier', 'LIKE', '%' . $query . '%')
+                    ->orderBy('id', 'asc')
+                    ->get();
+
+                    return view('order.edit', [
+                        'things' => $things,
+                        'search' => $query,
+                        'order'  => $order
+                    ]);
     }
 
     public function update(Request $request, Order $order, Thing $thing)
     {
-        // $request->validate([
-        //     'identifier' => 'required',
-        //     'thing_id' => 'required',
-        // ]);
-
         $things = Thing::where('order_id', $order->id)->get();
         $things->toQuery()->update([
             'order_id' => 1,

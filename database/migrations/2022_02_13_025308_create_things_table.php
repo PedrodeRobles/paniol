@@ -21,6 +21,7 @@ class CreateThingsTable extends Migration
             $table->bigInteger('order_id')->unsigned();
 
             $table->string('name');
+            $table->string('identifier');
             $table->text('description')->nullable();
             $table->integer('visibility')->default(1);
 

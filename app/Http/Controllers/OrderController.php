@@ -71,10 +71,6 @@ class OrderController extends Controller
                         'search' => $query,
                         'order'  => $order
                     ]);
-
-        // $things = Thing::all();
-
-        // return view('order.edit', compact('order', 'things'));
     }
 
     public function update(Request $request, Order $order, Thing $thing)

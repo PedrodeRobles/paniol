@@ -31,7 +31,8 @@
     <table class="mt-4">
         <thead>
             <tr>
-                <th>Nombre</th>
+                <th>Identificador</th>
+                <th>Objeto</th>
                 <th>Tipo de material</th>
                 <th>Estado</th>
                 <th>Numero de orden</th>
@@ -41,6 +42,7 @@
                 @if ($thing->visibility == 1)
                     @if ($thing->state_id == 1)
                         <tr class="bg-blue-400">
+                            <td>{{ $thing->identifier }}</td>
                             <td>{{ $thing->name }}</td>
                             <td>
                                 {{ $thing->type->type}}

@@ -37,6 +37,8 @@ Route::resource('thing', ThingController::class);
 
 Route::resource('order', OrderController::class);
 
+Route::get('/order/{order}/pdf', [OrderController::class, 'exportPdf'])->name('order.pdf');
+
 
 
 

@@ -7,6 +7,8 @@ use App\Models\Person;
 use App\Models\Thing;
 use Illuminate\Http\Request;
 
+use Barryvdh\DomPDF\Facade\Pdf;
+
 class OrderController extends Controller
 {
     public function index()
@@ -52,7 +54,7 @@ class OrderController extends Controller
 
     public function show(Order $order)
     {
-        $things = Thing::all();
+        $things = Thing::where('order_id', $order->id)->get();
 
         return view('order.show', compact('order', 'things'));
     }
@@ -97,5 +99,14 @@ class OrderController extends Controller
         $order->delete();
 
         return redirect()->route('order.index');
+    }
+
+    public function exportPdf(Order $order)
+    {
+        $things = Thing::where('order_id', $order->id)->get();
+        // $things = Thing::all();
+
+        $pdf = Pdf::loadView('order.pdf', ['order' => $order, 'things' => $things]);
+        return $pdf->stream();
     }
 }

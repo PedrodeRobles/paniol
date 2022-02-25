@@ -60,7 +60,7 @@
         </table>
     
         <div>
-            <button class="bg-blue-400 rounded px-4 py-2 text-white"><a href="{{ route('order.pdf', $order) }}">PDF</a></button>
+            <button class="bg-blue-500 hover:bg-blue-400 rounded px-4 py-2 text-white"><a href="{{ route('order.pdf', $order) }}">PDF</a></button>
         </div>
     </div>
     

@@ -138,15 +138,19 @@
                                 <td class="text-center">
                                     {{ $thing->order_id }}
                                 </td>
-                                <td>
-                                    <form action="{{ route('thing.update', $thing) }}" method="POST" enctype="multipart/form-data">
-                                        <select name="order_id" hidden>
-                                            <option value="{{ $returnThing = 1 }}">{{ $returnThing  }}</option>
-                                        </select>
-                                        @csrf
-                                        @method('PUT')
-                                        <input type="submit" value="Devolver" class="bg-gray-300 rounded w-20">
-                                    </form>
+                                <td class="w-28">
+                                    @if ($thing->order_id == $order->id)
+                                        <form action="{{ route('thing.update', $thing) }}" method="POST" enctype="multipart/form-data">
+                                            <select name="order_id" hidden>
+                                                <option value="{{ $returnThing = 1 }}">{{ $returnThing  }}</option>
+                                            </select>
+                                            @csrf
+                                            @method('PUT')
+                                            <input type="submit" value="Devolver" class="bg-gray-300 rounded w-20">
+                                        </form>
+                                    @else
+                                        En otra orden
+                                    @endif
                                 </td>
                                 <td>
                                     <button class="bg-gray-300 rounded w-14"><a href="{{ route('thing.show', $thing) }}">Ver</a></button>

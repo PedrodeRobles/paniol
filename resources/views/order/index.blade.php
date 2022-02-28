@@ -76,7 +76,11 @@
                             <td>
                                 @if ($order->return == 0)
                                     <form action="{{ route('order.update', $order) }}" method="POST" enctype="multipart/form-data">
-                                        <input type="submit" value="Devolver" class="bg-gray-300 rounded px-2 cursor-pointer">
+                                        <input 
+                                            type="submit" 
+                                            value="Devolver" 
+                                            class="bg-gray-300 rounded px-2 cursor-pointer"
+                                            onclick="return confirm('¿Deseas devolver todos los objetos de esta orden?')">
                                         @csrf
                                         @method('PUT')
                                     </form>

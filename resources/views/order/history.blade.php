@@ -63,7 +63,7 @@
                                 <td class="text-center">{{ $order->created_at->format(' H:i ') }}</td>
                                 <td>{{ $order->return }}</td>
                                 <td>
-                                        <p class="text-black">Entregado</p>
+                                        <p class="text-black">Entregada</p>
                                 </td>
                                 <td>
                                     <button class="bg-gray-300 rounded px-2"><a href="{{ route('order.show', $order) }}">Ver</a></button>

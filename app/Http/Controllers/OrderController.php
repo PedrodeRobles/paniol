@@ -109,4 +109,11 @@ class OrderController extends Controller
         $pdf = Pdf::loadView('order.pdf', ['order' => $order, 'things' => $things]);
         return $pdf->stream();
     }
+
+    public function orderHistory()
+    {
+        $orders = Order::latest()->get();
+
+        return view('order.history', compact('orders'));
+    }
 }

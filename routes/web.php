@@ -35,9 +35,13 @@ Route::resource('state', StateController::class)->middleware('auth');
 
 Route::resource('thing', ThingController::class);
 
+Route::get('/order/history', [OrderController::class, 'orderHistory'])->name('order.history');
+
 Route::resource('order', OrderController::class);
 
 Route::get('/order/{order}/pdf', [OrderController::class, 'exportPdf'])->name('order.pdf');
+
+
 
 
 

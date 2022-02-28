@@ -14,6 +14,11 @@
         <a href="{{ route('thing.index') }}" class="bg-blue-600 text-white rounded h-6 py-1 px-2">Elementos</a>
     </button>
 
+    <button class="bg-gray-300 rounded px-2">
+        <a href="{{ route('order.history') }}">Historial de ordenes</a>
+    </button>
+
+
     {{-- FORMULARIO PARA GENERAR ORDENES --}}
     <form action="{{ route('order.store') }}" method="POST">
         <label>Persona</label>
@@ -33,7 +38,7 @@
 
 
     <div class="mt-10 border-2 border-black rounded-md">
-        <h2 class="text-2xl mt-2">Lista de ordenes creadas</h2>
+        <h2 class="text-2xl mt-2">Lista de ordenes activas</h2>
         {{-- TABLA DE ORDENES --}}
         <table class="mb-4">
             <thead>
@@ -48,7 +53,7 @@
                 </tr>
                 <tbody>
                     @foreach ($orders as $order)
-                    @if ($order->id == 1)
+                    @if ($order->id == 1 || $order->return == 1)
                         .
                     @else
                         <tr>

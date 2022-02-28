@@ -18,7 +18,9 @@
             <tbody>
                 @foreach ($things as $thing)
                     <tr>
-                        <td>{{ $thing->name }}</td>
+                        @if ($thing->order_id == $order->id)
+                            <td>{{ $thing->name }}</td>
+                        @endif
                     </tr>
                 @endforeach
             </tbody>

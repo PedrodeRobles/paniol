@@ -63,6 +63,9 @@
                                 <button class="bg-gray-300 rounded px-2"><a href="{{ route('order.show', $order) }}">Ver</a></button>
                             </td>
                             <td>
+                                <button class="bg-gray-300 rounded px-2"><a href="{{ route('order.pdf', $order) }}">PDF</a></button>
+                            </td>
+                            <td>
                                 <button class="bg-green-400 rounded px-2"><a href="{{ route('order.edit', $order) }}">Agregar objetos</a></button>
                             </td>
                             <td>

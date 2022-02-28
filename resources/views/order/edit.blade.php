@@ -15,47 +15,55 @@
     </button>
 
     {{-- ORDEN --}}
-    <table class="bg-gray-200 my-4 mx-4">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Persona</th>
-                <th>Identificador</th>
-                <th>Pañolero</th>
-                <th>Fecha</th>
-                <th>Hora de creación</th>
-                <th>Return</th>
-            </tr>
-            <tbody>
-                @if ($order->id == 1)
-                    .
-                @else
-                    <tr>
-                        <td>{{ $order->id }}</td>
-                        <td>{{ $order->person->name }}</td>
-                        <td>{{ $order->identifier }}</td>
-                        <td>{{ $order->user->name }}</td>
-                        <td>{{ $order->created_at->format('d M Y') }}</td>
-                        <td class="text-center">{{ $order->created_at->format(' H:i ') }}</td>
-                        <td>{{ $order->return }}</td>
-                        <td>
-                            <button class="bg-gray-300 rounded w-14"><a href="{{ route('order.show', $order) }}">Ver</a></button>
-                        </td>
-                        <td>
-                            @if ($order->return == 0)
-                                <form action="{{ route('order.update', $order) }}" method="POST" enctype="multipart/form-data">
-                                    <input type="submit" value="Devolver" class="bg-gray-300 rounded w-20 cursor-pointer ">
-                                    @csrf
-                                    @method('PUT')
-                                </form>
-                            @else
-                                <p class="text-green-600">Entregado</p>
-                            @endif
-                    </tr>
-                @endif
-            </tbody>
-        </thead>
-    </table>
+    <div class="flex items-center">
+        <table class="bg-gray-200 my-4 mx-4">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Persona</th>
+                    <th>Identificador</th>
+                    <th>Pañolero</th>
+                    <th>Fecha</th>
+                    <th>Hora de creación</th>
+                    <th>Return</th>
+                </tr>
+                <tbody>
+                    @if ($order->id == 1)
+                        .
+                    @else
+                        <tr>
+                            <td>{{ $order->id }}</td>
+                            <td>{{ $order->person->name }}</td>
+                            <td>{{ $order->identifier }}</td>
+                            <td>{{ $order->user->name }}</td>
+                            <td>{{ $order->created_at->format('d M Y') }}</td>
+                            <td class="text-center">{{ $order->created_at->format(' H:i ') }}</td>
+                            <td>{{ $order->return }}</td>
+                            <td>
+                                <button class="bg-gray-300 rounded w-14"><a href="{{ route('order.show', $order) }}">Ver</a></button>
+                            </td>
+                            <td>
+                                @if ($order->return == 0)
+                                    <form action="{{ route('order.update', $order) }}" method="POST" enctype="multipart/form-data">
+                                        <input type="submit" value="Devolver" class="bg-gray-300 rounded w-20 cursor-pointer ">
+                                        @csrf
+                                        @method('PUT')
+                                    </form>
+                                @else
+                                    <p class="text-green-600">Entregado</p>
+                                @endif
+                            </td>
+                        </tr>
+                    @endif
+                </tbody>
+            </thead>
+        </table>
+    
+        <div>
+            <button class="bg-blue-500 hover:bg-blue-400 rounded px-4 py-2 text-white"><a href="{{ route('order.pdf', $order) }}">PDF</a></button>
+        </div>
+    </div>
+    
 
     <div class="mt-10 ml-2 w-4/5 border-2 border-black rounded-xl">
         <h2 class="text-2xl">Lista de objetos</h2>

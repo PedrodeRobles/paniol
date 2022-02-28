@@ -20,7 +20,7 @@ use App\Http\Controllers\TransactionController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
@@ -36,6 +36,8 @@ Route::resource('state', StateController::class)->middleware('auth');
 Route::resource('thing', ThingController::class);
 
 Route::resource('order', OrderController::class);
+
+Route::get('/order/{order}/pdf', [OrderController::class, 'exportPdf'])->name('order.pdf');
 
 
 

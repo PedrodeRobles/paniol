@@ -138,4 +138,19 @@ class ThingController extends Controller
 
         return back();
     }
+
+    public function paperBin()
+    {
+        $things = Thing::where('visibility', 0)->get();
+
+        return view('thing.bin', compact('things'));
+    }
+
+    public function restore(Thing $thing)
+    {
+        $thing->visibility = 1;
+        $thing->save();
+
+        return back();
+    }
 }

@@ -16,6 +16,10 @@
         <a href="{{ route('order.index') }}" class="bg-blue-600 text-white rounded h-6 py-1 px-2">Ver ordenes</a>
     </button>
 
+    <button class="mt-4">
+        <a href="{{ route('thing.bin') }}" class="bg-gray-400 text-white rounded h-6 py-1 px-2">Papelera de objetos</a>
+    </button>
+
 
     {{-- Search form --}}
     <div class="pt-10 pb-6">

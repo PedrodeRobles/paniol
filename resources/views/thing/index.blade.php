@@ -44,7 +44,7 @@
             <tbody>
                 @foreach ($things as $thing)
                 @if ($thing->visibility == 1)
-                    @if ($thing->state_id == 1)
+                    @if ($thing->state == 1)
                         <tr class="bg-blue-400">
                             <td>{{ $thing->identifier }}</td>
                             <td>{{ $thing->name }}</td>
@@ -52,10 +52,10 @@
                                 {{ $thing->type->type}}
                             </td>
                             <td>
-                                {{ $thing->state->state }}
+                                <p>En Pañol</p>
                             </td>
                             <td class="text-center">
-                                {{ $thing->order_id }}
+                                <p>-</p>
                             </td>
                             <td>
                                 <button class="bg-gray-300 rounded w-14"><a href="{{ route('thing.show', $thing) }}">Ver</a></button>
@@ -83,7 +83,7 @@
                                 {{ $thing->type->type}}
                             </td>
                             <td>
-                                {{ $thing->state->state }}
+                                <p>En Uso</p>
                             </td>
                             <td class="text-center">
                                 {{ $thing->order_id }}

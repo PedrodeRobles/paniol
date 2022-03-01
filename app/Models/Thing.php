@@ -15,7 +15,7 @@ class Thing extends Model
 
     protected $fillable = [
         'type_id',
-        'state_id',
+        'state',
         'order_id',
         'name',
         'identifier',

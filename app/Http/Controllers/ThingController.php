@@ -28,7 +28,7 @@ class ThingController extends Controller
             }
 
                 $things =Thing::where('name', 'LIKE', '%' . $query . '%')
-                    ->orWhere('state_id', 'LIKE', '%' . $query . '%')
+                    ->orWhere('state', 'LIKE', '%' . $query . '%')
                     ->orderBy('id', 'asc')
                     ->get();
 
@@ -43,13 +43,12 @@ class ThingController extends Controller
     public function create(Request $request)
     {
         $types = Type::all(); 
-        $states = State::all(); 
+        // $states = State::all(); 
         $orders = Order::all(); 
 
         if($request->user()->id == 1 || 2 || 3 || 4 ) {
             return view('thing.create', [
                 'types' => $types,
-                'states' => $states,
                 'orders' => $orders,
             ]);
         } else {
@@ -62,7 +61,6 @@ class ThingController extends Controller
         $request->validate([
             'type_id' => 'required',
             'name' => 'required',
-            'state_id' => 'required',
         ]);
 
         $things = Thing::all();
@@ -87,7 +85,6 @@ class ThingController extends Controller
         Thing::create([
             'name'  => $request->name,
             'type_id' => $request->type_id,
-            'state_id' => $request->state_id,
             'order_id' => 1,
             'identifier' => $typeName . '-' . $subName . '-' . $num,
         ]);
@@ -120,9 +117,9 @@ class ThingController extends Controller
         ]);
 
         if ($request->order_id != 1) {
-            $thing->state_id = 2;
+            $thing->state = 2;
         } else {
-            $thing->state_id = 1;
+            $thing->state = 1;
         }
 
         $thing->update($request->all());

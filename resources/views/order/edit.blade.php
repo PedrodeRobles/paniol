@@ -91,21 +91,21 @@
                 <tbody>
                     @foreach ($things as $thing)
                     @if ($thing->visibility == 1)
-                        @if ($thing->state_id == 1)
+                        @if ($thing->state == 1)
                             <tr class="bg-blue-400">
                                 <td>{{ $thing->identifier }}</td>
                                 <td>{{ $thing->name }}</td>
                                 <td>
                                     {{ $thing->type->type}}
                                 </td>
-                                <td>
-                                    {{ $thing->state->state }}
+                                <td class="w-16">
+                                    <p>En Pañol</p>
                                 </td>
                                 <td class="text-center">
                                     {{ $thing->order->identifier }}
                                 </td>
                                 <td class="text-center">
-                                    {{ $thing->order_id }}
+                                    <p>-</p>
                                 </td>
                                 <td>
                                     <form action="{{ route('thing.update', $thing) }}" method="POST" enctype="multipart/form-data">
@@ -130,7 +130,7 @@
                                     {{ $thing->type->type}}
                                 </td>
                                 <td>
-                                    {{ $thing->state->state }}
+                                    <p>En Uso</p>
                                 </td>
                                 <td class="text-center">
                                     {{ $thing->order->identifier }}

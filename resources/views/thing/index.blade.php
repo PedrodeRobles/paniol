@@ -95,15 +95,19 @@
                                 <button class="bg-gray-300 rounded w-14"><a href="{{ route('thing.edit', $thing) }}">Editar</a></button>
                             </td>
                             <td>
-                                <form action="{{ route('thing.destroy', $thing) }}" method="POST">
-                                    @method('DELETE')
-                                    @csrf
-                                    <input 
-                                        class="bg-red-500 rounded w-14 text-white cursor-pointer"
-                                        type="submit"
-                                        value="Delete"
-                                        onclick="return confirm('¿Estas seguro que quieres eliminar este tipo de material?')">
-                                </form>
+                                @if ($thing->order_id == 1)
+                                    <form action="{{ route('thing.destroy', $thing) }}" method="POST">
+                                        @method('DELETE')
+                                        @csrf
+                                        <input 
+                                            class="bg-red-500 rounded w-14 text-white cursor-pointer"
+                                            type="submit"
+                                            value="Delete"
+                                            onclick="return confirm('¿Estas seguro que quieres eliminar este tipo de material?')">
+                                    </form>
+                                @else
+                                    <p></p>
+                                @endif
                             </td>
                         </tr>
                     @endif

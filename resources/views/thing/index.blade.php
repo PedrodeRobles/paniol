@@ -41,7 +41,7 @@
     </div>
 
     <button><a href="{{ route('thing.create') }}" class="bg-green-500 text-white py-1 px-4 rounded h-6">Agregar material</a></button>
-
+    
     <table class="mt-4">
         <thead>
             <tr>

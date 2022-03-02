@@ -35,6 +35,8 @@ Route::resource('type', TypeController::class)->middleware('auth');
 
 Route::get('/thing/bin', [ThingController::class, 'paperBin'])->name('thing.bin');
 Route::put('/thing/{thing}/restore', [ThingController::class, 'restore'])->name('thing.restore');
+Route::get('/thing/excel', [ThingController::class, 'exportExcel'])->name('thing.excel');
+Route::post('/thing/excel/import', [ThingController::class, 'importExcel'])->name('things.import.excel');
 Route::resource('thing', ThingController::class);
 
 Route::get('/order/history', [OrderController::class, 'orderHistory'])->name('order.history');

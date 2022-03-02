@@ -44,7 +44,7 @@
                             {{ $thing->type->type}}
                         </td>
                         <td>
-                            {{ $thing->state->state }}
+                            {{ $thing->state}}
                         </td>
                         <td class="text-center">
                             {{ $thing->order_id }}

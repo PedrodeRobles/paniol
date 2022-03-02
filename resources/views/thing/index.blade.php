@@ -20,6 +20,16 @@
         <a href="{{ route('thing.bin') }}" class="bg-gray-400 text-white rounded h-6 py-1 px-2">Papelera de objetos</a>
     </button>
 
+    <button class="bg-gray-300 rounded px-2">
+        <a href="{{ route('thing.excel') }}">Exportar tabla</a>
+    </button>
+
+    <form action="{{ route('things.import.excel') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <input type="file" name="file">
+        <button>Importar objetos</button>
+    </form>
+
 
     {{-- Search form --}}
     <div class="pt-10 pb-6">

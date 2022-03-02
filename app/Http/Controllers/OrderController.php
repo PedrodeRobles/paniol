@@ -125,7 +125,7 @@ class OrderController extends Controller
         return Excel::download(new OrdersExport, 'orders-list.xlsx');
     }
 
-    public function importExcel(Request $request, User $user)
+    public function importExcel(Request $request)
     {
         $file = $request->file('file');
         Excel::import(new OrdersImport, $file);

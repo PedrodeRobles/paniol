@@ -9,6 +9,10 @@ use App\Models\State;
 use Illuminate\Http\Request;
 use phpDocumentor\Reflection\Types\This;
 
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ThingExport;
+use App\Imports\ThingImport;
+
 class ThingController extends Controller
 {
     public function index(Request $request)
@@ -130,7 +134,7 @@ class ThingController extends Controller
 
     public function destroy(Thing $thing)
     {
-        $thing->visibility = 0;
+        $thing->visibility = 2;
         $thing->save();
 
         return back();
@@ -138,7 +142,7 @@ class ThingController extends Controller
 
     public function paperBin()
     {
-        $things = Thing::where('visibility', 0)->get();
+        $things = Thing::where('visibility', 2)->get();
 
         return view('thing.bin', compact('things'));
     }
@@ -147,6 +151,19 @@ class ThingController extends Controller
     {
         $thing->visibility = 1;
         $thing->save();
+
+        return back();
+    }
+
+    public function exportExcel()
+    {
+        return Excel::download(new ThingExport, 'things-list.xlsx');
+    }
+
+    public function importExcel(Request $request)
+    {
+        $file = $request->file('file');
+        Excel::import(new ThingImport, $file);
 
         return back();
     }

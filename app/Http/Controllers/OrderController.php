@@ -5,9 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\Person;
 use App\Models\Thing;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 use Barryvdh\DomPDF\Facade\Pdf;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\OrdersExport;
+use App\Imports\OrdersImport;
 
 class OrderController extends Controller
 {
@@ -40,7 +44,6 @@ class OrderController extends Controller
             'user_id' => auth()->user()->id,
             'identifier' => $request->identifier,
             'person_id' => $request->person_id,
-            'return' => 0,
         ]);
 
         // Cambiar el state_id del 'Thing' que seleccione
@@ -83,7 +86,7 @@ class OrderController extends Controller
             'state' => 1,
         ]);
 
-        $order->return = 1;
+        $order->return = 2;
 
         $order->update();
 
@@ -115,5 +118,18 @@ class OrderController extends Controller
         $orders = Order::latest()->get();
 
         return view('order.history', compact('orders'));
+    }
+
+    public function exportExcel()
+    {
+        return Excel::download(new OrdersExport, 'orders-list.xlsx');
+    }
+
+    public function importExcel(Request $request, User $user)
+    {
+        $file = $request->file('file');
+        Excel::import(new OrdersImport, $file);
+
+        return back()->with('message', 'Importación de ordenes completado');
     }
 }

@@ -8,7 +8,7 @@
     <title>Pañol</title>
 </head>
 <body>
-    <h1 class="text-4xl text-center">Generar orden</h1>
+    <h1 class="text-4xl text-center">Ordenes</h1>
 
     <button class="my-4">
         <a href="{{ route('thing.index') }}" class="bg-blue-600 text-white rounded h-6 py-1 px-2">Elementos</a>
@@ -17,6 +17,16 @@
     <button class="bg-gray-300 rounded px-2">
         <a href="{{ route('order.history') }}">Historial de ordenes</a>
     </button>
+
+    <button class="bg-gray-300 rounded px-2">
+        <a href="{{ route('orders.excel') }}">Exportar tabla</a>
+    </button>
+
+    <form action="{{ route('orders.import.excel') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <input type="file" name="file">
+        <button>Importar ordenes</button>
+    </form>
 
 
     {{-- FORMULARIO PARA GENERAR ORDENES --}}
@@ -53,7 +63,7 @@
                 </tr>
                 <tbody>
                     @foreach ($orders as $order)
-                    @if ($order->id == 1 || $order->return == 1)
+                    @if ($order->id == 1 || $order->return == 2)
                         .
                     @else
                         <tr>
@@ -74,7 +84,7 @@
                                 <button class="bg-green-400 rounded px-2"><a href="{{ route('order.edit', $order) }}">Agregar objetos</a></button>
                             </td>
                             <td>
-                                @if ($order->return == 0)
+                                @if ($order->return == 1)
                                     <form action="{{ route('order.update', $order) }}" method="POST" enctype="multipart/form-data">
                                         <input 
                                             type="submit" 

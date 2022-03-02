@@ -43,7 +43,7 @@
                                 <button class="bg-gray-300 rounded w-14"><a href="{{ route('order.show', $order) }}">Ver</a></button>
                             </td>
                             <td>
-                                @if ($order->return == 0)
+                                @if ($order->return == 1)
                                     <form action="{{ route('order.update', $order) }}" method="POST" enctype="multipart/form-data">
                                         <input type="submit" value="Devolver" class="bg-gray-300 rounded w-20 cursor-pointer ">
                                         @csrf

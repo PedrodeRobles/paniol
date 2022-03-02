@@ -38,8 +38,12 @@ Route::put('/thing/{thing}/restore', [ThingController::class, 'restore'])->name(
 Route::resource('thing', ThingController::class);
 
 Route::get('/order/history', [OrderController::class, 'orderHistory'])->name('order.history');
+Route::get('/order/excel', [OrderController::class, 'exportExcel'])->name('orders.excel');
+Route::post('/order/excel/import', [OrderController::class, 'importExcel'])->name('orders.import.excel');
 Route::resource('order', OrderController::class);
 Route::get('/order/{order}/pdf', [OrderController::class, 'exportPdf'])->name('order.pdf');
+
+
 
 
 

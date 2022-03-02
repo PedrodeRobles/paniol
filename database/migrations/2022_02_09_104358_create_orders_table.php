@@ -20,7 +20,7 @@ class CreateOrdersTable extends Migration
             $table->bigInteger('person_id')->unsigned();
 
             $table->string('identifier');
-            $table->boolean('return');
+            $table->integer('return')->default(1);
 
             $table->timestamps();
 

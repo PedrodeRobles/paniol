@@ -45,6 +45,10 @@ Route::post('/order/excel/import', [OrderController::class, 'importExcel'])->nam
 Route::resource('order', OrderController::class);
 Route::get('/order/{order}/pdf', [OrderController::class, 'exportPdf'])->name('order.pdf');
 
+Route::get('/backup', function () {
+    return view('backup');
+})->middleware('auth');
+
 
 
 

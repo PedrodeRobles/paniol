@@ -30,16 +30,34 @@
         </div>
     </div>
 
-    <div class="grid grid-cols-4 gap-14 mt-10 mx-4">
-        <a href="{{ route('thing.index') }}" class="bg-blue-600 hover:bg-blue-500 text-white text-center rounded py-4 px-6 text-2xl">Objetos</a>
-            
-        <a href="{{ route('order.index') }}" class="bg-blue-600 hover:bg-blue-500 text-white text-center rounded py-4 px-6 text-2xl">Ordenes</a>
-            
-        <a href="{{ route('people.index') }}" class="bg-blue-600 hover:bg-blue-500 text-white text-center rounded py-4 px-6 text-2xl">Personal</a>
+    <h1 class="text-3xl">Copia de seguridad</h1>
 
-        <a href="{{ route('type.index') }}" class="bg-blue-600 hover:bg-blue-500 text-white text-center rounded py-4 px-6 text-2xl">Tipos de elementos</a>
+    <div>
+        <p class="text-lg">Exportar tablas</p>
 
-        <a href="{{url('backup') }}" class="bg-blue-600 hover:bg-blue-500 text-white text-center rounded py-4 px-6 text-2xl">Backup</a>
+        <button class="bg-gray-300 rounded px-2">
+            <a href="{{ route('orders.excel') }}">Exportar ordenes</a>
+        </button>
+
+        <button class="bg-gray-300 rounded px-2">
+            <a href="{{ route('thing.excel') }}">Exportar objetos</a>
+        </button>
+    </div>
+
+    <div>
+        <p class="text-lg">Importar tablas</p>
+
+        <form action="{{ route('orders.import.excel') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <input type="file" name="file">
+            <button>Importar ordenes</button>
+        </form>
+
+        <form action="{{ route('things.import.excel') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <input type="file" name="file">
+            <button>Importar objetos</button>
+        </form>
     </div>
 
 </body>

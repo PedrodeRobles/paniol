@@ -50,6 +50,10 @@
         <button class="bg-gray-300 rounded px-2">
             <a href="{{ route('type.excel') }}">Exportar tipos de objetos</a>
         </button>
+
+        <button class="bg-gray-300 rounded px-2">
+            <a href="{{ route('user.excel') }}">Exportar usuarios</a>
+        </button>
     </div>
 
     <div>
@@ -77,6 +81,12 @@
             @csrf
             <input type="file" name="file">
             <button>Importar tipos de objetos</button>
+        </form>
+
+        <form action="{{ route('users.import.excel') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <input type="file" name="file">
+            <button>Importar usuarios</button>
         </form>
     </div>
 

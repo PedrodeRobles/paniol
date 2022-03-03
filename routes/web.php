@@ -4,9 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PersonController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\ThingController;
-use App\Http\Controllers\StateController;
 use App\Http\Controllers\OrderController;
-use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +25,9 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+Route::get('/user/excel', [UserController::class, 'exportExcel'])->name('user.excel');
+Route::post('/user/excel/import', [UserController::class, 'importExcel'])->name('users.import.excel');
 
 Route::get('/people/excel', [PersonController::class, 'exportExcel'])->name('people.excel');
 Route::post('/people/excel/import', [PersonController::class, 'importExcel'])->name('people.import.excel');

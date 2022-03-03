@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Person;
 use Illuminate\Http\Request;
 
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\PersonExport;
+use App\Imports\PersonImport;
+
 class PersonController extends Controller
 {
     public function index()
@@ -63,5 +67,10 @@ class PersonController extends Controller
         $person->delete();
 
         return back();
+    }
+
+    public function exportExcel()
+    {
+        return Excel::download(new PersonExport, 'people-list.xlsx');
     }
 }

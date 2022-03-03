@@ -7,7 +7,6 @@ use App\Models\Thing;
 use App\Models\Type;
 use App\Models\State;
 use Illuminate\Http\Request;
-use phpDocumentor\Reflection\Types\This;
 
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\ThingExport;

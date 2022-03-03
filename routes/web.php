@@ -27,11 +27,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
+Route::get('/people/excel', [PersonController::class, 'exportExcel'])->name('people.excel');
 Route::resource('people', PersonController::class)->middleware('auth');
 
 Route::resource('type', TypeController::class)->middleware('auth');
-
-// Route::resource('state', StateController::class)->middleware('auth');
 
 Route::get('/thing/bin', [ThingController::class, 'paperBin'])->name('thing.bin');
 Route::put('/thing/{thing}/restore', [ThingController::class, 'restore'])->name('thing.restore');

@@ -42,6 +42,10 @@
         <button class="bg-gray-300 rounded px-2">
             <a href="{{ route('thing.excel') }}">Exportar objetos</a>
         </button>
+
+        <button class="bg-gray-300 rounded px-2">
+            <a href="{{ route('people.excel') }}">Exportar personal</a>
+        </button>
     </div>
 
     <div>

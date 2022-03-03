@@ -73,4 +73,12 @@ class PersonController extends Controller
     {
         return Excel::download(new PersonExport, 'people-list.xlsx');
     }
+
+    public function importExcel(Request $request)
+    {
+        $file = $request->file('file');
+        Excel::import(new PersonImport, $file);
+
+        return back();
+    }
 }

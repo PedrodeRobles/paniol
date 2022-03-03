@@ -62,6 +62,12 @@
             <input type="file" name="file">
             <button>Importar objetos</button>
         </form>
+
+        <form action="{{ route('people.import.excel') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <input type="file" name="file">
+            <button>Importar personal</button>
+        </form>
     </div>
 
 </body>

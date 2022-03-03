@@ -28,6 +28,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::get('/people/excel', [PersonController::class, 'exportExcel'])->name('people.excel');
+Route::post('/people/excel/import', [PersonController::class, 'importExcel'])->name('people.import.excel');
 Route::resource('people', PersonController::class)->middleware('auth');
 
 Route::resource('type', TypeController::class)->middleware('auth');

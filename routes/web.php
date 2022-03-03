@@ -31,6 +31,8 @@ Route::get('/people/excel', [PersonController::class, 'exportExcel'])->name('peo
 Route::post('/people/excel/import', [PersonController::class, 'importExcel'])->name('people.import.excel');
 Route::resource('people', PersonController::class)->middleware('auth');
 
+Route::get('/type/excel', [TypeController::class, 'exportExcel'])->name('type.excel');
+Route::post('/type/excel/import', [TypeController::class, 'importExcel'])->name('types.import.excel');
 Route::resource('type', TypeController::class)->middleware('auth');
 
 Route::get('/thing/bin', [ThingController::class, 'paperBin'])->name('thing.bin');

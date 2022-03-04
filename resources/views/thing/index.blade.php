@@ -7,29 +7,23 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <title>Pañol</title>
 </head>
-<body>
-    <div class="bg-blue-500 h-14 border-b-2 border-t-2 border-black">
+<header>
+    <x-header/>
+</header>
+<body class="bg-slate-800 text-white">
+    <div class="h-14 flex items-start mt-6 ml-4">
         <h1 class="text-center text-4xl">Materiales del pañol</h1>
     </div>
 
-    <button class="mt-4">
-        <a href="{{ route('order.index') }}" class="bg-blue-600 text-white rounded h-6 py-1 px-2">Ver ordenes</a>
-    </button>
-
-    <button class="mt-4">
-        <a href="{{ route('thing.bin') }}" class="bg-gray-400 text-white rounded h-6 py-1 px-2">Papelera de objetos</a>
-    </button>
-
-    <button class="bg-gray-300 rounded px-2">
-        <a href="{{ route('thing.excel') }}">Exportar tabla</a>
-    </button>
-
-    <form action="{{ route('things.import.excel') }}" method="POST" enctype="multipart/form-data">
-        @csrf
-        <input type="file" name="file">
-        <button>Importar objetos</button>
-    </form>
-
+    <div class="flex justify-start space-x-10 ml-4">
+        <button class="mt-4">
+            <a href="{{ route('order.index') }}" class="bg-blue-600 text-white rounded h-6 py-1 px-2 shadow-md">Generar Orden</a>
+        </button>
+    
+        <button class="mt-4">
+            <a href="{{ route('thing.bin') }}" class="bg-gray-400 text-white rounded h-6 py-1 px-2 shadow-md">Papelera de objetos</a>
+        </button>
+    </div>
 
     {{-- Search form --}}
     <div class="pt-10 pb-6">
@@ -42,7 +36,7 @@
 
     <button><a href="{{ route('thing.create') }}" class="bg-green-500 text-white py-1 px-4 rounded h-6">Agregar material</a></button>
     
-    <table class="mt-4">
+    {{-- <table class="mt-4">
         <thead>
             <tr>
                 <th>Identificador</th>
@@ -128,6 +122,6 @@
                 @endforeach
             </tbody>
         </thead>
-    </table>
+    </table> --}}
 </body>
 </html>

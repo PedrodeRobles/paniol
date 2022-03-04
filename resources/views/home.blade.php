@@ -7,39 +7,24 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <title>Pañol</title>
 </head>
-<body>
-    <div class="flex justify-between bg-blue-500 h-20 border-b-2 border-t-2 border-black">
-        <a href="{{ url('/') }}" class="w-44">
-            <img src="{{ asset('/img/logoCitlam.png') }}" alt="Logo Citlam" class="mb-2">
-        </a>
-        <h1 class="text-center text-6xl mr-20">Pañol</h1>
-        <div>
-            @if (Route::has('login'))
-                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                    @auth
-                        <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
-                    @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-        </div>
-    </div>
-
-    <div class="grid grid-cols-4 gap-14 mt-10 mx-4">
-        <a href="{{ route('thing.index') }}" class="bg-blue-600 hover:bg-blue-500 text-white text-center rounded py-4 px-6 text-2xl">Objetos</a>
+<header>
+    <x-header/>
+</header>
+<body class="bg-slate-800">
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-14 mt-10 mx-6">
+        <a href="{{ route('thing.index') }}" class="bg-blue-600 hover:bg-blue-500 text-white text-center rounded py-4 px-6 text-2xl shadow-lg">Objetos</a>
             
-        <a href="{{ route('order.index') }}" class="bg-blue-600 hover:bg-blue-500 text-white text-center rounded py-4 px-6 text-2xl">Ordenes</a>
+        <a href="{{ route('order.index') }}" class="bg-blue-600 hover:bg-blue-500 text-white text-center rounded py-4 px-6 text-2xl shadow-lg">Ordenes</a>
             
-        <a href="{{ route('people.index') }}" class="bg-blue-600 hover:bg-blue-500 text-white text-center rounded py-4 px-6 text-2xl">Personal</a>
+        <a href="{{ route('people.index') }}" class="bg-blue-600 hover:bg-blue-500 text-white text-center rounded py-4 px-6 text-2xl shadow-lg">Personal</a>
 
-        <a href="{{ route('type.index') }}" class="bg-blue-600 hover:bg-blue-500 text-white text-center rounded py-4 px-6 text-2xl">Tipos de elementos</a>
+        <a href="{{ route('type.index') }}" class="bg-blue-600 hover:bg-blue-500 text-white text-center rounded py-4 px-6 text-2xl shadow-lg">Tipos de elementos</a>
+        @if (Route::has('login'))
+            @auth
+            <a href="{{url('backup') }}" class="bg-stone-500 hover:bg-stone-400 text-white text-center rounded py-4 px-6 text-2xl shadow-lg">Backup</a>
+            @endauth
+        @endif
 
-        <a href="{{url('backup') }}" class="bg-blue-600 hover:bg-blue-500 text-white text-center rounded py-4 px-6 text-2xl">Backup</a>
     </div>
 
 </body>

@@ -13,11 +13,11 @@
         <label for="">Nombre *</label>
         <input type="text" name="name" value="{{ old('name', $thing->name) }}">
 
-        <select name="state_id">
+        {{-- <select name="state_id">
             @foreach ($states as $state)
                 <option value="{{ $state->id }}">{{ $state->state }}</option>
             @endforeach
-        </select>
+        </select> --}}
 
         <label for="">Descripción</label>
         <textarea name="description" cols="30" rows="10">{{ old('description' ,$thing->description) }}</textarea>

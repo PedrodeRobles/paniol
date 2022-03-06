@@ -104,11 +104,9 @@ class ThingController extends Controller
     public function edit(Thing $thing)
     {
         $types = Type::all(); 
-        $states = State::all();
 
         return view('thing.edit', [
             'types' => $types,
-            'states' => $states,
             'thing' => $thing
         ]);
     }
@@ -116,19 +114,13 @@ class ThingController extends Controller
     public function update(Request $request, Thing $thing)
     {
         $request->validate([
-            'order_id' => 'required',
+            'name' => 'required',
         ]);
-
-        if ($request->order_id != 1) {
-            $thing->state = 2;
-        } else {
-            $thing->state = 1;
-        }
 
         $thing->update($request->all());
 
-        return back();
-        // return redirect()->route('order.index');
+        // return back();
+        return redirect()->route('thing.index');
     }
 
     public function destroy(Thing $thing)

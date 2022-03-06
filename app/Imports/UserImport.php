@@ -19,7 +19,7 @@ class UserImport implements ToModel
             'name'               => $row[1],
             'email'              => $row[2],
             'email_verified_at'  => $row[3],
-            'password'           => '12345678',
+            'password'           => bcrypt('12345678'),
             'current_team_id'    => $row[5],
             'profile_photo_path' => $row[6],
             'created_at'         => $row[7],

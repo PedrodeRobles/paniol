@@ -28,101 +28,102 @@
     </div>
     
 
-    {{-- Search form --}}
-    <div class="mt-10 mb-6 ml-4">
-        <h2 class="text-xl">Buscar Material</h2>
-        <form action="">
-            <input type="search" name="search" placeholder="Buscar" class="rounded-md py-1">
-            <button type="submit" class="bg-gray-500 rounded py-1 px-1">Buscar</button>
-        </form>
-    </div>
+    <div class="my-4 border-2 border-gray-400 rounded-lg mx-10 mt-10">
+        {{-- Search form --}}
+        <div class="mt-4 sm:ml-4">
+            <h2 class="text-xl">Buscar Material</h2>
+            <form action="">
+                <input type="search" name="search" placeholder="Buscar" class="rounded-md py-1 text-black">
+                <button type="submit" class="bg-gray-500 rounded py-1 px-1">Buscar</button>
+            </form>
+        </div>
 
+        <div class="overflow-auto rounded-lg shadow">
+            <table class="w-full">
+                <thead class="border-b-2 border-gray-200">
+                    <tr>
+                        <th class="p-3 tracking-wide text-left">Identificador</th>
+                        <th class="p-3 tracking-wide text-left">Objeto</th>
+                        <th class="p-3 tracking-wide text-left">Tipo de material</th>
+                        <th class="p-3 tracking-wide text-left">Estado</th>
+                        <th class="p-3 tracking-wide text-left">Numero de orden</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200">
+                    @foreach ($things as $thing)
+                        @if ($thing->visibility == 1)
+                        @if ($thing->state == 1)
+                            <tr class="bg-blue-400">
+                                <td class="p-2">{{ $thing->identifier }}</td>
+                                <td class="p-2">{{ $thing->name }}</td>
+                                <td class="p-2">
+                                    {{ $thing->type->type}}
+                                </td>
+                                <td class="p-2">
+                                    <p>En Pañol</p>
+                                </td>
+                                <td class="p-2 text-center">
+                                    <p>-</p>
+                                </td>
+                                <td class="p-2">
+                                    <button class="bg-gray-500 rounded w-14"><a href="{{ route('thing.show', $thing) }}">Ver</a></button>
+                                </td>
+                                <td class="p-2">
+                                    <button class="bg-gray-500 rounded w-14"><a href="{{ route('thing.edit', $thing) }}">Editar</a></button>
+                                </td>
+                                <td class="p-2">
+                                    <form action="{{ route('thing.destroy', $thing) }}" method="POST">
+                                        @method('DELETE')
+                                        @csrf
+                                        <input 
+                                            class="bg-red-500 rounded w-14 text-white cursor-pointer"
+                                            type="submit"
+                                            value="Delete"
+                                            onclick="return confirm('¿Estas seguro que quieres eliminar este tipo de material?')">
+                                    </form>
+                                </td>
+                            </tr>
+                        @else
+                            <tr class="bg-red-400">
+                                <td class="p-2">{{ $thing->identifier }}</td>
+                                <td class="p-2">{{ $thing->name }}</td>
+                                <td class="p-2">
+                                    {{ $thing->type->type}}
+                                </td>
+                                <td class="p-2">
+                                    <p>En Pañol</p>
+                                </td>
+                                <td class="p-2 text-center">
+                                    {{ $thing->order->id }}
+                                </td>
+                                <td class="p-2">
+                                    <button class="bg-gray-500 rounded w-14"><a href="{{ route('thing.show', $thing) }}">Ver</a></button>
+                                </td>
+                                <td class="p-2">
+                                    <button class="bg-gray-500 rounded w-14"><a href="{{ route('thing.edit', $thing) }}">Editar</a></button>
+                                </td>
+                                <td class="p-2">
+                                    <form action="{{ route('thing.destroy', $thing) }}" method="POST">
+                                        @method('DELETE')
+                                        @csrf
+                                        <input 
+                                            class="bg-red-500 rounded w-14 text-white cursor-pointer"
+                                            type="submit"
+                                            value="Delete"
+                                            onclick="return confirm('¿Estas seguro que quieres eliminar este tipo de material?')">
+                                    </form>
+                                </td>
+                            </tr>
+                        @endif
+                        @else
+                            .
+                        @endif
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
     
-    <table class="mt-4">
-        <thead>
-            <tr>
-                <th>Identificador</th>
-                <th>Objeto</th>
-                <th>Tipo de material</th>
-                <th>Estado</th>
-                <th>Numero de orden</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($things as $thing)
-                @if ($thing->visibility == 1)
-                @if ($thing->state == 1)
-                    <tr class="bg-blue-400">
-                        <td>{{ $thing->identifier }}</td>
-                        <td>{{ $thing->name }}</td>
-                        <td>
-                            {{ $thing->type->type}}
-                        </td>
-                        <td>
-                            <p>En Pañol</p>
-                        </td>
-                        <td>
-                            <p>-</p>
-                        </td>
-                        <td>
-                            <button class="bg-gray-300 rounded w-14"><a href="{{ route('thing.show', $thing) }}">Ver</a></button>
-                        </td>
-                        <td>
-                            <button class="bg-gray-300 rounded w-14"><a href="{{ route('thing.edit', $thing) }}">Editar</a></button>
-                        </td>
-                        <td>
-                            <form action="{{ route('thing.destroy', $thing) }}" method="POST">
-                                @method('DELETE')
-                                @csrf
-                                <input 
-                                    class="bg-red-500 rounded w-14 text-white cursor-pointer"
-                                    type="submit"
-                                    value="Delete"
-                                    onclick="return confirm('¿Estas seguro que quieres eliminar este tipo de material?')">
-                            </form>
-                        </td>
-                    </tr>
-                @else
-                    <tr class="bg-red-400">
-                        <td>{{ $thing->identifier }}</td>
-                        <td>{{ $thing->name }}</td>
-                        <td>
-                            {{ $thing->type->type}}
-                        </td>
-                        <td>
-                            <p>En Uso</p>
-                        </td>
-                        <td>
-                            {{ $thing->order_id }}
-                        </td>
-                        <td>
-                            <button class="bg-gray-300 rounded w-14"><a href="{{ route('thing.show', $thing) }}">Ver</a></button>
-                        </td>
-                        <td>
-                            <button class="bg-gray-300 rounded w-14"><a href="{{ route('thing.edit', $thing) }}">Editar</a></button>
-                        </td>
-                        <td>
-                            @if ($thing->order_id == 1)
-                                <form action="{{ route('thing.destroy', $thing) }}" method="POST">
-                                    @method('DELETE')
-                                    @csrf
-                                    <input 
-                                        class="bg-red-500 rounded w-14 text-white cursor-pointer"
-                                        type="submit"
-                                        value="Delete"
-                                        onclick="return confirm('¿Estas seguro que quieres eliminar este tipo de material?')">
-                                </form>
-                            @else
-                                <p></p>
-                            @endif
-                        </td>
-                    </tr>
-                @endif
-                @else
-                    .
-                @endif
-            @endforeach
-        </tbody>
-    </table>
 </body>
 </html>

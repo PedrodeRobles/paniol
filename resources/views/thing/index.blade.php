@@ -38,15 +38,16 @@
             </form>
         </div>
 
-        <div class="overflow-auto rounded-lg shadow">
+        <div class="overflow-auto rounded-lg shadow mt-6">
             <table class="w-full">
-                <thead class="border-b-2 border-gray-200">
+                <thead class="border-y-2 border-gray-200">
                     <tr>
-                        <th class="p-3 tracking-wide text-left">Identificador</th>
-                        <th class="p-3 tracking-wide text-left">Objeto</th>
-                        <th class="p-3 tracking-wide text-left">Tipo de material</th>
-                        <th class="p-3 tracking-wide text-left">Estado</th>
-                        <th class="p-3 tracking-wide text-left">Numero de orden</th>
+                        <th class="p-3 tracking-wide text-left border-r border-gray-200">Identificador</th>
+                        <th class="p-3 tracking-wide text-left border-r border-gray-200">Objeto</th>
+                        <th class="p-3 tracking-wide text-left border-r border-gray-200">Tipo de material</th>
+                        <th class="p-3 tracking-wide text-left border-r border-gray-200">Estado</th>
+                        <th class="p-3 tracking-wide text-left border-r border-gray-200">Numero de orden</th>
+                        <th>Opciones</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200">
@@ -54,22 +55,26 @@
                         @if ($thing->visibility == 1)
                         @if ($thing->state == 1)
                             <tr class="bg-blue-500">
-                                <td class="p-2">{{ $thing->identifier }}</td>
-                                <td class="p-2">{{ $thing->name }}</td>
-                                <td class="p-2">
+                                <td class="p-2 border-r border-gray-200">{{ $thing->identifier }}</td>
+                                <td class="p-2 border-r border-gray-200">{{ $thing->name }}</td>
+                                <td class="p-2 border-r border-gray-200">
                                     {{ $thing->type->type}}
                                 </td>
-                                <td class="p-2">
+                                <td class="p-2 border-r border-gray-200">
                                     <p>En Pañol</p>
                                 </td>
-                                <td class="p-2 text-center">
+                                <td class="p-2 text-center border-r border-gray-200">
                                     <p>-</p>
                                 </td>
                                 <td class="p-2">
-                                    <button class="bg-gray-500 rounded w-14"><a href="{{ route('thing.show', $thing) }}">Ver</a></button>
+                                    <button class="bg-gray-500 rounded w-14">
+                                        <a href="{{ route('thing.show', $thing) }}">Ver</a>
+                                    </button>
                                 </td>
                                 <td class="p-2">
-                                    <button class="bg-gray-500 rounded w-14"><a href="{{ route('thing.edit', $thing) }}">Editar</a></button>
+                                    <button class="bg-gray-500 rounded w-14">
+                                        <a href="{{ route('thing.edit', $thing) }}">Editar</a>
+                                    </button>
                                 </td>
                                 <td class="p-2">
                                     <form action="{{ route('thing.destroy', $thing) }}" method="POST">
@@ -85,22 +90,26 @@
                             </tr>
                         @else
                             <tr class="bg-red-500">
-                                <td class="p-2">{{ $thing->identifier }}</td>
-                                <td class="p-2">{{ $thing->name }}</td>
-                                <td class="p-2">
+                                <td class="p-2 border-r border-gray-200">{{ $thing->identifier }}</td>
+                                <td class="p-2 border-r border-gray-200">{{ $thing->name }}</td>
+                                <td class="p-2 border-r border-gray-200">
                                     {{ $thing->type->type}}
                                 </td>
-                                <td class="p-2">
-                                    <p>En Pañol</p>
+                                <td class="p-2 border-r border-gray-200">
+                                    <p>En Uso</p>
                                 </td>
-                                <td class="p-2 text-center">
+                                <td class="p-2 text-center border-r border-gray-200">
                                     {{ $thing->order->id }}
                                 </td>
                                 <td class="p-2">
-                                    <button class="bg-gray-500 rounded w-14"><a href="{{ route('thing.show', $thing) }}">Ver</a></button>
+                                    <button class="bg-gray-500 rounded w-14">
+                                        <a href="{{ route('thing.show', $thing) }}">Ver</a>
+                                    </button>
                                 </td>
                                 <td class="p-2">
-                                    <button class="bg-gray-500 rounded w-14"><a href="{{ route('thing.edit', $thing) }}">Editar</a></button>
+                                    <button class="bg-gray-500 rounded w-14">
+                                        <a href="{{ route('thing.edit', $thing) }}">Editar</a>
+                                    </button>
                                 </td>
                                 <td>
                                     <p></p>

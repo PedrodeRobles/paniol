@@ -32,6 +32,7 @@ class ThingController extends Controller
 
                 $things =Thing::where('name', 'LIKE', '%' . $query . '%')
                     ->orWhere('identifier', 'LIKE', '%' . $query . '%')
+                    ->orWhere('state', 'LIKE', '%' . $query . '%')
                     ->orderBy('id', 'asc')
                     ->get();
 

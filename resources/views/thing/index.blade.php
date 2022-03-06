@@ -28,7 +28,7 @@
     </div>
     
 
-    <div class="my-4 border-2 border-gray-400 rounded-lg mx-10 mt-10">
+    <div class="my-4 border-2 border-gray-200 rounded-lg mx-10 mt-10">
         {{-- Search form --}}
         <div class="mt-4 sm:ml-4">
             <h2 class="text-xl">Buscar Material</h2>
@@ -53,7 +53,7 @@
                     @foreach ($things as $thing)
                         @if ($thing->visibility == 1)
                         @if ($thing->state == 1)
-                            <tr class="bg-blue-400">
+                            <tr class="bg-blue-500">
                                 <td class="p-2">{{ $thing->identifier }}</td>
                                 <td class="p-2">{{ $thing->name }}</td>
                                 <td class="p-2">
@@ -84,7 +84,7 @@
                                 </td>
                             </tr>
                         @else
-                            <tr class="bg-red-400">
+                            <tr class="bg-red-500">
                                 <td class="p-2">{{ $thing->identifier }}</td>
                                 <td class="p-2">{{ $thing->name }}</td>
                                 <td class="p-2">
@@ -102,7 +102,10 @@
                                 <td class="p-2">
                                     <button class="bg-gray-500 rounded w-14"><a href="{{ route('thing.edit', $thing) }}">Editar</a></button>
                                 </td>
-                                <td class="p-2">
+                                <td>
+                                    <p></p>
+                                </td>
+                                {{-- <td class="p-2">
                                     <form action="{{ route('thing.destroy', $thing) }}" method="POST">
                                         @method('DELETE')
                                         @csrf
@@ -112,7 +115,7 @@
                                             value="Delete"
                                             onclick="return confirm('¿Estas seguro que quieres eliminar este tipo de material?')">
                                     </form>
-                                </td>
+                                </td> --}}
                             </tr>
                         @endif
                         @else

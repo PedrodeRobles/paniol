@@ -18,25 +18,27 @@
     <div>
         <p class="text-lg">Exportar tablas</p>
 
-        <button class="bg-gray-300 rounded px-2">
-            <a href="{{ route('orders.excel') }}">Exportar ordenes</a>
-        </button>
-
-        <button class="bg-gray-300 rounded px-2">
-            <a href="{{ route('thing.excel') }}">Exportar objetos</a>
-        </button>
-
-        <button class="bg-gray-300 rounded px-2">
-            <a href="{{ route('people.excel') }}">Exportar personal</a>
-        </button>
-
-        <button class="bg-gray-300 rounded px-2">
-            <a href="{{ route('type.excel') }}">Exportar tipos de objetos</a>
-        </button>
-
-        <button class="bg-gray-300 rounded px-2">
-            <a href="{{ route('user.excel') }}">Exportar usuarios</a>
-        </button>
+        <div class="text-black">
+            <button class="bg-gray-300 rounded px-2">
+                <a href="{{ route('orders.excel') }}">Exportar ordenes</a>
+            </button>
+    
+            <button class="bg-gray-300 rounded px-2">
+                <a href="{{ route('thing.excel') }}">Exportar objetos</a>
+            </button>
+    
+            <button class="bg-gray-300 rounded px-2">
+                <a href="{{ route('people.excel') }}">Exportar personal</a>
+            </button>
+    
+            <button class="bg-gray-300 rounded px-2">
+                <a href="{{ route('type.excel') }}">Exportar tipos de objetos</a>
+            </button>
+    
+            <button class="bg-gray-300 rounded px-2">
+                <a href="{{ route('user.excel') }}">Exportar usuarios</a>
+            </button>
+        </div>
     </div>
 
     <div>

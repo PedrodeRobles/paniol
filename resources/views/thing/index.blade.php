@@ -31,9 +31,9 @@
     <div class="my-4 border-2 border-gray-200 rounded-lg mx-10 mt-10">
         {{-- Search form --}}
         <div class="mt-4 sm:ml-4">
-            <h2 class="text-xl">Buscar Material</h2>
-            <form action="">
-                <input type="search" name="search" placeholder="Buscar" class="rounded-md py-1 text-black">
+            <h2 class="text-xl mb-2">Buscar Material</h2>
+            <form>
+                <input class="bg-gray-700 rounded-md py-1" type="search" name="search" placeholder="Buscar" class="rounded-md py-1 text-black">
                 <button type="submit" class="bg-gray-500 rounded py-1 px-1">Buscar</button>
             </form>
         </div>
@@ -106,10 +106,13 @@
                                         <a href="{{ route('thing.show', $thing) }}">Ver</a>
                                     </button>
                                 </td>
-                                <td class="p-2">
+                                {{-- <td class="p-2">
                                     <button class="bg-gray-500 rounded w-14">
                                         <a href="{{ route('thing.edit', $thing) }}">Editar</a>
                                     </button>
+                                </td> --}}
+                                <td>
+                                    <p></p>
                                 </td>
                                 <td>
                                     <p></p>

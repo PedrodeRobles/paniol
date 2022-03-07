@@ -108,7 +108,7 @@
                                     <p>-</p>
                                 </td>
                                 <td>
-                                    <form action="{{ route('thing.update', $thing) }}" method="POST" enctype="multipart/form-data">
+                                    <form action="{{ route('order.thingOrder', $thing) }}" method="POST" enctype="multipart/form-data">
                                         <select name="order_id" hidden>
                                             <option value="{{ $order->id }}">{{ $order->id }}</option>
                                             <option value="{{ $returnOrder = 1 }}">{{ $returnOrder  }}</option>
@@ -140,7 +140,7 @@
                                 </td>
                                 <td class="w-28">
                                     @if ($thing->order_id == $order->id)
-                                        <form action="{{ route('thing.update', $thing) }}" method="POST" enctype="multipart/form-data">
+                                        <form action="{{ route('order.thingOrder', $thing) }}" method="POST" enctype="multipart/form-data">
                                             <select name="order_id" hidden>
                                                 <option value="{{ $returnThing = 1 }}">{{ $returnThing  }}</option>
                                             </select>

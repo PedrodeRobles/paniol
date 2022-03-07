@@ -104,6 +104,23 @@ class OrderController extends Controller
         return redirect()->route('order.index');
     }
 
+    public function thingOrder(Request $request, Thing $thing)
+    {
+        $request->validate([
+            'order_id' => 'required',
+        ]);
+
+        if ($request->order_id != 1) {
+            $thing->state = 2;
+        } else {
+            $thing->state = 1;
+        }
+
+        $thing->update($request->all());
+
+        return back();
+    }
+
     public function exportPdf(Order $order)
     {
         $things = Thing::where('order_id', $order->id)->get();

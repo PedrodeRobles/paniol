@@ -46,6 +46,7 @@ Route::resource('thing', ThingController::class);
 Route::get('/order/history', [OrderController::class, 'orderHistory'])->name('order.history');
 Route::get('/order/excel', [OrderController::class, 'exportExcel'])->name('orders.excel')->middleware('auth');
 Route::post('/order/excel/import', [OrderController::class, 'importExcel'])->name('orders.import.excel')->middleware('auth');
+Route::put('/order/{thing}/', [OrderController::class, 'thingOrder'])->name('order.thingOrder')->middleware('auth');
 Route::resource('order', OrderController::class);
 Route::get('/order/{order}/pdf', [OrderController::class, 'exportPdf'])->name('order.pdf');
 

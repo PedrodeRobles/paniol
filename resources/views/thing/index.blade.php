@@ -16,14 +16,14 @@
     </div>
 
     <div class="grid grid-cols-2 gap-6 mt-4 sm:flex sm:ml-4">
-        <button>
-            <a href="{{ route('order.index') }}" class="bg-blue-600 text-white rounded py-1 px-2 shadow-md">Generar Orden</a>
-        </button>
-
-        <button><a href="{{ route('thing.create') }}" class="bg-green-500 text-white py-1 px-2 rounded">Agregar material</a></button>
+        <button><a href="{{ route('thing.create') }}" class="bg-green-600 text-white py-1 px-2 rounded">Agregar material</a></button>
 
         <button>
             <a href="{{ route('thing.bin') }}" class="border-2 border-gray-500 text-white rounded py-1 px-1 shadow-md">Papelera de Objetos </a>
+        </button>
+
+        <button>
+            <a href="{{ route('order.index') }}" class="bg-blue-600 text-white rounded py-1 px-2 shadow-md">Generar Orden</a>
         </button>
     </div>
     

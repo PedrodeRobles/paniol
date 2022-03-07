@@ -11,6 +11,10 @@
     <x-header/>
 </header>
 <body class="bg-slate-800 text-white">
+    <div class="ml-2 mt-4">
+        <a class="px-2 py-1 bg-blue-500 rounded-lg" href="{{ route('thing.index') }}">Volver</a>
+    </div>
+
     <div class="border-2 border-gray-200 rounded-lg mx-2 md:mx-24 my-10">
         <div class="m-4">
             <h1 class="text-3xl my-6">

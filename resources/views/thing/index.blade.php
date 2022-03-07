@@ -28,7 +28,7 @@
     </div>
     
 
-    <div class="my-4 border-2 border-gray-200 rounded-lg mx-10 mt-10">
+    <div class="my-4 border-2 border-gray-200 rounded-lg mx-4 mt-10">
         {{-- Search form --}}
         <div class="mt-4 sm:ml-4">
             <h2 class="text-xl mb-2">Buscar Material</h2>
@@ -67,12 +67,12 @@
                                     <p>-</p>
                                 </td>
                                 <td class="p-2">
-                                    <button class="bg-gray-500 rounded w-14">
+                                    <button class="bg-gray-600 rounded w-14">
                                         <a href="{{ route('thing.show', $thing) }}">Ver</a>
                                     </button>
                                 </td>
                                 <td class="p-2">
-                                    <button class="bg-gray-500 rounded w-14">
+                                    <button class="bg-gray-600 rounded w-14">
                                         <a href="{{ route('thing.edit', $thing) }}">Editar</a>
                                     </button>
                                 </td>
@@ -102,7 +102,7 @@
                                     {{ $thing->order->id }}
                                 </td>
                                 <td class="p-2">
-                                    <button class="bg-gray-500 rounded w-14">
+                                    <button class="bg-gray-600 rounded w-14">
                                         <a href="{{ route('thing.show', $thing) }}">Ver</a>
                                     </button>
                                 </td>

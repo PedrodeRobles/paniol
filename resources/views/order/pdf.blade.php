@@ -7,16 +7,10 @@
     {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
     <title>Pañol</title>
 </head>
-<header>
-    <x-header/>
-</header>
 <body class="bg-slate-800 text-white">
-    <div class="ml-2 mt-4">
-        <a class="px-2 py-1 bg-blue-500 rounded-lg" href="{{ route('order.index') }}">Volver</a>
-    </div>
 
     <div class="h-14 flex items-start justify-center mt-6">
-        <h1 class="text-4xl">Visualización de Orden</h1>
+        <h1 class="text-4xl">Comprobante de Orden</h1>
     </div>
 
     {{-- Información de la Orden --}}
@@ -27,42 +21,35 @@
 
         <div class="m-2">
             <div class="flex">
-                <label class="font-semibold">ID de la orden:</label>
-                <p class="ml-2">{{ $order->id }}</p>
+                <label class="font-semibold">ID de la orden: {{ $order->id }}</label>
             </div>
             <div class="flex">
-                <label class="font-semibold">Persona:</label>
-                <p class="ml-2">{{ $order->person->name }}</p>
+                <label class="font-semibold">Persona: {{ $order->person->name }}</label>
             </div>
             <div class="flex">
-                <label class="font-semibold">Identificador:</label>
-                <p class="ml-2">{{ $order->identifier }}</p>
+                <label class="font-semibold">Identificador: {{ $order->identifier }}</label>
             </div>
             <div class="flex">
-                <label class="font-semibold">Pañolero:</label>
-                <p class="ml-2">{{ $order->user->name }}</p>
+                <label class="font-semibold">Pañolero: {{ $order->user->name }}</label>
             </div>
             <div class="flex">
-                <label class="font-semibold">Estado de orden:</label>
-                @if ($order->return == 1)
-                    <p class="ml-2">Activa</p>
-                @else
-                    <p class="ml-2">Inactiva</p>
-                @endif
+                <label class="font-semibold">Estado de orden: 
+                    @if ($order->return == 1)
+                        Activa
+                    @else
+                        Inactiva
+                    @endif
+                </label>
             </div>
             <div class="flex">
-                <label class="font-semibold">Fecha:</label>
-                <p class="ml-2">{{ $order->created_at->format('d M Y') }}</p>
+                <label class="font-semibold">Fecha: {{ $order->created_at->format('d M Y') }}</label>
             </div>
     
             <div class="mt-2 border-t border-gray-200">
                 <h2 class="text-xl">Objetos:</h2>
 
                 @foreach ($things as $thing)
-                    <div class="flex">
-                        <p>- {{ $thing->name }}</p>
-                        <p class="ml-2">({{ $thing->identifier }})</p>
-                    </div>
+                    <p>- {{ $thing->name }} ({{ $thing->identifier }})</p>
                 @endforeach
             </div>
         </div>

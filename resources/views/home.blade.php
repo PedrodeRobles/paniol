@@ -11,7 +11,7 @@
     <x-header/>
 </header>
 <body class="bg-zinc-800">
-    <div class="grid grid-cols-1 lg:grid-cols-4 gap-14 mt-10 mx-6">
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-14 my-10 mx-6">
         <a href="{{ route('thing.index') }}" class="bg-blue-600 hover:bg-blue-500 text-white text-center rounded py-4 px-6 text-2xl shadow-lg">Objetos</a>
             
         <a href="{{ route('order.index') }}" class="bg-blue-600 hover:bg-blue-500 text-white text-center rounded py-4 px-6 text-2xl shadow-lg">Ordenes</a>

@@ -32,7 +32,7 @@
     </div>
     
 
-    <div class="my-4 border-2 border-gray-200 rounded-lg mx-4 mt-10">
+    <div class="my-10 border-2 border-gray-200 rounded-lg mx-4">
         {{-- Search form --}}
         <div class="mt-4 sm:ml-4">
             <h2 class="text-xl mb-2">Buscar Material</h2>

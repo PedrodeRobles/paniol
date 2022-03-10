@@ -70,19 +70,19 @@
                     @if ($order->id == 1 || $order->return == 2)
                         <p class="hidden">.</p>
                     @else
-                        <tr class="bg-gray-700">
-                            <td class="p-2 border-r-2 border-gray-600">{{ $order->id }}</td>
-                            <td class="p-2 border-r-2 border-gray-600">{{ $order->person->name }}</td>
-                            <td class="p-2 border-r-2 border-gray-600">{{ $order->identifier }}</td>
-                            <td class="p-2 border-r-2 border-gray-600">{{ $order->user->name }}</td>
-                            <td class="p-2 border-r-2 border-gray-600">{{ $order->created_at->format('d M Y') }}</td>
-                            <td class="p-2 border-r-2 border-gray-600">{{ $order->created_at->format(' H:i ') }}</td>
-                            <td class="p-2 border-r-2 border-gray-600 text-center">{{ $order->return }}</td>
+                        <tr class="bg-gray-600">
+                            <td class="p-2 border-r-2 border-gray-500">{{ $order->id }}</td>
+                            <td class="p-2 border-r-2 border-gray-500">{{ $order->person->name }}</td>
+                            <td class="p-2 border-r-2 border-gray-500">{{ $order->identifier }}</td>
+                            <td class="p-2 border-r-2 border-gray-500">{{ $order->user->name }}</td>
+                            <td class="p-2 border-r-2 border-gray-500">{{ $order->created_at->format('d M Y') }}</td>
+                            <td class="p-2 border-r-2 border-gray-500">{{ $order->created_at->format(' H:i ') }}</td>
+                            <td class="p-2 border-r-2 border-gray-500 text-center">{{ $order->return }}</td>
 
                             {{-- Botones --}}
                             <div>
                                 <td class="p-2">
-                                    <a class="py-1 px-2 bg-gray-600 rounded-md" href="{{ route('order.show', $order) }}">Ver</a>
+                                    <a class="py-1 px-2 bg-gray-700 rounded-md" href="{{ route('order.show', $order) }}">Ver</a>
                                 </td>
                                 <td class="p-2">
                                     <a class="py-1 px-2 bg-blue-600 rounded-md" href="{{ route('order.pdf', $order) }}">PDF</a>
@@ -96,7 +96,7 @@
                                             <input 
                                                 type="submit" 
                                                 value="Devolver" 
-                                                class="bg-gray-600 rounded px-2 cursor-pointer"
+                                                class="bg-gray-700 rounded px-2 cursor-pointer"
                                                 onclick="return confirm('¿Deseas devolver todos los objetos de esta orden?')">
                                             @csrf
                                             @method('PUT')
@@ -113,7 +113,7 @@
                                             class="bg-red-500 rounded px-2 text-white"
                                             type="submit"
                                             value="Delete"
-                                            onclick="return confirm('¿Estas seguro que quieres eliminar este tipo de material?')">
+                                            onclick="return confirm('¿Estas seguro que quieres borrar esta orden o quieres devolver los objetos?')">
                                     </form>
                                 </td>
                             </div>

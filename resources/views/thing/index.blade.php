@@ -34,7 +34,7 @@
             <h2 class="text-xl mb-2">Buscar Material</h2>
             <form>
                 <input class="bg-gray-700 rounded-md py-1" type="search" name="search" placeholder="Buscar" class="rounded-md py-1 text-black">
-                <button type="submit" class="bg-gray-500 rounded py-1 px-1">Buscar</button>
+                <button type="submit" class="bg-gray-600 rounded py-1 px-1">Buscar</button>
             </form>
         </div>
 
@@ -84,7 +84,7 @@
                                             class="bg-red-500 rounded w-14 text-white cursor-pointer"
                                             type="submit"
                                             value="Delete"
-                                            onclick="return confirm('¿Estas seguro que quieres eliminar este tipo de material?')">
+                                            onclick="return confirm('¿Estas seguro que quieres eliminar este objeto?')">
                                     </form>
                                 </td>
                             </tr>
@@ -106,28 +106,12 @@
                                         <a href="{{ route('thing.show', $thing) }}">Ver</a>
                                     </button>
                                 </td>
-                                {{-- <td class="p-2">
-                                    <button class="bg-gray-500 rounded w-14">
-                                        <a href="{{ route('thing.edit', $thing) }}">Editar</a>
-                                    </button>
-                                </td> --}}
                                 <td>
                                     <p></p>
                                 </td>
                                 <td>
                                     <p></p>
                                 </td>
-                                {{-- <td class="p-2">
-                                    <form action="{{ route('thing.destroy', $thing) }}" method="POST">
-                                        @method('DELETE')
-                                        @csrf
-                                        <input 
-                                            class="bg-red-500 rounded w-14 text-white cursor-pointer"
-                                            type="submit"
-                                            value="Delete"
-                                            onclick="return confirm('¿Estas seguro que quieres eliminar este tipo de material?')">
-                                    </form>
-                                </td> --}}
                             </tr>
                         @endif
                         @else

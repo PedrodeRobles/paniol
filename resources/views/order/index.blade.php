@@ -50,7 +50,7 @@
         </div>
     </div>
 
-    <div class="overflow-auto rounded-lg shadow mt-6 border-2 border-gray-300 mx-2 mb-10">
+    <div class="lg:w-12/12 xl:w-11/12 overflow-auto rounded-lg shadow mt-6 border-2 border-gray-300 mx-2 mb-10">
         <h2 class="text-2xl my-2 ml-2">Lista de ordenes activas</h2>
         {{-- TABLA DE ORDENES --}}
         <table class="w-full">
@@ -65,19 +65,19 @@
                     <th class="p-3 tracking-wide text-left border-r-2 border-gray-200">Return</th>
                     {{-- <th class="p-3">Opciones</th> --}}
                 </tr>
-                <tbody class="divide-y divide-gray-200">
+                <tbody class="divide-y divide-gray-400">
                     @foreach ($orders as $order)
                     @if ($order->id == 1 || $order->return == 2)
                         <p class="hidden">.</p>
                     @else
-                        <tr>
-                            <td class="p-2 border-r-2 border-gray-200">{{ $order->id }}</td>
-                            <td class="p-2 border-r-2 border-gray-200">{{ $order->person->name }}</td>
-                            <td class="p-2 border-r-2 border-gray-200">{{ $order->identifier }}</td>
-                            <td class="p-2 border-r-2 border-gray-200">{{ $order->user->name }}</td>
-                            <td class="p-2 border-r-2 border-gray-200">{{ $order->created_at->format('d M Y') }}</td>
-                            <td class="p-2 border-r-2 border-gray-200">{{ $order->created_at->format(' H:i ') }}</td>
-                            <td class="p-2 border-r-2 border-gray-200 text-center">{{ $order->return }}</td>
+                        <tr class="bg-gray-700">
+                            <td class="p-2 border-r-2 border-gray-600">{{ $order->id }}</td>
+                            <td class="p-2 border-r-2 border-gray-600">{{ $order->person->name }}</td>
+                            <td class="p-2 border-r-2 border-gray-600">{{ $order->identifier }}</td>
+                            <td class="p-2 border-r-2 border-gray-600">{{ $order->user->name }}</td>
+                            <td class="p-2 border-r-2 border-gray-600">{{ $order->created_at->format('d M Y') }}</td>
+                            <td class="p-2 border-r-2 border-gray-600">{{ $order->created_at->format(' H:i ') }}</td>
+                            <td class="p-2 border-r-2 border-gray-600 text-center">{{ $order->return }}</td>
 
                             {{-- Botones --}}
                             <div>

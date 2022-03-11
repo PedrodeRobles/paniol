@@ -11,8 +11,12 @@
     <x-header/>
 </header>
 <body class="bg-slate-800 text-white">
-    <div class="h-14 flex items-start mt-6 ml-4">
-        <h1 class="text-center text-4xl">Ordenes</h1>
+    <div class="ml-2 mt-4">
+        <a class="px-2 py-1 bg-blue-500 rounded-lg" href="{{ url('/') }}">Volver</a>
+    </div>
+
+    <div class="h-14 flex items-start justify-center mt-6">
+        <h1 class="text-4xl">Ordenes</h1>
     </div>
 
     <div class="mt-4 mb-4 sm:mb-7 ml-2 sm:flex sm:space-x-6">
@@ -50,7 +54,7 @@
         </div>
     </div>
 
-    <div class="overflow-auto rounded-lg shadow mt-6 border-2 border-gray-300 mx-2 mb-10">
+    <div class="lg:w-12/12 xl:w-11/12 overflow-auto rounded-lg shadow mt-6 border-2 border-gray-300 mx-2 mb-10">
         <h2 class="text-2xl my-2 ml-2">Lista de ordenes activas</h2>
         {{-- TABLA DE ORDENES --}}
         <table class="w-full">
@@ -61,23 +65,20 @@
                     <th class="p-3 tracking-wide text-left border-r-2 border-gray-200">Identificador</th>
                     <th class="p-3 tracking-wide text-left border-r-2 border-gray-200">Pañolero</th>
                     <th class="p-3 tracking-wide text-left border-r-2 border-gray-200">Fecha</th>
-                    <th class="p-3 tracking-wide text-left border-r-2 border-gray-200">Hora de creación</th>
                     <th class="p-3 tracking-wide text-left border-r-2 border-gray-200">Return</th>
-                    {{-- <th class="p-3">Opciones</th> --}}
                 </tr>
-                <tbody class="divide-y divide-gray-200">
+                <tbody class="divide-y divide-gray-400">
                     @foreach ($orders as $order)
                     @if ($order->id == 1 || $order->return == 2)
                         <p class="hidden">.</p>
                     @else
-                        <tr>
-                            <td class="p-2 border-r-2 border-gray-200">{{ $order->id }}</td>
-                            <td class="p-2 border-r-2 border-gray-200">{{ $order->person->name }}</td>
-                            <td class="p-2 border-r-2 border-gray-200">{{ $order->identifier }}</td>
-                            <td class="p-2 border-r-2 border-gray-200">{{ $order->user->name }}</td>
-                            <td class="p-2 border-r-2 border-gray-200">{{ $order->created_at->format('d M Y') }}</td>
-                            <td class="p-2 border-r-2 border-gray-200">{{ $order->created_at->format(' H:i ') }}</td>
-                            <td class="p-2 border-r-2 border-gray-200 text-center">{{ $order->return }}</td>
+                        <tr class="bg-gray-700 text-center">
+                            <td class="p-2">{{ $order->id }}</td>
+                            <td class="p-2">{{ $order->person->name }}</td>
+                            <td class="p-2">{{ $order->identifier }}</td>
+                            <td class="p-2">{{ $order->user->name }}</td>
+                            <td class="p-2">{{ $order->created_at->format('d M Y') }}</td>
+                            <td class="p-2 text-center">{{ $order->return }}</td>
 
                             {{-- Botones --}}
                             <div>
@@ -113,7 +114,7 @@
                                             class="bg-red-500 rounded px-2 text-white"
                                             type="submit"
                                             value="Delete"
-                                            onclick="return confirm('¿Estas seguro que quieres eliminar este tipo de material?')">
+                                            onclick="return confirm('¿Estas seguro que quieres borrar esta orden o quieres devolver los objetos?')">
                                     </form>
                                 </td>
                             </div>

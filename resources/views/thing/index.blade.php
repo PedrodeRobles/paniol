@@ -11,6 +11,10 @@
     <x-header/>
 </header>
 <body class="bg-slate-800 text-white">
+    <div class="ml-2 mt-4">
+        <a class="px-2 py-1 bg-blue-500 rounded-lg" href="{{ url('/') }}">Volver</a>
+    </div>
+
     <div class="h-14 flex items-start mt-6 ml-4">
         <h1 class="text-center text-4xl">Materiales del pañol</h1>
     </div>
@@ -28,13 +32,13 @@
     </div>
     
 
-    <div class="my-4 border-2 border-gray-200 rounded-lg mx-4 mt-10">
+    <div class="my-10 border-2 border-gray-200 rounded-lg mx-4">
         {{-- Search form --}}
         <div class="mt-4 sm:ml-4">
             <h2 class="text-xl mb-2">Buscar Material</h2>
             <form>
                 <input class="bg-gray-700 rounded-md py-1" type="search" name="search" placeholder="Buscar" class="rounded-md py-1 text-black">
-                <button type="submit" class="bg-gray-500 rounded py-1 px-1">Buscar</button>
+                <button type="submit" class="bg-gray-600 rounded py-1 px-1">Buscar</button>
             </form>
         </div>
 
@@ -84,7 +88,7 @@
                                             class="bg-red-500 rounded w-14 text-white cursor-pointer"
                                             type="submit"
                                             value="Delete"
-                                            onclick="return confirm('¿Estas seguro que quieres eliminar este tipo de material?')">
+                                            onclick="return confirm('¿Estas seguro que quieres eliminar este objeto?')">
                                     </form>
                                 </td>
                             </tr>
@@ -106,28 +110,12 @@
                                         <a href="{{ route('thing.show', $thing) }}">Ver</a>
                                     </button>
                                 </td>
-                                {{-- <td class="p-2">
-                                    <button class="bg-gray-500 rounded w-14">
-                                        <a href="{{ route('thing.edit', $thing) }}">Editar</a>
-                                    </button>
-                                </td> --}}
                                 <td>
                                     <p></p>
                                 </td>
                                 <td>
                                     <p></p>
                                 </td>
-                                {{-- <td class="p-2">
-                                    <form action="{{ route('thing.destroy', $thing) }}" method="POST">
-                                        @method('DELETE')
-                                        @csrf
-                                        <input 
-                                            class="bg-red-500 rounded w-14 text-white cursor-pointer"
-                                            type="submit"
-                                            value="Delete"
-                                            onclick="return confirm('¿Estas seguro que quieres eliminar este tipo de material?')">
-                                    </form>
-                                </td> --}}
                             </tr>
                         @endif
                         @else

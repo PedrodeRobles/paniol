@@ -7,107 +7,107 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <title>Pañol</title>
 </head>
-<body>
-    <h1 class="text-4xl text-center">Agregar objetos a la orden</h1>
-
-    <button class="my-4 ml-4">
-        <a href="{{ route('order.index') }}" class="bg-blue-600 text-white rounded h-6 py-1 px-2">Ver ordenes</a>
-    </button>
-
-    {{-- ORDEN --}}
-    <div class="flex items-center">
-        <table class="bg-gray-200 my-4 mx-4">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Persona</th>
-                    <th>Identificador</th>
-                    <th>Pañolero</th>
-                    <th>Fecha</th>
-                    <th>Hora de creación</th>
-                    <th>Return</th>
-                </tr>
-                <tbody>
-                    @if ($order->id == 1)
-                        .
-                    @else
-                        <tr>
-                            <td>{{ $order->id }}</td>
-                            <td>{{ $order->person->name }}</td>
-                            <td>{{ $order->identifier }}</td>
-                            <td>{{ $order->user->name }}</td>
-                            <td>{{ $order->created_at->format('d M Y') }}</td>
-                            <td class="text-center">{{ $order->created_at->format(' H:i ') }}</td>
-                            <td>{{ $order->return }}</td>
-                            <td>
-                                <button class="bg-gray-300 rounded w-14"><a href="{{ route('order.show', $order) }}">Ver</a></button>
-                            </td>
-                            <td>
-                                @if ($order->return == 1)
-                                    <form action="{{ route('order.update', $order) }}" method="POST" enctype="multipart/form-data">
-                                        <input type="submit" value="Devolver" class="bg-gray-300 rounded w-20 cursor-pointer ">
-                                        @csrf
-                                        @method('PUT')
-                                    </form>
-                                @else
-                                    <p class="text-green-600">Entregado</p>
-                                @endif
-                            </td>
-                        </tr>
-                    @endif
-                </tbody>
-            </thead>
-        </table>
-    
-        <div>
-            <button class="bg-blue-500 hover:bg-blue-400 rounded px-4 py-2 text-white"><a href="{{ route('order.pdf', $order) }}">PDF</a></button>
-        </div>
+<header>
+    <x-header/>
+</header>
+<body class="bg-slate-800 text-white">
+    <div class="ml-2 mt-4">
+        <a class="px-2 py-1 bg-blue-500 rounded-lg" href="{{ route('order.index') }}">Volver</a>
     </div>
+
+    <div class="h-14 flex items-start justify-center mt-6">
+        <h1 class="text-4xl">Agregar objetos a la orden</h1>
+    </div>
+
+    <div class="border-2 border-gray-300 rounded-lg bg-gray-900 mx-2 xl:mx-36 mt-7 mb-10">
+        <h2 class="text-2xl font-semibold flex justify-center border-b-2 border-gray-200 py-2">
+            Orden
+        </h2>
+
+        {{-- ORDEN --}}
+        <div class="m-2 md:flex md:space-x-2 md:justify-around border-b border-gray-200 pb-4">
+            <div class="flex md:flex-col">
+                <label class="font-semibold">ID:</label>
+                <p class="ml-2">{{ $order->id }}</p>
+            </div>
+            <div class="flex md:flex-col">
+                <label class="font-semibold">Persona:</label>
+                <p class="ml-2">{{ $order->person->name }}</p>
+            </div>
+            <div class="flex md:flex-col">
+                <label class="font-semibold">Identificador:</label>
+                <p class="ml-2">{{ $order->identifier }}</p>
+            </div>
+            <div class="flex md:flex-col">
+                <label class="font-semibold">Pañolero:</label>
+                <p class="ml-2">{{ $order->user->name }}</p>
+            </div>
+            <div class="flex md:flex-col">
+                <label class="font-semibold">Estado de orden:</label>
+                @if ($order->return == 1)
+                    <p class="ml-2">Activa</p>
+                @else
+                    <p class="ml-2">Inactiva</p>
+                @endif
+            </div>
+            <div class="flex md:flex-col">
+                <label class="font-semibold">Fecha:</label>
+                <p class="ml-2">{{ $order->created_at->format('d M Y') }}</p>
+            </div>
+            <div class="flex justify-around mt-4">
+                <button class="bg-blue-500 hover:bg-blue-400 rounded px-2 py-1 text-white"><a href="{{ route('order.pdf', $order) }}">PDF</a></button>
+            
+                <form action="{{ route('order.update', $order) }}" method="POST" enctype="multipart/form-data">
+                    <input type="submit" value="Devolver" class="md:ml-6 bg-gray-600 rounded px-2 py-1 cursor-pointer ">
+                    @csrf
+                    @method('PUT')
+                </form>
+            </div>
+        </div>
     
 
-    <div class="mt-10 ml-2 w-4/5 border-2 border-black rounded-xl">
-        <h2 class="text-2xl">Lista de objetos</h2>
+    <div class="mt-10 m-2 border-2 border-gray-500 rounded-xl">
+        <h2 class="text-2xl ml-2">Lista de objetos</h2>
     
         {{-- Search form --}}
-        <div class="pt-4 pb-6">
-            <h2 class="text-xl">Buscar objeto</h2>
-            <form action="">
-                <input type="search" name="search" placeholder="Buscar" class="rounded-md h-7">
-                <button type="submit" class="bg-gray-300 rounded w-14">Buscar</button>
+        <div class="mt-4 sm:ml-4 ml-2">
+            <h2 class="text-xl mb-2">Buscar Material</h2>
+            <form>
+                <input class="bg-gray-700 rounded-md py-1 mb-2" type="search" name="search" placeholder="Buscar" class="rounded-md py-1 text-black">
+                <button type="submit" class="bg-gray-600 rounded py-1 px-1">Buscar</button>
             </form>
         </div>
 
-            {{-- TABLA DE THINGS --}}
-        <table>
-            <thead>
-                <tr>
-                    <th>Identificador</th>
-                    <th>Objeto</th>
-                    <th>Tipo de material</th>
-                    <th>Estado</th>
-                    <th>Identificador de orden</th>
-                    <th>Numero de orden</th>
-                </tr>
-                <tbody>
+        {{-- TABLA DE THINGS --}}
+        <div class="overflow-auto rounded-lg shadow mt-6">
+            <table class="w-full">
+                <thead class="border-y-2 border-gray-200">
+                    <tr>
+                        <th class="p-3 tracking-wide text-left border-r border-gray-200">Identificador</th>
+                        <th class="p-3 tracking-wide text-left border-r border-gray-200">Objeto</th>
+                        <th class="p-3 tracking-wide text-left border-r border-gray-200">Tipo de material</th>
+                        <th class="p-3 tracking-wide text-left border-r border-gray-200">Estado</th>
+                        <th class="p-3 tracking-wide text-left border-r border-gray-200">Numero de orden</th>
+                        <th>Opciones</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200">
                     @foreach ($things as $thing)
-                    @if ($thing->visibility == 1)
+                        @if ($thing->visibility == 1)
                         @if ($thing->state == 1)
-                            <tr class="bg-blue-400">
-                                <td>{{ $thing->identifier }}</td>
-                                <td>{{ $thing->name }}</td>
-                                <td>
+                            <tr class="bg-blue-500">
+                                <td class="p-2 border-r border-gray-200">{{ $thing->identifier }}</td>
+                                <td class="p-2 border-r border-gray-200">{{ $thing->name }}</td>
+                                <td class="p-2 border-r border-gray-200">
                                     {{ $thing->type->type}}
                                 </td>
-                                <td class="w-16">
+                                <td class="p-2 border-r border-gray-200">
                                     <p>En Pañol</p>
                                 </td>
-                                <td class="text-center">
-                                    {{ $thing->order->identifier }}
-                                </td>
-                                <td class="text-center">
+                                <td class="p-2 text-center border-r border-gray-200">
                                     <p>-</p>
                                 </td>
-                                <td>
+                                <td class="p-2">
                                     <form action="{{ route('order.thingOrder', $thing) }}" method="POST" enctype="multipart/form-data">
                                         <select name="order_id" hidden>
                                             <option value="{{ $order->id }}">{{ $order->id }}</option>
@@ -115,30 +115,29 @@
                                         </select>
                                         @csrf
                                         @method('PUT')
-                                        <input type="submit" value="Agregar" class="bg-gray-300 rounded w-20">
+                                        <input type="submit" value="Agregar" class="bg-gray-600 rounded w-20">
                                     </form>
                                 </td>
-                                <td>
-                                    <button class="bg-gray-300 rounded w-14"><a href="{{ route('thing.show', $thing) }}">Ver</a></button>
+                                <td class="p-2">
+                                    <button class="bg-gray-600 rounded w-14">
+                                        <a href="{{ route('thing.show', $thing) }}">Ver</a>
+                                    </button>
                                 </td>
                             </tr>
                         @else
-                            <tr class="bg-red-400">
-                                <td>{{ $thing->identifier }}</td>
-                                <td>{{ $thing->name }}</td>
-                                <td>
+                            <tr class="bg-red-500">
+                                <td class="p-2 border-r border-gray-200">{{ $thing->identifier }}</td>
+                                <td class="p-2 border-r border-gray-200">{{ $thing->name }}</td>
+                                <td class="p-2 border-r border-gray-200">
                                     {{ $thing->type->type}}
                                 </td>
-                                <td>
+                                <td class="p-2 border-r border-gray-200">
                                     <p>En Uso</p>
                                 </td>
-                                <td class="text-center">
-                                    {{ $thing->order->identifier }}
+                                <td class="p-2 text-center border-r border-gray-200">
+                                    {{ $thing->order->id }}
                                 </td>
-                                <td class="text-center">
-                                    {{ $thing->order_id }}
-                                </td>
-                                <td class="w-28">
+                                <td class="p-2">
                                     @if ($thing->order_id == $order->id)
                                         <form action="{{ route('order.thingOrder', $thing) }}" method="POST" enctype="multipart/form-data">
                                             <select name="order_id" hidden>
@@ -146,26 +145,27 @@
                                             </select>
                                             @csrf
                                             @method('PUT')
-                                            <input type="submit" value="Devolver" class="bg-gray-300 rounded w-20">
+                                            <input type="submit" value="Devolver" class="bg-gray-600 rounded w-20">
                                         </form>
                                     @else
                                         En otra orden
                                     @endif
                                 </td>
-                                <td>
-                                    <button class="bg-gray-300 rounded w-14"><a href="{{ route('thing.show', $thing) }}">Ver</a></button>
+                                <td class="p-2">
+                                    <button class="bg-gray-600 rounded w-14">
+                                        <a href="{{ route('thing.show', $thing) }}">Ver</a>
+                                    </button>
                                 </td>
                             </tr>
                         @endif
-                        
-                    @else
-                        .
-                    @endif
-                        
+                        @else
+                            .
+                        @endif
                     @endforeach
                 </tbody>
-            </thead>
-        </table>
+            </table>
+        </div>
+
     </div>
 </body>
 </html>

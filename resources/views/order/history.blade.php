@@ -7,72 +7,55 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <title>Pañol</title>
 </head>
-<body>
-    <h1 class="text-4xl font-semibold text-center">Historial de ordenes</h1>
+<header>
+    <x-header/>
+</header>
+<body class="bg-slate-800 text-white">
+    <div class="ml-2 mt-4">
+        <a class="px-2 py-1 bg-blue-500 rounded-lg" href="{{ route('order.index') }}">Volver</a>
+    </div>
 
-    <button class="my-4">
-        <a href="{{ route('order.index') }}" class="bg-blue-600 text-white rounded h-6 py-1 px-2">Ordenes activas</a>
-    </button>
+    <div class="h-14 flex items-start mt-6 ml-4">
+        <h1 class="text-center text-4xl">Historial de ordenes</h1>
+    </div>
 
-    <div class="mt-10 border-2 border-black rounded-md">
-        <h2 class="text-2xl mt-2">Historial</h2>
+    <div class="lg:w-12/12 xl:w-11/12 overflow-auto rounded-lg shadow mt-6 border-2 border-gray-300 mx-2 mb-10">
+        <h2 class="text-2xl my-2 ml-2">Ordenes inactivas</h2>
         {{-- TABLA DE ORDENES --}}
-        <table class="mb-4">
-            <thead>
+        <table class="w-full">
+            <thead class="border-y-2 border-gray-200">
                 <tr>
-                    <th>ID</th>
-                    <th>Persona</th>
-                    <th>Identificador</th>
-                    <th>Pañolero</th>
-                    <th>Fecha</th>
-                    <th>Hora de creación</th>
-                    <th>Return</th>
-                    <th>Estado de Orden</th>
+                    <th class="p-3 tracking-wide text-left border-r-2 border-gray-200">ID</th>
+                    <th class="p-3 tracking-wide text-left border-r-2 border-gray-200">Persona</th>
+                    <th class="p-3 tracking-wide text-left border-r-2 border-gray-200">Identificador</th>
+                    <th class="p-3 tracking-wide text-left border-r-2 border-gray-200">Pañolero</th>
+                    <th class="p-3 tracking-wide text-left border-r-2 border-gray-200">Fecha</th>
+                    <th class="p-3 tracking-wide text-left border-r-2 border-gray-200">Return</th>
+                    {{-- <th class="p-3">Opciones</th> --}}
                 </tr>
-                <tbody>
+                <tbody class="divide-y divide-gray-400">
                     @foreach ($orders as $order)
-                    @if ($order->id == 1)
-                        .
+                    @if ($order->id == 1 || $order->return == 1)
+                        <p class="hidden">.</p>
                     @else
-                        @if ($order->return == 0)
-                            <tr class="bg-lime-500 font-semibold">
-                                <td>{{ $order->id }}</td>
-                                <td>{{ $order->person->name }}</td>
-                                <td>{{ $order->identifier }}</td>
-                                <td>{{ $order->user->name }}</td>
-                                <td>{{ $order->created_at->format('d M Y') }}</td>
-                                <td class="text-center">{{ $order->created_at->format(' H:i ') }}</td>
-                                <td>{{ $order->return }}</td>
-                                <td>
-                                    <p class="text-black">Orden activa</p>
+                        <tr class="bg-gray-700 text-center">
+                            <td class="p-2">{{ $order->id }}</td>
+                            <td class="p-2">{{ $order->person->name }}</td>
+                            <td class="p-2">{{ $order->identifier }}</td>
+                            <td class="p-2">{{ $order->user->name }}</td>
+                            <td class="p-2">{{ $order->created_at->format('d M Y') }}</td>
+                            <td class="p-2 text-center">{{ $order->return }}</td>
+
+                            {{-- Botones --}}
+                            <div>
+                                <td class="p-2">
+                                    <a class="py-1 px-2 bg-gray-600 rounded-md" href="{{ route('order.show', $order) }}">Ver</a>
                                 </td>
-                                <td>
-                                    <button class="bg-gray-300 rounded px-2"><a href="{{ route('order.show', $order) }}">Ver</a></button>
+                                <td class="p-2">
+                                    <a class="py-1 px-2 bg-blue-600 rounded-md" href="{{ route('order.pdf', $order) }}">PDF</a>
                                 </td>
-                                <td>
-                                    <button class="bg-gray-300 rounded px-2"><a href="{{ route('order.pdf', $order) }}">PDF</a></button>
-                                </td>
-                            </tr>
-                        @else
-                            <tr class="bg-rose-600 font-semibold">
-                                <td>{{ $order->id }}</td>
-                                <td>{{ $order->person->name }}</td>
-                                <td>{{ $order->identifier }}</td>
-                                <td>{{ $order->user->name }}</td>
-                                <td>{{ $order->created_at->format('d M Y') }}</td>
-                                <td class="text-center">{{ $order->created_at->format(' H:i ') }}</td>
-                                <td>{{ $order->return }}</td>
-                                <td>
-                                        <p class="text-black">Entregada</p>
-                                </td>
-                                <td>
-                                    <button class="bg-gray-300 rounded px-2"><a href="{{ route('order.show', $order) }}">Ver</a></button>
-                                </td>
-                                <td>
-                                    <button class="bg-gray-300 rounded px-2"><a href="{{ route('order.pdf', $order) }}">PDF</a></button>
-                                </td>
-                            </tr>
-                        @endif
+                            </div>
+                        </tr>
                     @endif
                     @endforeach
                 </tbody>

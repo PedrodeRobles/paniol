@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Person;
+use App\Models\Order;
 use Illuminate\Http\Request;
 
 use Maatwebsite\Excel\Facades\Excel;
@@ -40,9 +41,11 @@ class PersonController extends Controller
         return back();
     }
 
-    public function show(People $people)
+    public function show(Person $person)
     {
-        //
+        $orders = Order::where('person_id', $person->id)->get();
+
+        return view('people.show', compact('person', 'orders'));
     }
 
     public function edit(Person $person)

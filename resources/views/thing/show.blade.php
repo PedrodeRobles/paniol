@@ -27,6 +27,11 @@
             </div>
 
             <div class="flex items-center">
+                <p class="text-lg font-semibold">Identificador:</p>
+                <p class="ml-2">{{ $thing->identifier }}</p>
+            </div>
+
+            <div class="flex items-center">
                 <p class="text-lg font-semibold">Tipo de material:</p>
                 <p class="ml-2">{{ $thing->type->type }}</p>
             </div>

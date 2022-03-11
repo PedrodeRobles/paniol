@@ -2467,6 +2467,16 @@ select {
     margin-right: 16rem;
   }
 
+  .lg\:mx-48 {
+    margin-left: 12rem;
+    margin-right: 12rem;
+  }
+
+  .lg\:mx-36 {
+    margin-left: 9rem;
+    margin-right: 9rem;
+  }
+
   .lg\:mr-96 {
     margin-right: 24rem;
   }
@@ -2496,6 +2506,11 @@ select {
     margin-right: 24rem;
   }
 
+  .xl\:mx-56 {
+    margin-left: 14rem;
+    margin-right: 14rem;
+  }
+
   .xl\:w-7\/12 {
     width: 58.333333%;
   }
@@ -2513,6 +2528,16 @@ select {
   }
 }
 @media (min-width: 1536px) {
+
+  .\32xl\:mx-96 {
+    margin-left: 24rem;
+    margin-right: 24rem;
+  }
+
+  .\32xl\:mx-72 {
+    margin-left: 18rem;
+    margin-right: 18rem;
+  }
 
   .\32xl\:w-6\/12 {
     width: 50%;

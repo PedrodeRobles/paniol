@@ -19,7 +19,7 @@
         <h1 class="text-center text-4xl">Datos de la persona</h1>
     </div>
 
-    <div class="border-2 border-gray-300 rounded-lg bg-gray-900 mx-2 mt-4 mb-10">
+    <div class="border-2 border-gray-300 rounded-lg bg-gray-900 mx-2 lg:mx-48 xl:mx-68 2xl:mx-72 mt-7 mb-10">
         <div class="m-2 flex flex-col space-y-2">
             <div class="flex items-center">
                 <p class="text-lg font-semibold">ID:</p>
@@ -35,7 +35,7 @@
             </div>
 
             {{-- Ordenes --}}
-            <div class="lg:w-12/12 xl:w-11/12 overflow-auto rounded-lg shadow mt-6 border-2 border-gray-300 mx-2 mb-10">
+            <div class="lg:w-12/12 overflow-auto rounded-lg shadow mt-6 border-2 border-gray-300 mx-2 mb-10">
                 <h2 class="text-2xl my-2 ml-2">Sus ordenes</h2>
                 {{-- TABLA DE ORDENES --}}
                 <table class="w-full">

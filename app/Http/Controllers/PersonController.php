@@ -44,7 +44,8 @@ class PersonController extends Controller
     public function show(Person $person)
     {
         $orders = Order::where('person_id', $person->id)
-            ->latest()->get();
+            ->latest()
+            ->get();
 
         return view('people.show', compact('person', 'orders'));
     }

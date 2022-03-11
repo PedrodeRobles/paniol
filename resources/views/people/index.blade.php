@@ -53,6 +53,9 @@
                             <td class="p-2">{{ $person->name }}</td>
                             <td class="p-2">{{ $person->place }}</td>
                             <td class="p-2">
+                                <a class="py-1 px-2 bg-gray-600 rounded-md" href="{{ route('people.show', $person) }}">Ver</a>
+                            </td>
+                            <td class="p-2">
                                 <form action="{{ route('people.destroy', $person) }}" method="POST">
                                     @method('DELETE')
                                     @csrf

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\Thing;
 use App\Models\Type;
-use App\Models\State;
 use Illuminate\Http\Request;
 
 use Maatwebsite\Excel\Facades\Excel;
@@ -132,11 +131,21 @@ class ThingController extends Controller
         return back();
     }
 
-    public function paperBin()
+    public function paperBin(Request $request)
     {
-        $things = Thing::where('visibility', 2)->get();
+        // $things = Thing::where('visibility', 2)->get();
 
-        return view('thing.bin', compact('things'));
+        if ($request) {
+            $query = trim($request->get('search'));
+            }
+
+                $things =Thing::where('visibility', 2)
+                    ->where('name', 'LIKE', '%' . $query . '%')
+                    ->where('identifier', 'LIKE', '%' . $query . '%')
+                    ->orderBy('id', 'asc')
+                    ->get();
+
+                return view('thing.bin', compact('things'));
     }
 
     public function restore(Thing $thing)

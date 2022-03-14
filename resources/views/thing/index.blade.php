@@ -30,8 +30,8 @@
             <a href="{{ route('order.index') }}" class="bg-blue-600 text-white rounded py-1 px-2 shadow-md">Generar Orden</a>
         </button>
     </div>
-    
 
+    {{-- TABLA DE OBJETOS --}}
     <div class="my-10 border-2 border-gray-200 rounded-lg mx-4">
         {{-- Search form --}}
         <div class="mt-4 sm:ml-4">
@@ -88,7 +88,7 @@
                                     <form action="{{ route('thing.destroy', $thing) }}" method="POST">
                                         @method('DELETE')
                                         @csrf
-                                        <input 
+                                        <input
                                             class="bg-red-500 rounded w-14 text-white cursor-pointer"
                                             type="submit"
                                             value="Delete"
@@ -126,14 +126,14 @@
                             </tr>
                         @endif
                         @else
-                            .
+                            <p></p>
                         @endif
                     @endforeach
                 </tbody>
             </table>
         </div>
-        
+
     </div>
-    
+
 </body>
 </html>

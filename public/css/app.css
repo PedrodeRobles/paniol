@@ -2181,10 +2181,6 @@ select {
     margin-bottom: 1.75rem;
   }
 
-  .sm\:ml-2 {
-    margin-left: 0.5rem;
-  }
-
   .sm\:block {
     display: block;
   }
@@ -2362,24 +2358,20 @@ select {
     margin-top: 0px;
   }
 
-  .md\:ml-6 {
-    margin-left: 1.5rem;
-  }
-
-  .md\:ml-4 {
-    margin-left: 1rem;
+  .md\:mr-48 {
+    margin-right: 12rem;
   }
 
   .md\:ml-2 {
     margin-left: 0.5rem;
   }
 
-  .md\:ml-48 {
-    margin-left: 12rem;
+  .md\:ml-4 {
+    margin-left: 1rem;
   }
 
-  .md\:mr-48 {
-    margin-right: 12rem;
+  .md\:ml-6 {
+    margin-left: 1.5rem;
   }
 
   .md\:flex {
@@ -2440,14 +2432,6 @@ select {
 
   .lg\:mx-64 {
     margin-left: 16rem;
-    margin-right: 16rem;
-  }
-
-  .lg\:ml-2 {
-    margin-left: 0.5rem;
-  }
-
-  .lg\:mr-64 {
     margin-right: 16rem;
   }
 

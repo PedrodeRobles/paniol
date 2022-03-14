@@ -1664,6 +1664,9 @@ select {
 .pb-6 {
   padding-bottom: 1.5rem;
 }
+.pl-2 {
+  padding-left: 0.5rem;
+}
 .text-left {
   text-align: left;
 }
@@ -2374,6 +2377,18 @@ select {
     margin-left: 1.5rem;
   }
 
+  .md\:mt-5 {
+    margin-top: 1.25rem;
+  }
+
+  .md\:mr-56 {
+    margin-right: 14rem;
+  }
+
+  .md\:mr-64 {
+    margin-right: 16rem;
+  }
+
   .md\:flex {
     display: flex;
   }
@@ -2446,6 +2461,14 @@ select {
 
   .lg\:w-9\/12 {
     width: 75%;
+  }
+
+  .lg\:w-2\/3 {
+    width: 66.666667%;
+  }
+
+  .lg\:w-1\/2 {
+    width: 50%;
   }
 
   .lg\:grid-cols-4 {

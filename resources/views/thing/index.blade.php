@@ -50,6 +50,7 @@
                         <th class="p-3 tracking-wide text-left border-r border-gray-200">Objeto</th>
                         <th class="p-3 tracking-wide text-left border-r border-gray-200">Tipo de material</th>
                         <th class="p-3 tracking-wide text-left border-r border-gray-200">Estado</th>
+                        <th class="p-3 tracking-wide text-left border-r border-gray-200">Persona</th>
                         <th class="p-3 tracking-wide text-left border-r border-gray-200">Numero de orden</th>
                         <th>Opciones</th>
                     </tr>
@@ -66,6 +67,9 @@
                                 </td>
                                 <td class="p-2 border-r border-gray-200">
                                     <p>En Pañol</p>
+                                </td>
+                                <td class="p-2 text-center border-r border-gray-200">
+                                    <p>-</p>
                                 </td>
                                 <td class="p-2 text-center border-r border-gray-200">
                                     <p>-</p>
@@ -101,6 +105,9 @@
                                 </td>
                                 <td class="p-2 border-r border-gray-200">
                                     <p>En Uso</p>
+                                </td>
+                                <td class="p-2 text-center border-r border-gray-200">
+                                    {{ $thing->order->person->name }}
                                 </td>
                                 <td class="p-2 text-center border-r border-gray-200">
                                     {{ $thing->order->id }}

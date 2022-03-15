@@ -39,8 +39,8 @@ class Thing extends Model
         return $this->belongsTo(Order::class);
     }
     
-    public function history()
+    public function histories()
     {
-        return $this->belongsTo(History::class);
+        return $this->belongsToMany(History::class);
     }
 }

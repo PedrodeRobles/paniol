@@ -19,6 +19,6 @@ class History extends Model
 
     public function things()
     {
-        return $this->hasMany(Thing::class);
+        return $this->belongsToMany(Thing::class);
     }
 }

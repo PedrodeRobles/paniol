@@ -3,13 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\History;
+use App\Models\Thing;
 use Illuminate\Http\Request;
 
 class HistoryController extends Controller
 {
     public function index()
     {
-        //
+        $histories = History::all();
+
+        return view('history.index', compact('histories'));
     }
 
     public function create()
@@ -37,7 +40,9 @@ class HistoryController extends Controller
 
     public function show(History $history)
     {
-        //
+        $things = Thing::where('history_id', $history->id)->get();
+
+        return view('history.show', compact('history', 'things'));
     }
 
     public function edit(History $history)

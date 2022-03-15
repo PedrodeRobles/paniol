@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Type;
 use App\Models\State;
 use App\Models\Order;
+use App\Models\History;
 
 class Thing extends Model
 {
@@ -17,6 +18,7 @@ class Thing extends Model
         'type_id',
         'state',
         'order_id',
+        'history_id',
         'name',
         'identifier',
         'description',
@@ -36,5 +38,10 @@ class Thing extends Model
     public function order()
     {
         return $this->belongsTo(Order::class);
+    }
+    
+    public function history()
+    {
+        return $this->belongsTo(History::class);
     }
 }

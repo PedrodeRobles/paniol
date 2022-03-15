@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\Thing;
+
 class History extends Model
 {
     use HasFactory;
@@ -14,4 +16,9 @@ class History extends Model
         'user',
         'person',
     ];
+
+    public function things()
+    {
+        return $this->hasMany(Thing::class);
+    }
 }

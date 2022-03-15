@@ -97,7 +97,7 @@ class OrderController extends Controller
             'person' => $order->person_id,
         ]);
 
-        return back();
+        return redirect()->route('order.index');
     }
 
     public function destroy(Order $order)

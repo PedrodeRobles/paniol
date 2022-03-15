@@ -89,6 +89,7 @@ class ThingController extends Controller
             'name'  => $request->name,
             'type_id' => $request->type_id,
             'order_id' => 1,
+            'history_id' => 1,
             'identifier' => $typeName . '-' . $subName . '-' . $num,
         ]);
 

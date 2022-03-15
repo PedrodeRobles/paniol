@@ -6,6 +6,7 @@ use App\Http\Controllers\TypeController;
 use App\Http\Controllers\ThingController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\HistoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,6 +54,9 @@ Route::get('/order/{order}/pdf', [OrderController::class, 'exportPdf'])->name('o
 Route::get('/backup', function () {
     return view('backup');
 })->middleware('auth');
+
+Route::resource('history', HistoryController::class);
+
 
 
 

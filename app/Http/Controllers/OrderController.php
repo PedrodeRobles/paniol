@@ -6,6 +6,7 @@ use App\Models\Order;
 use App\Models\Person;
 use App\Models\Thing;
 use App\Models\User;
+use App\Models\History;
 use Illuminate\Http\Request;
 
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -89,6 +90,12 @@ class OrderController extends Controller
         $order->return = 2;
 
         $order->update();
+
+        History::create([
+            'user' => $order->user_id,
+            'identifier' => $order->identifier,
+            'person' => $order->person_id,
+        ]);
 
         return back();
     }

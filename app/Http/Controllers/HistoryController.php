@@ -40,7 +40,7 @@ class HistoryController extends Controller
 
     public function show(History $history)
     {
-        $things = Thing::where('history_id', $history->id)->get();
+        $things = Thing::all();
 
         return view('history.show', compact('history', 'things'));
     }

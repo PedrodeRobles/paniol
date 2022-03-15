@@ -7,8 +7,10 @@
     <title>Pañol</title>
 </head>
 <body>
-    @foreach ($things as $thing)
-        <p>{{ $thing->name }}</p>
+    @foreach ($things->histories as $thing)
+        @if ($thing->histories == $history)
+            <p>{{ $thing->histories->id }}</p>
+        @endif
     @endforeach
 </body>
 </html>

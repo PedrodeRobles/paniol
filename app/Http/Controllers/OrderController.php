@@ -79,6 +79,7 @@ class OrderController extends Controller
                     ]);
     }
 
+    //Boton Devolver de cada orden
     public function update(Request $request, Order $order, Thing $thing)
     {
         $things = Thing::where('order_id', $order->id)->get();
@@ -88,7 +89,6 @@ class OrderController extends Controller
         ]);
 
         $order->return = 2;
-
         $order->update();
 
         History::create([
@@ -124,6 +124,13 @@ class OrderController extends Controller
         }
 
         $thing->update($request->all());
+
+        if ($request->order_id != 1) {
+            $thing->histories()->attach(1);
+        } else {
+            $thing->histories()->detach(1);
+        }
+        
 
         return back();
     }

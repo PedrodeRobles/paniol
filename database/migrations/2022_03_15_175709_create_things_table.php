@@ -18,7 +18,6 @@ class CreateThingsTable extends Migration
 
             $table->bigInteger('type_id')->unsigned();
             $table->bigInteger('order_id')->unsigned();
-            $table->bigInteger('history_id')->unsigned();
 
             $table->string('name');
             $table->integer('state')->default(1);
@@ -30,7 +29,6 @@ class CreateThingsTable extends Migration
 
             $table->foreign('type_id')->references('id')->on('types');
             $table->foreign('order_id')->references('id')->on('orders');
-            $table->foreign('history_id')->references('id')->on('histories');
         });
     }
 

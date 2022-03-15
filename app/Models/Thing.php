@@ -18,7 +18,6 @@ class Thing extends Model
         'type_id',
         'state',
         'order_id',
-        'history_id',
         'name',
         'identifier',
         'description',

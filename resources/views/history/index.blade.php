@@ -10,6 +10,7 @@
     <table>
         <thead>
             <tr>
+                <th>ID</th>
                 <th>Pesona</th>
                 <th>Identificador</th>
                 <th>Pañolero</th>
@@ -18,6 +19,7 @@
         <tbody>
             @foreach ($histories as $history)
                 <tr>
+                    <td>{{ $history->id }}</td>
                     <td>{{ $history->person }}</td>
                     <td>{{ $history->identifier }}</td>
                     <td>{{ $history->user }}</td>

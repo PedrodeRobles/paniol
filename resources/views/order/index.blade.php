@@ -22,7 +22,7 @@
     <div class="mt-4 mb-4 sm:mb-7 ml-2 sm:flex sm:space-x-6">
         <a href="{{ route('thing.index') }}" class="bg-blue-600 text-white rounded py-1 px-2">Objetos</a>
     
-        <a class="bg-gray-600 rounded px-2 py-1" href="{{ route('order.history') }}">Historial de ordenes</a>
+        <a class="bg-gray-600 rounded px-2 py-1" href="{{ route('history.index') }}">Historial de ordenes</a>
     </div>
 
     {{-- FORMULARIO PARA GENERAR ORDENES --}}

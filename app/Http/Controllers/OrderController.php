@@ -111,7 +111,7 @@ class OrderController extends Controller
         return redirect()->route('order.index');
     }
 
-    public function thingOrder(Request $request, Thing $thing)
+    public function thingOrder(Request $request, Thing $thing, Order $order)
     {
         $request->validate([
             'order_id' => 'required',
@@ -126,9 +126,9 @@ class OrderController extends Controller
         $thing->update($request->all());
 
         if ($request->order_id != 1) {
-            $thing->histories()->attach(1);
+            $thing->histories()->attach(2); //history_id
         } else {
-            $thing->histories()->detach(1);
+            $thing->histories()->detach(2); //history_id
         }
         
 

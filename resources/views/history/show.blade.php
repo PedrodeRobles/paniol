@@ -7,10 +7,8 @@
     <title>Pañol</title>
 </head>
 <body>
-    @foreach ($things->histories as $thing)
-        @if ($thing->histories == $history)
-            <p>{{ $thing->histories->id }}</p>
-        @endif
+    @foreach ($history->things as $history_thing)
+        <p>{{ $history_thing->name }}</p>
     @endforeach
 </body>
 </html>

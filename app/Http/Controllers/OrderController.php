@@ -41,12 +41,17 @@ class OrderController extends Controller
             'person_id' => 'required',
         ]);
 
-        Order::create([
+        $order = Order::create([
             'user_id' => auth()->user()->id,
             'identifier' => $request->identifier,
             'person_id' => $request->person_id,
         ]);
 
+        History::create([
+            'user' => $order->user_id,
+            'identifier' => $order->identifier,
+            'person' => $order->person_id,
+        ]);
         // Cambiar el state_id del 'Thing' que seleccione
         // $thing = Thing::find($request->thing_id);
         // $thing->state_id = 2;
@@ -75,12 +80,12 @@ class OrderController extends Controller
                     return view('order.edit', [
                         'things' => $things,
                         'search' => $query,
-                        'order'  => $order
+                        'order'  => $order,
                     ]);
     }
 
     //Boton Devolver de cada orden
-    public function update(Request $request, Order $order, Thing $thing)
+    public function update(Request $request, Order $order)
     {
         $things = Thing::where('order_id', $order->id)->get();
         $things->toQuery()->update([
@@ -91,11 +96,14 @@ class OrderController extends Controller
         $order->return = 2;
         $order->update();
 
-        History::create([
-            'user' => $order->user_id,
-            'identifier' => $order->identifier,
-            'person' => $order->person_id,
-        ]);
+        foreach ($things as $thing) {
+            if ($request->order_id != 1) {
+                $thing->histories()->attach($order->id); //history_id
+            } else {
+                $thing->histories()->detach($order->id); //history_id
+            }
+        }
+
 
         return redirect()->route('order.index');
     }
@@ -111,7 +119,7 @@ class OrderController extends Controller
         return redirect()->route('order.index');
     }
 
-    public function thingOrder(Request $request, Thing $thing, Order $order)
+    public function thingOrder(Request $request, Thing $thing, Order $order, History $history)
     {
         $request->validate([
             'order_id' => 'required',
@@ -124,12 +132,13 @@ class OrderController extends Controller
         }
 
         $thing->update($request->all());
+        
 
-        if ($request->order_id != 1) {
-            $thing->histories()->attach(2); //history_id
-        } else {
-            $thing->histories()->detach(2); //history_id
-        }
+        // if ($request->order_id != 1) {
+        //     $thing->histories()->attach(3); //history_id
+        // } else {
+        //     $thing->histories()->detach(3); //history_id
+        // }
         
 
         return back();

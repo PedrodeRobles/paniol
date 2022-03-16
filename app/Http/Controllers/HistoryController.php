@@ -11,7 +11,7 @@ class HistoryController extends Controller
 {
     public function index()
     {
-        $histories = History::all();
+        $histories = History::latest()->paginate(10);
 
         return view('history.index', compact('histories'));
     }

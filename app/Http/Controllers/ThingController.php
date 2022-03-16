@@ -29,7 +29,7 @@ class ThingController extends Controller
                 $query = 1;
             }
 
-                $things =Thing::where('name', 'LIKE', '%' . $query . '%')
+                $things =Thing::latest()->where('name', 'LIKE', '%' . $query . '%')
                     ->orWhere('identifier', 'LIKE', '%' . $query . '%')
                     ->orWhere('state', 'LIKE', '%' . $query . '%')
                     ->orderBy('id', 'asc')

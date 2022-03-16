@@ -32,7 +32,7 @@
                         <th class="p-3 tracking-wide text-left border-r-2 border-gray-200">Identificador</th>
                         <th class="p-3 tracking-wide text-left border-r-2 border-gray-200">Pañolero</th>
                         <th class="p-3 tracking-wide text-left border-r-2 border-gray-200">Fecha</th>
-                        <th class="p-3 tracking-wide text-left border-r-2 border-gray-200">update</th>
+                        <th class="p-3 tracking-wide text-left border-r-2 border-gray-200">Fecha devolución</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-400">
@@ -51,10 +51,10 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="mt-4 mx-4">
+                {{ $histories->links() }}
+            </div>
         </div>
     </div>
-
-
-
 </body>
 </html>

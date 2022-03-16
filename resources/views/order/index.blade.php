@@ -124,7 +124,6 @@
                 </tbody>
             </thead>
         </table>
-        {{ $orders->links() }}
     </div>
         
 </body>

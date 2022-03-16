@@ -48,9 +48,9 @@ class OrderController extends Controller
         ]);
 
         History::create([
-            'user' => $order->user_id,
+            'user' => $order->user->name,
             'identifier' => $order->identifier,
-            'person' => $order->person_id,
+            'person' => $order->person->name,
         ]);
         // Cambiar el state_id del 'Thing' que seleccione
         // $thing = Thing::find($request->thing_id);
@@ -104,6 +104,14 @@ class OrderController extends Controller
             }
         }
 
+        $histories = History::where('id', $order->id)->get();
+        $histories->toQuery()->update([
+            'updated_at' => $order->updated_at,
+        ]);
+        // foreach ($histories as $history) {
+        //     dd($history->id);
+        // }
+
 
         return redirect()->route('order.index');
     }
@@ -132,14 +140,6 @@ class OrderController extends Controller
         }
 
         $thing->update($request->all());
-        
-
-        // if ($request->order_id != 1) {
-        //     $thing->histories()->attach(3); //history_id
-        // } else {
-        //     $thing->histories()->detach(3); //history_id
-        // }
-        
 
         return back();
     }

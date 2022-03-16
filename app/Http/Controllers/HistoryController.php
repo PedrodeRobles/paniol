@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\History;
+use App\Models\Order;
 use App\Models\Thing;
 use Illuminate\Http\Request;
 

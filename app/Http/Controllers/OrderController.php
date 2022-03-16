@@ -20,7 +20,7 @@ class OrderController extends Controller
     {
         $orders = Order::latest()->get();
         $things = Thing::all();
-        $people = Person::all();
+        $people = Person::latest()->get();
 
         return view('order.index', [
             'orders' => $orders,

@@ -30,11 +30,11 @@ class HistoryController extends Controller
         // ]);
 
         // History::create($request->all());
-        History::create([
-            'user' => 1,
-            'person' => 1,
-            'identifier' => 'default',
-        ]);
+        // History::create([
+        //     'user' => 1,
+        //     'person' => 1,
+        //     'identifier' => 'default',
+        // ]);
 
         return back();
     }

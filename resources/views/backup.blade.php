@@ -45,6 +45,9 @@
                 <div>
                     <a class="bg-gray-600 rounded-md py-1 px-2" href="{{ route('thing.excel') }}">Exportar objetos</a>
                 </div>
+                <div>
+                    <a class="bg-gray-600 rounded-md py-1 px-2" href="{{ route('histories.excel') }}">Exportar historial</a>
+                </div>
             </div>
         </div>
     </div>

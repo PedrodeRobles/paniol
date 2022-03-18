@@ -55,6 +55,7 @@ Route::get('/backup', function () {
     return view('backup');
 })->middleware('auth');
 
+Route::get('/history/excel', [HistoryController::class, 'exportExcel'])->name('histories.excel')->middleware('auth');
 Route::resource('history', HistoryController::class);
 
 

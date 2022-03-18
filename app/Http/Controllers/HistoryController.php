@@ -7,6 +7,9 @@ use App\Models\Order;
 use App\Models\Thing;
 use Illuminate\Http\Request;
 
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\HistoryExport;
+
 class HistoryController extends Controller
 {
     public function index()
@@ -46,18 +49,8 @@ class HistoryController extends Controller
         return view('history.show', compact('history', 'thing'));
     }
 
-    public function edit(History $history)
+    public function exportExcel()
     {
-        //
-    }
-
-    public function update(Request $request, History $history)
-    {
-        //
-    }
-
-    public function destroy(History $history)
-    {
-        //
+        return Excel::download(new HistoryExport, 'histories-list.xlsx');
     }
 }

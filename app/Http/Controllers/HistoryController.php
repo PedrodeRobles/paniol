@@ -41,9 +41,9 @@ class HistoryController extends Controller
 
     public function show(History $history)
     {
-        $things = Thing::all();
+        $thing = Thing::all();
 
-        return view('history.show', compact('history', 'things'));
+        return view('history.show', compact('history', 'thing'));
     }
 
     public function edit(History $history)

@@ -12,7 +12,7 @@
 </header>
 <body class="bg-slate-800 text-white">
     <div class="ml-2 mt-4">
-        <a class="px-2 py-1 bg-blue-500 rounded-lg" href="{{ route('order.index') }}">Volver</a>
+        <a class="px-2 py-1 bg-blue-500 rounded-lg" href="{{ route('history.index') }}">Volver</a>
     </div>
 
     <div class="h-14 flex items-start justify-center mt-6">
@@ -54,7 +54,7 @@
                 <div class="mt-2 border-t border-gray-200">
                     <h2 class="text-xl">Objetos:</h2>
     
-                    @foreach ($things as $thing)
+                    @foreach ($history->things as $thing)
                         <div class="flex">
                             <p>- {{ $thing->name }}</p>
                             <p class="ml-2">({{ $thing->identifier }})</p>

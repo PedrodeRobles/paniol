@@ -26,7 +26,7 @@
                     <label class="text-lg">Tipo de material *</label>
                     <select class="bg-gray-700" name="type_id">
                         @foreach ($types as $type)
-                            <option class="text-black" value="{{ $type->id }}">{{ $type->type }}</option>
+                            <option value="{{ $type->id }}">{{ $type->type }}</option>
                         @endforeach
                     </select>
                 </div>

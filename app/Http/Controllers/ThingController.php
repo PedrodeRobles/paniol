@@ -168,14 +168,4 @@ class ThingController extends Controller
 
         return back();
     }
-
-    public function defaultOrder(Request $request)
-    {
-        Order::create([
-            'user_id' => $request->user->id,
-            'person_id' => 1,
-            'identifier' => 'default',
-            'return' => 1,
-        ]);
-    }
 }

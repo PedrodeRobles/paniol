@@ -37,7 +37,7 @@ return [
 
         'desktop' => [
             'driver' => 'local',
-            'root' => storage_path('../../../../Users/piter//Desktop/backup-paniol'),
+            'root' => storage_path('../../../../Users/piter/Desktop/backup-paniol'),
         ],
 
         'public' => [

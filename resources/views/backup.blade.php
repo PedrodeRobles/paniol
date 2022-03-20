@@ -26,80 +26,35 @@
         <div class="border-2 border-gray-600 rounded-lg bg-green-600 mx-4">
 
             <div class="border-b-2 border-gray-600 flex justify-center py-1 ml-2">
-                <h2 class="text-xl">Exportar tablas (Importante subir al drive)</h2>
+                <h2 class="text-xl">Generar backup</h2>
             </div>
     
-            <div class="m-2 grid grid-cols-2 md:grid-cols-4 gap-4 lg:flex">
-                <div>
-                    <a class="bg-gray-600 rounded-md py-1 px-2" href="{{ route('user.excel') }}">Exportar usuarios</a>
+            <div class="m-2">
+                <div class="border-b border-gray-400 pb-2">
+                    <label>Paso 1)</label>
+                    <p>Abrir el Símbolo de sistema de Windows</p>
                 </div>
-                <div>
-                    <a class="bg-gray-600 rounded-md py-1 px-2" href="{{ route('type.excel') }}">Exportar tipos de objetos</a>
+                <div class="border-b border-gray-400 py-2">
+                    <label>Paso 2)</label>
+                    <p>Escribir:</p>
+                    <p class="bg-gray-800">cd \</p>
                 </div>
-                <div>
-                    <a class="bg-gray-600 rounded-md py-1 px-2" href="{{ route('people.excel') }}">Exportar personal</a>
+                <div class="border-b border-gray-400 py-2">
+                    <label>Paso 3)</label>
+                    <p>Escribir:</p>
+                    <p class="bg-gray-800">cd xampp\htdocs\paniol</p>
                 </div>
-                <div>
-                    <a class="bg-gray-600 rounded-md py-1 px-2" href="{{ route('orders.excel') }}">Exportar ordenes</a>
+                <div class="border-b border-gray-400 py-2">
+                    <label>Paso 4)</label>
+                    <p>Escribir:</p>
+                    <p class="bg-gray-800">php artisan backup:run</p>
+                    <Label>Aparecera lo siguiente:</Label>
+                    <img src="{{ asset('/img/backupRun.png') }}" alt="backupRun" class="mb-2">
+                    <p>Se va a generar una carpeta llamada 'backup-paniol' en el escritorio</p>
                 </div>
-                <div>
-                    <a class="bg-gray-600 rounded-md py-1 px-2" href="{{ route('thing.excel') }}">Exportar objetos</a>
-                </div>
-                <div>
-                    <a class="bg-gray-600 rounded-md py-1 px-2" href="{{ route('histories.excel') }}">Exportar historial</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    {{-- IMPORTAR TABLAS --}}
-    <div class="lg:flex lg:justify-center my-10">
-        <div class="border-2 border-gray-600 rounded-lg bg-red-600 mx-4">
-
-            <div class="border-b-2 border-gray-600 flex justify-center py-1 ml-2">
-                <h2 class="text-xl">Importar tablas (advertencia: Importar en orden)</h2>
-            </div>
-    
-            <div class="m-2 grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="border-b border-gray-300">
-                    <form action="{{ route('users.import.excel') }}" method="POST" enctype="multipart/form-data">
-                        <label>1)</label>
-                        @csrf
-                        <input type="file" name="file">
-                        <button class="bg-gray-600 rounded-md py-1 px-2 my-2">Importar usuarios</button>
-                    </form>
-                </div>
-                <div class="border-b border-gray-300">
-                    <form action="{{ route('types.import.excel') }}" method="POST" enctype="multipart/form-data">
-                        <label>2)</label>
-                        @csrf
-                        <input type="file" name="file">
-                        <button class="bg-gray-600 rounded-md py-1 px-2 my-2">Importar tipos de objetos</button>
-                    </form>
-                </div>
-                <div class="border-b border-gray-300">
-                    <form action="{{ route('people.import.excel') }}" method="POST" enctype="multipart/form-data">
-                        <label>3)</label>
-                        @csrf
-                        <input type="file" name="file">
-                        <button class="bg-gray-600 rounded-md py-1 px-2 my-2">Importar personal</button>
-                    </form>
-                </div>
-                <div class="border-b border-gray-300">
-                    <form action="{{ route('orders.import.excel') }}" method="POST" enctype="multipart/form-data">
-                        <label>4)</label>
-                        @csrf
-                        <input type="file" name="file" >
-                        <button class="bg-gray-600 rounded-md py-1 px-2 my-2">Importar ordenes</button>
-                    </form>
-                </div>
-                <div class="border-b border-gray-300">
-                    <form action="{{ route('things.import.excel') }}" method="POST" enctype="multipart/form-data">
-                        <label>5)</label>
-                        @csrf
-                        <input type="file" name="file">
-                        <button class="bg-gray-600 rounded-md py-1 px-2 my-2">Importar objetos</button>
-                    </form>
+                <div class="border-b border-gray-400 py-2">
+                    <label>Paso 5)</label>
+                    <p>Subir la carpeta al drive (Si la carpeta ya exíste en el drive reemplazarla)</p>
                 </div>
             </div>
         </div>

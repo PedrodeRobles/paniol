@@ -51,6 +51,10 @@ Route::put('/order/action/{thing}/', [OrderController::class, 'thingOrder'])->na
 Route::resource('order', OrderController::class);
 Route::get('/order/{order}/pdf', [OrderController::class, 'exportPdf'])->name('order.pdf');
 
+Route::get('/backup-excel', function () {
+    return view('backup-excel');
+})->middleware('auth');
+
 Route::get('/backup', function () {
     return view('backup');
 })->middleware('auth');

@@ -112,7 +112,7 @@
                 </div>
                 <div class="border-b border-gray-400 py-2">
                     <label>Paso 9)</label>
-                    <p>Eliminar los dos archivos que habiamos extraído y dejar solo los archivos Zip (Ocupan mucho espacio para el drive)</p>
+                    <p>Eliminar los dos archivos que habiamos extraído (ocupan mucho espacio para el drive) y dejar solo los archivos Zip</p>
                     <img src="{{ asset('/img/deleteFolders.png') }}" alt="backupRun" class="mb-2">
                 </div>
             </div>

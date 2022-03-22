@@ -14,7 +14,8 @@ class PersonFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name'  => 'Raul',
+            'place' => 'Becas',
         ];
     }
 }

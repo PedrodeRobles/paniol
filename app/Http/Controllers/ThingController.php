@@ -86,7 +86,7 @@ class ThingController extends Controller
         }
 
         Thing::create([
-            'name'  => $request->name,
+            'name'  => ucfirst($request->name),
             'type_id' => $request->type_id,
             'order_id' => 1,
             'identifier' => $typeName . '-' . $subName . '-' . $num,

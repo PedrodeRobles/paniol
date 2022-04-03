@@ -24,8 +24,8 @@ class HistoryController extends Controller
         return view('history.create');
     }
 
-    public function store(Request $request)
-    {
+    // public function store(Request $request)
+    // {
         // $request->validate([
         //     'user' => 'required',
         //     'person' => 'required',
@@ -39,8 +39,8 @@ class HistoryController extends Controller
         //     'identifier' => 'default',
         // ]);
 
-        return back();
-    }
+    //     return back();
+    // }
 
     public function show(History $history)
     {

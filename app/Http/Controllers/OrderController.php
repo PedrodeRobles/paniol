@@ -127,7 +127,7 @@ class OrderController extends Controller
         return redirect()->route('order.index');
     }
 
-    public function thingOrder(Request $request, Thing $thing, Order $order, History $history)
+    public function thingOrder(Request $request, Thing $thing)
     {
         $request->validate([
             'order_id' => 'required',
@@ -153,12 +153,13 @@ class OrderController extends Controller
         return $pdf->stream();
     }
 
-    public function orderHistory()
-    {
-        $orders = Order::latest()->get();
+    // USELESS
+    // public function orderHistory()
+    // {
+    //     $orders = Order::latest()->get();
 
-        return view('order.history', compact('orders'));
-    }
+    //     return view('order.history', compact('orders'));
+    // }
 
     public function exportExcel()
     {

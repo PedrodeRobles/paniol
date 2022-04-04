@@ -123,4 +123,25 @@ class OrderTest extends TestCase
             ->assertSee($thing->name)
             ->assertSee($thing->identifier);
     }
+
+    // public function test_thing_in_order()
+    // {
+    //     $user = User::factory()->create();
+    //     $order = Order::factory()->create();
+    //     $thing = Thing::factory()->create([
+    //         'order_id' => $order->id,
+    //         'state' => 1
+    //     ]);
+
+    //     $data = [
+    //         'order_id' => 2,
+    //         'state' => 2
+    //     ];
+        
+    //     $this
+    //         ->actingAs($user)
+    //         ->patch("thing/$thing->id", $data);
+
+    //     $this->assertDatabaseHas('things', $data);
+    // }
 }

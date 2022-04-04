@@ -73,7 +73,7 @@
                                 </td>
                                 <td class="p-2">
                                     <form action="{{ route('thing.restore', $thing) }}" method="POST">
-                                        @method('DELETE')
+                                        @method('PUT')
                                         @csrf
                                         <input
                                             class="bg-lime-600 rounded px-1 text-white cursor-pointer"

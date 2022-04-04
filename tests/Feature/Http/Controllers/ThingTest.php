@@ -57,7 +57,8 @@ class ThingTest extends TestCase
             'name'       => 'Microfono',
             'state'       => 1,
             // 'identifier' => 'AUD-MIC-2',
-            'visibility' => 1
+            'visibility' => 1,
+            'description' => $this->faker->sentence(),
         ];
 
         $this

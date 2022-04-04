@@ -90,6 +90,7 @@ class ThingController extends Controller
             'type_id' => $request->type_id,
             'order_id' => 1,
             'identifier' => $typeName . '-' . $subName . '-' . $num,
+            'description' => $request->description
         ]);
 
         // return redirect()->route('thing.index');

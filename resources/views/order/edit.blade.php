@@ -52,7 +52,7 @@
             </div>
             <div class="flex md:flex-col">
                 <label class="font-semibold">Fecha:</label>
-                <p class="ml-2">{{ $order->created_at->format('d M Y') }}</p>
+                <p class="ml-2">{{ $order->created_at->format('d/m/Y') }}</p>
             </div>
             <div class="flex justify-around mt-4">
                 <button class="bg-blue-500 hover:bg-blue-400 rounded px-2 py-1 text-white"><a href="{{ route('order.pdf', $order) }}">PDF</a></button>

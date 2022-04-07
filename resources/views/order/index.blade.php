@@ -82,7 +82,7 @@
                             </td>
                             <td class="p-2">{{ $order->identifier }}</td>
                             <td class="p-2">{{ $order->user->name }}</td>
-                            <td class="p-2">{{ $order->created_at->format('d M Y') }}</td>
+                            <td class="p-2">{{ $order->created_at->format('d/m/Y') }}</td>
 
                             {{-- Botones --}}
                             <div>

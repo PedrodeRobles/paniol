@@ -45,7 +45,7 @@
                 </label>
             </div>
             <div class="flex">
-                <label class="font-semibold">Fecha: {{ $order->created_at->format('d M Y') }}</label>
+                <label class="font-semibold">Fecha: {{ $order->created_at->format('d/m/Y') }}</label>
             </div>
     
             <div class="mt-2 border-t border-gray-200">

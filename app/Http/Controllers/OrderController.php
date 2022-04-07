@@ -50,7 +50,8 @@ class OrderController extends Controller
         History::create([
             'user' => $order->user->name,
             'identifier' => $order->identifier,
-            'person' => $order->person->name,
+            'person_name' => $order->person->name,
+            'person_last_name' => $order->person->last_name,
         ]);
         // Cambiar el state_id del 'Thing' que seleccione
         // $thing = Thing::find($request->thing_id);

@@ -39,7 +39,10 @@
                     @foreach ($histories as $history)
                         <tr class="bg-gray-700 text-center">
                             <td class="p-2">{{ $history->id }}</td>
-                            <td class="p-2">{{ $history->person }}</td>
+                            <td class="p-2">
+                                {{ $history->person_name }} 
+                                {{ $history->person_last_name }}
+                            </td>
                             <td class="p-2">{{ $history->identifier }}</td>
                             <td class="p-2">{{ $history->user }}</td>
                             <td class="p-2">{{ $history->created_at->format('d M Y') }}</td>

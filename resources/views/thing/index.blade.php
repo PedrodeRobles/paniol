@@ -108,6 +108,7 @@
                                 </td>
                                 <td class="p-2 text-center border-r border-gray-200">
                                     {{ $thing->order->person->name }}
+                                    {{ $thing->order->person->last_name }}
                                 </td>
                                 <td class="p-2 text-center border-r border-gray-200">
                                     {{ $thing->order->id }}

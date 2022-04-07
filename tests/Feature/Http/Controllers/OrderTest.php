@@ -25,6 +25,8 @@ class OrderTest extends TestCase
             ->assertStatus(200)
             ->assertSee($order->id)
             ->assertSee($order->person->name)
+            ->assertSee($order->person->last_name)
+            // ->assertSee($order->person->place)
             ->assertSee($order->user_id)
             ->assertSee($order->return );
     }
@@ -82,6 +84,8 @@ class OrderTest extends TestCase
             ->assertStatus(200)
             ->assertSee($order->id)
             ->assertSee($order->person->name)
+            ->assertSee($order->person->last_name)
+            ->assertSee($order->person->place)
             ->assertSee($order->identifier)
             ->assertSee($order->user->name)
             ->assertSee($order->created_at->format('d M Y'))

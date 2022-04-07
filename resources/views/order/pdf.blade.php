@@ -24,7 +24,10 @@
                 <label class="font-semibold">ID de la orden: {{ $order->id }}</label>
             </div>
             <div class="flex">
-                <label class="font-semibold">Persona: {{ $order->person->name }}</label>
+                <label class="font-semibold">Persona: {{ $order->person->name }} {{ $order->person->last_name }}</label>
+            </div>
+            <div class="flex">
+                <label class="font-semibold">Sector: {{ $order->person->place }}</label>
             </div>
             <div class="flex">
                 <label class="font-semibold">Identificador: {{ $order->identifier }}</label>

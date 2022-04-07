@@ -14,7 +14,8 @@ class History extends Model
     protected $fillable = [
         'identifier',
         'user',
-        'person',
+        'person_name',
+        'person_last_name',
     ];
 
     public function things()

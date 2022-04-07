@@ -23,8 +23,12 @@
         <form action="{{ route('people.store') }}" method="POST">
             <div class="m-2 md:flex md:justify-around md:items-center">
                 <div>
-                    <label>Nombre y Apellido</label>
+                    <label>Nombre</label>
                     <input class="bg-gray-700 w-full py-1" type="text" name="name">
+                </div>
+                <div>
+                    <label>Apellido</label>
+                    <input class="bg-gray-700 w-full py-1" type="text" name="last_name">
                 </div>
                 <div class="md:ml-2">
                     <label>Sector al que pertenece</label>
@@ -44,13 +48,15 @@
         <table class="w-full">
             <thead class="border-y-2 border-gray-200">
                 <tr>
-                    <th class="p-3 tracking-wide text-left border-r-2 border-gray-200">Nombre</th>
-                    <th class="p-3 tracking-wide text-left border-r-2 border-gray-200">Sector</th>
+                    <th class="p-3 tracking-wide text-center border-r-2 border-gray-200">Nombre</th>
+                    <th class="p-3 tracking-wide text-center border-r-2 border-gray-200">Apellido</th>
+                    <th class="p-3 tracking-wide text-center border-r-2 border-gray-200">Sector</th>
                 </tr>
                 <tbody class="divide-y divide-gray-400">
                     @foreach ($person as $person)
                         <tr class="bg-gray-700 text-center">
                             <td class="p-2">{{ $person->name }}</td>
+                            <td class="p-2">{{ $person->last_name }}</td>
                             <td class="p-2">{{ $person->place }}</td>
                             <td class="p-2">
                                 <a class="py-1 px-2 bg-gray-600 rounded-md" href="{{ route('people.show', $person) }}">Ver</a>

@@ -30,12 +30,14 @@ class PersonController extends Controller
     {
         $request->validate([
             'name'  => 'required',
+            'last_name' => 'required',
             'place' => 'required',
         ]);
 
-        $person = Person::create([
-            'name'  => $request->name,
-            'place' => $request->place,
+        Person::create([
+            'name'  => strtoupper($request->name),
+            'last_name'  => strtoupper($request->last_name),
+            'place' => strtoupper($request->place),
         ]);
 
         return back();
@@ -59,6 +61,7 @@ class PersonController extends Controller
     {
         $request->validate([
             'name'  => 'required',
+            'last_name' => 'required',
             'place' => 'required',
         ]);
 

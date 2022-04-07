@@ -14,9 +14,10 @@ class HistoryFactory extends Factory
     public function definition()
     {
         return [
-            'user'       => 'Jose',
-            'person'     => 'Raul',
-            'identifier' => 'Evento',
+            'user'             => 'Jose',
+            'person_name'      => 'Raul',
+            'person_last_name' => 'Gomez',
+            'identifier'       => 'Evento',
         ];
     }
 }

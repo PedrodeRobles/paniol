@@ -33,6 +33,7 @@ class PersonTest extends TestCase
             ->get('people')
             ->assertStatus(200)
             ->assertSee($person->name)
+            ->assertSee($person->last_name)
             ->assertSee($person->place);
     }
 
@@ -41,8 +42,9 @@ class PersonTest extends TestCase
         $user = User::factory()->create();
 
         $data = [
-            'name'  => $this->faker->name,
-            'place' => $this->faker->sentence,
+            'name'  => strtoupper($this->faker->name),
+            'last_name' => strtoupper($this->faker->lastName),
+            'place' => strtoupper($this->faker->sentence),
         ];
 
         $this

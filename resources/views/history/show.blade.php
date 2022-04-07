@@ -32,7 +32,7 @@
                 </div>
                 <div class="flex">
                     <label class="font-semibold">Persona:</label>
-                    <p class="ml-2">{{ $history->person }}</p>
+                    <p class="ml-2">{{ $history->person_name }} {{ $history->person_last_name }}</p>
                 </div>
                 <div class="flex">
                     <label class="font-semibold">Identificador:</label>

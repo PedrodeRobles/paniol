@@ -36,7 +36,7 @@
                         <label class="font-semibold">Persona *</label>
                         <select class="bg-gray-700 py-1" name="person_id">
                             @foreach ($people as $person)
-                                <option value="{{ $person->id }}">{{ $person->name }}</option>
+                                <option value="{{ $person->id }}">{{ $person->name }} {{ $person->last_name }}</option>
                             @endforeach
                         </select>
             
@@ -74,7 +74,11 @@
                     @else
                         <tr class="bg-gray-700 text-center">
                             <td class="p-2">{{ $order->id }}</td>
-                            <td class="p-2">{{ $order->person->name }}</td>
+                            <td class="p-2">
+                                {{ $order->person->name }}
+                                {{ $order->person->last_name }}
+                                ({{ $order->person->place }})
+                            </td>
                             <td class="p-2">{{ $order->identifier }}</td>
                             <td class="p-2">{{ $order->user->name }}</td>
                             <td class="p-2">{{ $order->created_at->format('d M Y') }}</td>

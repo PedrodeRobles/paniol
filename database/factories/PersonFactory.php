@@ -15,6 +15,7 @@ class PersonFactory extends Factory
     {
         return [
             'name'  => 'Raul',
+            'last_name' => 'Gomez',
             'place' => 'Becas',
         ];
     }

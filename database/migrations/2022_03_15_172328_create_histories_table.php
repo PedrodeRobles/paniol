@@ -17,7 +17,8 @@ class CreateHistoriesTable extends Migration
             $table->id();
 
             $table->string('user');
-            $table->string('person');
+            $table->string('person_name');
+            $table->string('person_last_name');
             $table->string('identifier');
 
             $table->timestamps();

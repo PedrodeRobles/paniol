@@ -32,7 +32,11 @@
             </div>
             <div class="flex">
                 <label class="font-semibold">Persona:</label>
-                <p class="ml-2">{{ $order->person->name }}</p>
+                <p class="ml-2">
+                    {{ $order->person->name }} 
+                    {{ $order->person->last_name }}
+                    ({{ $order->person->place }})
+                </p>
             </div>
             <div class="flex">
                 <label class="font-semibold">Identificador:</label>

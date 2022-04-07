@@ -19,10 +19,10 @@ class HistoryController extends Controller
         return view('history.index', compact('histories'));
     }
 
-    public function create()
-    {
-        return view('history.create');
-    }
+    // public function create()
+    // {
+    //     return view('history.create');
+    // }
 
     // public function store(Request $request)
     // {

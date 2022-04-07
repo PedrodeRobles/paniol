@@ -21,6 +21,8 @@
 
     <div class="mt-4 mb-4 sm:mb-7 ml-2 sm:flex sm:space-x-6">
         <a href="{{ route('thing.index') }}" class="bg-blue-600 text-white rounded py-1 px-2">Objetos</a>
+
+        <a href="{{ route('people.index') }}" class="bg-blue-600 text-white rounded py-1 px-2">Agregar persona</a>
     
         <a class="bg-gray-600 rounded px-2 py-1" href="{{ route('history.index') }}">Historial de ordenes</a>
     </div>
@@ -43,7 +45,7 @@
                         <label class="sm:ml-6 font-semibold">Nombre de orden *</label>
                         <input class="bg-gray-700 py-1" type="text" name="identifier">
 
-                        <input type="submit" value="Agregar" class="sm:ml-10 bg-green-500 hover:bg-green-400 rounded-md px-4 py-1 text-white cursor-pointer">                       
+                        <input type="submit" value="Agregar orden" class="sm:ml-10 bg-green-500 hover:bg-green-400 rounded-md px-4 py-1 text-white cursor-pointer">                       
                     </div>
     
                     
@@ -65,7 +67,6 @@
                     <th class="p-3 tracking-wide text-left border-r-2 border-gray-200">Identificador</th>
                     <th class="p-3 tracking-wide text-left border-r-2 border-gray-200">Pañolero</th>
                     <th class="p-3 tracking-wide text-left border-r-2 border-gray-200">Fecha</th>
-                    <th class="p-3 tracking-wide text-left border-r-2 border-gray-200">Return</th>
                 </tr>
                 <tbody class="divide-y divide-gray-400">
                     @foreach ($orders as $order)
@@ -82,7 +83,6 @@
                             <td class="p-2">{{ $order->identifier }}</td>
                             <td class="p-2">{{ $order->user->name }}</td>
                             <td class="p-2">{{ $order->created_at->format('d M Y') }}</td>
-                            <td class="p-2 text-center">{{ $order->return }}</td>
 
                             {{-- Botones --}}
                             <div>
@@ -93,14 +93,16 @@
                                     <a class="py-1 px-2 bg-blue-600 rounded-md" href="{{ route('order.pdf', $order) }}">PDF</a>
                                 </td>
                                 <td class="p-2">
-                                    <a class="py-1 px-2 bg-green-600" href="{{ route('order.edit', $order) }}">Agregar objetos</a>
+                                    <button class="py-1 px-2 rounded-lg bg-green-600">
+                                        <a href="{{ route('order.edit', $order) }}">Agregar objetos</a>
+                                    </button>
                                 </td>
                                 <td class="p-2">
                                     @if ($order->return == 1)
                                         <form action="{{ route('order.update', $order) }}" method="POST" enctype="multipart/form-data">
                                             <input 
                                                 type="submit" 
-                                                value="Devolver" 
+                                                value="Devolver todo" 
                                                 class="bg-gray-600 rounded px-2 cursor-pointer"
                                                 onclick="return confirm('¿Deseas devolver todos los objetos de esta orden?')">
                                             @csrf

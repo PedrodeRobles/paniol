@@ -58,7 +58,7 @@
                 <button class="bg-blue-500 hover:bg-blue-400 rounded px-2 py-1 text-white"><a href="{{ route('order.pdf', $order) }}">PDF</a></button>
             
                 <form action="{{ route('order.update', $order) }}" method="POST" enctype="multipart/form-data">
-                    <input type="submit" value="Devolver" class="md:ml-6 bg-gray-600 rounded px-2 py-1 cursor-pointer ">
+                    <input type="submit" value="Devolver todo" class="md:ml-6 bg-gray-600 rounded px-2 py-1 cursor-pointer ">
                     @csrf
                     @method('PUT')
                 </form>

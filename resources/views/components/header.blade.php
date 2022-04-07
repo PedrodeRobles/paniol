@@ -1,5 +1,5 @@
 <div class="flex justify-between bg-blue-500 w-full h-20 border-y-2 border-gray-500">
-    <a href="{{ url('/') }}" class="w-44">
+    <a href="{{ url('/') }}" class="w-44 ml-2">
         <img src="{{ asset('/img/logoCitlam.png') }}" alt="Logo Citlam" class="mb-2">
     </a>
     <div>

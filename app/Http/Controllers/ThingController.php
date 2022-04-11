@@ -118,7 +118,9 @@ class ThingController extends Controller
             'name' => 'required',
         ]);
 
-        $thing->update($request->all());
+        $thing->update(
+            ['name'  => ucfirst($request->name)],
+            $request->all());
 
         // return back();
         return redirect()->route('thing.index');

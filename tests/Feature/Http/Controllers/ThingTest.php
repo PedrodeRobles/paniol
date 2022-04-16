@@ -127,8 +127,8 @@ class ThingTest extends TestCase
         $thing = Thing::factory()->create();
 
         $data = [
-            'name'        => 'Microfono Sony',
-            'description' => $this->faker()->sentence(),
+            'name'        => ucfirst($this->faker->word()),
+            // 'description' => $this->faker()->sentence(),
         ];
 
         $this

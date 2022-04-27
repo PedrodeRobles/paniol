@@ -5,55 +5,87 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
-    <title>Pañol</title>
+    <link rel="stylesheet" href="{{ asset('css/pdf.css') }}">
+    <title>Comprobante orden PAÑOL</title>
 </head>
-<body class="bg-slate-800 text-white">
+<body>
 
-    <div class="h-14 flex items-start justify-center mt-6">
-        <h1 class="text-4xl">Comprobante de Orden</h1>
+    <div>
+        <img src="{{ asset('/img/logoCitlam.png') }}" alt="Logo Citlam" class="logo-citlam">
+        <img src="{{ asset('/img/laMatanzaLogo.png') }}" alt="Logo de La Matanza" class="logo-matanza">
+    </div>
+
+    <div>
+        <h1>
+            <u>COMPROBANTE DE ORDEN</u>
+        </h1>
     </div>
 
     {{-- Información de la Orden --}}
-    <div class="border-2 border-gray-300 rounded-lg bg-gray-900 mx-2 lg:mx-64 xl:mx-96 mt-7 mb-10">
-        <h2 class="text-2xl font-semibold flex justify-center border-b-2 border-gray-200 py-2">
+    <div >
+        <h2>
             Datos de la orden
         </h2>
 
-        <div class="m-2">
-            <div class="flex">
-                <label class="font-semibold">ID de la orden: {{ $order->id }}</label>
-            </div>
-            <div class="flex">
-                <label class="font-semibold">Persona: {{ $order->person->name }} {{ $order->person->last_name }}</label>
-            </div>
-            <div class="flex">
-                <label class="font-semibold">Sector: {{ $order->person->place }}</label>
-            </div>
-            <div class="flex">
-                <label class="font-semibold">Identificador: {{ $order->identifier }}</label>
-            </div>
-            <div class="flex">
-                <label class="font-semibold">Pañolero: {{ $order->user->name }}</label>
-            </div>
-            <div class="flex">
-                <label class="font-semibold">Estado de orden: 
-                    @if ($order->return == 1)
-                        Activa
-                    @else
-                        Inactiva
-                    @endif
-                </label>
-            </div>
-            <div class="flex">
-                <label class="font-semibold">Fecha: {{ $order->created_at->format('d/m/Y') }}</label>
-            </div>
-    
-            <div class="mt-2 border-t border-gray-200">
-                <h2 class="text-xl">Objetos:</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID de la orden</th>
+                    <th>Persona</th>
+                    <th>Sector</th>
+                    <th>Identificador</th>
+                    <th>Pañolero</th>
+                    <th>Estado de orden</th>
+                    <th class="fecha">Fecha</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ $order->id }}</td>
+                    <td>{{ $order->person->name }} {{ $order->person->last_name }}</td>
+                    <td>{{ $order->person->place }}</td>
+                    <td>{{ $order->identifier }}</td>
+                    <td>{{ $order->user->name }}</td>
+                    <td>
+                        @if ($order->return == 1)
+                            Activa
+                        @else
+                            Inactiva
+                        @endif
+                    </td>
+                    <td  class="fecha">{{ $order->created_at->format('d/m/Y') }}</td>
+                </tr>
+            </tbody>
+        </table>
 
-                @foreach ($things as $thing)
-                    <p>- {{ $thing->name }} ({{ $thing->identifier }})</p>
-                @endforeach
+        <div class="firma">
+            <p>Firma del responsable:_________________________</p>
+            <p>Aclaración:_________________________</p>
+        </div>
+
+        <div>
+
+        </div>
+
+        <div>
+            <>
+                <h2>OBJETOS:</h2>
+
+                {{-- @foreach ($things as $thing)
+                        <b class="thing">{{ $thing->name }} ({{ $thing->identifier }})</b>
+                @endforeach --}}
+
+                
+                <table>
+                    @foreach ($things as $thing)
+                    <tbody class="things">
+                        <td>{{ $thing->name }}</td>
+                        <td>({{ $thing->identifier }})</td>
+                    </tbody>
+                    @endforeach
+
+                </table>
+
             </div>
         </div>
     </div>

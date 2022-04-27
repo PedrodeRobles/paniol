@@ -23,6 +23,7 @@ class CreateThingsTable extends Migration
             $table->integer('state')->default(1);
             $table->string('identifier');
             $table->text('description')->nullable();
+            $table->integer('place');
             $table->integer('visibility')->default(1);
 
             $table->timestamps();

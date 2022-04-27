@@ -90,7 +90,8 @@ class ThingController extends Controller
             'type_id' => $request->type_id,
             'order_id' => 1,
             'identifier' => $typeName . '-' . $subName . '-' . $num,
-            'description' => $request->description
+            'description' => $request->description,
+            'place' => 1 //paniol
         ]);
 
         // return redirect()->route('thing.index');
@@ -123,7 +124,11 @@ class ThingController extends Controller
             $request->all());
 
         // return back();
-        return redirect()->route('thing.index');
+        if ($thing->place == 1) {
+            return redirect()->route('thing.index');
+        } else {
+            return redirect()->route('robotics');
+        }
     }
 
     public function destroy(Thing $thing)
@@ -168,6 +173,89 @@ class ThingController extends Controller
     {
         $file = $request->file('file');
         Excel::import(new ThingImport, $file);
+
+        return back();
+    }
+
+    public function robotics(Request $request)
+    {
+        $orders = Order::latest()->get();
+
+        if ($request) {
+            $query = trim($request->get('search'));
+            if($query == 'EN USO') {
+                $query = 2;
+            } elseif ($query == 'en uso') {
+                $query = 2;
+            } elseif ($query == 'EN PAÑOL') {
+                $query = 1;
+            } elseif ($query == 'en pañol') {
+                $query = 1;
+            }
+
+                $things =Thing::latest()->where('name', 'LIKE', '%' . $query . '%')
+                    ->orWhere('identifier', 'LIKE', '%' . $query . '%')
+                    ->orWhere('state', 'LIKE', '%' . $query . '%')
+                    ->orderBy('id', 'asc')
+                    ->get();
+
+                    return view('thing.robotics', [
+                        'things' => $things,
+                        'search' => $query,
+                        'orders' => $orders
+                    ]);
+        }
+    }
+
+    public function robotics_create(Request $request)
+    {
+        $types = Type::all(); 
+        $orders = Order::all(); 
+
+        if($request->user()->id == 1 || 2 || 3 || 4 ) {
+            return view('thing.robotics_create', [
+                'types' => $types,
+                'orders' => $orders,
+            ]);
+        } else {
+            return abort(403);
+        }
+    }
+
+    public function robotics_store(Request $request)
+    {
+        $request->validate([
+            'type_id' => 'required',
+            'name' => 'required',
+        ]);
+
+        $things = Thing::all();
+        $types = Type::all();
+
+        $type_id =  $request->type_id;
+        $subName = strtoupper(substr($request->name, 0, 3));
+        $num = 1;
+
+        foreach ($types as $type) {
+            if ($type_id == $type->id) {
+                $typeName = strtoupper(substr($type->type, 0, 3));
+            }
+        }
+
+        foreach ($things as $thing) {
+            if ($thing->identifier == $typeName . '-' . $subName . '-' . $num) {
+                $num = $num + 1;
+            }
+        }
+
+        Thing::create([
+            'name'  => ucfirst($request->name),
+            'type_id' => $request->type_id,
+            'order_id' => 1,
+            'identifier' => 'ROB-' . $typeName . '-' . $subName . '-' . $num,
+            'description' => $request->description,
+            'place' => 2 //paniol
+        ]);
 
         return back();
     }

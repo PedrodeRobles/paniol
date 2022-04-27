@@ -16,11 +16,11 @@
     </div>
 
     <div class="h-14 flex items-start mt-6 ml-4">
-        <h1 class="text-center text-4xl">Materiales del pañol</h1>
+        <h1 class="text-center text-4xl">Materiales de Robótica</h1>
     </div>
 
     <div class="grid grid-cols-2 gap-6 mt-4 sm:flex sm:ml-4">
-        <button><a href="{{ route('thing.create') }}" class="bg-green-600 text-white py-1 px-2 rounded">Agregar material</a></button>
+        <button><a href="{{ route('robotics.create') }}" class="bg-green-600 text-white py-1 px-2 rounded">Agregar material</a></button>
 
         <button>
             <a href="{{ route('thing.bin') }}" class="border-2 border-gray-500 text-white rounded py-1 px-1 shadow-md">Papelera de Objetos </a>
@@ -57,7 +57,7 @@
                 </thead>
                 <tbody class="divide-y divide-gray-200">
                     @foreach ($things as $thing)
-                        @if ($thing->visibility == 1 && $thing->place == 1)
+                        @if ($thing->visibility == 1 && $thing->place == 2)
                         @if ($thing->state == 1)
                             <tr class="bg-blue-500">
                                 <td class="p-2 border-r border-gray-200">{{ $thing->identifier }}</td>

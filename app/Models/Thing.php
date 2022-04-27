@@ -22,6 +22,7 @@ class Thing extends Model
         'identifier',
         'description',
         'visibility',
+        'place'
     ];
 
     public function type()

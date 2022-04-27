@@ -42,6 +42,10 @@ Route::get('/thing/bin', [ThingController::class, 'paperBin'])->name('thing.bin'
 Route::put('/thing/{thing}/restore', [ThingController::class, 'restore'])->name('thing.restore')->middleware('auth');
 Route::get('/thing/excel', [ThingController::class, 'exportExcel'])->name('thing.excel')->middleware('auth');
 Route::post('/thing/excel/import', [ThingController::class, 'importExcel'])->name('things.import.excel')->middleware('auth');
+/*Robótica*/
+Route::get('/thing/robotica', [ThingController::class, 'robotics'])->name('robotics');
+Route::get('/thing/robotica/create', [ThingController::class, 'robotics_create'])->name('robotics.create')->middleware('auth');
+Route::post('/thing/robotica', [ThingController::class, 'robotics_store'])->name('robotics.store')->middleware('auth');
 Route::resource('thing', ThingController::class);
 
 Route::get('/order/history', [OrderController::class, 'orderHistory'])->name('order.history');

@@ -120,7 +120,7 @@ class ThingController extends Controller
         ]);
 
         $thing->update(
-            ['name'  => ucfirst($request->name)],
+            ['name'  => ucfirst($request->name)] +
             $request->all());
 
         // return back();
@@ -254,7 +254,7 @@ class ThingController extends Controller
             'order_id' => 1,
             'identifier' => 'ROB-' . $typeName . '-' . $subName . '-' . $num,
             'description' => $request->description,
-            'place' => 2 //paniol
+            'place' => 2 //robótica
         ]);
 
         return back();

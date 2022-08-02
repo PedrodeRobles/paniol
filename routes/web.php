@@ -7,6 +7,7 @@ use App\Http\Controllers\ThingController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HistoryController;
+use App\Http\Controllers\RoleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,6 +66,10 @@ Route::get('/backup', function () {
 
 Route::get('/history/excel', [HistoryController::class, 'exportExcel'])->name('histories.excel')->middleware('auth');
 Route::resource('history', HistoryController::class);
+
+Route::get('roles', [RoleController::class, 'index'])->name('roles')->middleware('auth');
+Route::put('updateRole/{user:id}', [RoleController::class, 'updateRole'])->name('updateRole')->middleware('auth');
+// Route::resource('roles', RoleController::class);
 
 
 

@@ -27,6 +27,11 @@
             @endauth
         @endif
 
+        @if (Route::has('login'))
+            @auth
+                <a href="{{url('roles') }}" class="bg-stone-500 hover:bg-stone-400 text-white text-center rounded py-4 px-6 text-2xl shadow-lg">Roles</a>
+            @endauth
+        @endif
     </div>
 
 </body>

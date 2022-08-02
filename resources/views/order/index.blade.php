@@ -112,7 +112,7 @@
                                         <p class="text-green-600">Entregado</p>
                                     @endif
                                 </td>
-                                <td class="p-2">
+                                {{-- <td class="p-2">
                                     <form action="{{ route('order.destroy', $order) }}" method="POST">
                                         @method('DELETE')
                                         @csrf
@@ -122,7 +122,7 @@
                                             value="Delete"
                                             onclick="return confirm('¿Estas seguro que quieres borrar esta orden o quieres devolver los objetos?')">
                                     </form>
-                                </td>
+                                </td> --}}
                             </div>
                         </tr>
                     @endif

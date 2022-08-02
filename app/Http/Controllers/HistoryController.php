@@ -14,39 +14,26 @@ class HistoryController extends Controller
 {
     public function index()
     {
-        $histories = History::latest()->paginate(10);
-
-        return view('history.index', compact('histories'));
+        if (auth()->user()->role_id == 2 || auth()->user()->role_id == 3) {
+            
+            $histories = History::latest()->paginate(10);
+            
+            return view('history.index', compact('histories'));
+        } else {
+            abort(403);
+        }
     }
-
-    // public function create()
-    // {
-    //     return view('history.create');
-    // }
-
-    // public function store(Request $request)
-    // {
-        // $request->validate([
-        //     'user' => 'required',
-        //     'person' => 'required',
-        //     'identifier' => 'required',
-        // ]);
-
-        // History::create($request->all());
-        // History::create([
-        //     'user' => 1,
-        //     'person' => 1,
-        //     'identifier' => 'default',
-        // ]);
-
-    //     return back();
-    // }
 
     public function show(History $history)
     {
-        $thing = Thing::all();
+        if (auth()->user()->role_id == 2 || auth()->user()->role_id == 3) {
 
-        return view('history.show', compact('history', 'thing'));
+            $thing = Thing::all();
+
+            return view('history.show', compact('history', 'thing'));
+        } else {
+            abort(403);
+        }
     }
 
     public function exportExcel()

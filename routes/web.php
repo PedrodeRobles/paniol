@@ -20,6 +20,9 @@ use App\Http\Controllers\RoleController;
 |
 */
 
+Route::redirect('/', 'login');
+Route::redirect('/', 'register');
+
 Route::get('/', function () {
     return view('home');
 });

@@ -18,85 +18,96 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $orders = Order::latest()->get();
-        $things = Thing::all();
-        $people = Person::latest()->get();
-
-        return view('order.index', [
-            'orders' => $orders,
-            'things' => $things,
-            'people' => $people,
-        ]);
+        if (auth()->user()->role_id == 2 ||  auth()->user()->role_id == 3) {
+            $orders = Order::latest()->get();
+            $things = Thing::all();
+            $people = Person::latest()->get();
+            
+            return view('order.index', [
+                'orders' => $orders,
+                'things' => $things,
+                'people' => $people,
+            ]);
+        } else {
+            abort(403);
+        }
     }
-
-    // public function create()
-    // {
-    //     return view('order.create');
-    // }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'identifier' => 'required',
-            'person_id' => 'required',
-        ]);
-
-        $order = Order::create([
-            'user_id' => auth()->user()->id,
-            'identifier' => $request->identifier,
-            'person_id' => $request->person_id,
-        ]);
-
-        History::create([
-            'user' => $order->user->name,
-            'identifier' => $order->identifier,
-            'person_name' => $order->person->name,
-            'person_last_name' => $order->person->last_name,
-        ]);
-        // Cambiar el state_id del 'Thing' que seleccione
-        // $thing = Thing::find($request->thing_id);
-        // $thing->state_id = 2;
-        // $thing->save();
-
-
-        return redirect()->route('order.index');
+        if (auth()->user()->role_id == 2 || auth()->user()->role_id == 3) {
+            
+            $request->validate([
+                'identifier' => 'required',
+                'person_id' => 'required',
+            ]);
+            
+            $order = Order::create([
+                'user_id' => auth()->user()->id,
+                'identifier' => $request->identifier,
+                'person_id' => $request->person_id,
+            ]);
+            
+            History::create([
+                'user' => $order->user->name,
+                'identifier' => $order->identifier,
+                'person_name' => $order->person->name,
+                'person_last_name' => $order->person->last_name,
+            ]);
+            
+            return redirect()->route('order.index');
+        } else {
+            abort(403);
+        }
     }
 
     public function show(Order $order)
     {
-        $things = Thing::where('order_id', $order->id)->get();
-
-        return view('order.show', compact('order', 'things'));
+        if (auth()->user()->role_id == 2 || auth()->user()->role_id == 3) {
+            
+            $things = Thing::where('order_id', $order->id)->get();
+            
+            return view('order.show', compact('order', 'things'));
+        } else {
+            abort(403);
+        }
     }
 
     public function edit(Order $order, Request $request)
     {
-        $query = trim($request->get('search'));
-
-        $things =Thing::where('name', 'LIKE', '%' . $query . '%')
-                    ->orWhere('identifier', 'LIKE', '%' . $query . '%')
-                    ->orderBy('id', 'asc')
-                    ->get();
-
-                    return view('order.edit', [
-                        'things' => $things,
-                        'search' => $query,
-                        'order'  => $order,
-                    ]);
+        if (auth()->user()->role_id == 2 || auth()->user()->role_id == 3) {
+            
+            $query = trim($request->get('search'));
+            
+            $things =Thing::where('name', 'LIKE', '%' . $query . '%')
+            ->orWhere('identifier', 'LIKE', '%' . $query . '%')
+            ->orderBy('id', 'asc')
+            ->get();
+            
+            return view('order.edit', [
+                'things' => $things,
+                'search' => $query,
+                'order'  => $order,
+            ]);
+        } else {
+            abort(403);
+        }
     }
 
     //Boton Devolver de cada orden
     public function update(Request $request, Order $order)
     {
-        $things = Thing::where('order_id', $order->id)->get();
-        $things->toQuery()->update([
-            'order_id' => 1,
+        if (auth()->user()->role_id == 2 || auth()->user()->role_id == 3) {
+            
+            $things = Thing::where('order_id', $order->id)->get();
+            $things->toQuery()->update([
+                'order_id' => 1,
             'state' => 1,
         ]);
 
         $order->return = 2;
         $order->update();
-
+        
         foreach ($things as $thing) {
             if ($request->order_id != 1) {
                 $thing->histories()->attach($order->id); //history_id
@@ -110,39 +121,48 @@ class OrderController extends Controller
             'updated_at' => $order->updated_at,
         ]);
         // foreach ($histories as $history) {
-        //     dd($history->id);
-        // }
-
-
-        return redirect()->route('order.index');
+            //     dd($history->id);
+            // }
+            
+            
+            return redirect()->route('order.index');
+        } else {
+            abort(403);
+        }
     }
 
     public function destroy(Order $order)
     {
-        // $thing = Thing::find($order->thing_id);
-        // $thing->state_id = 1;
-        // $thing->save();
-
-        $order->delete();
-
-        return redirect()->route('order.index');
+        if (auth()->user()->role_id == 2 || auth()->user()->role_id == 3) {
+            
+            $order->delete();
+            
+            return redirect()->route('order.index');
+        } else {
+            abort(403);
+        }
     }
 
     public function thingOrder(Request $request, Thing $thing)
     {
-        $request->validate([
-            'order_id' => 'required',
-        ]);
-
-        if ($request->order_id != 1) {
-            $thing->state = 2;
+        if (auth()->user()->role_id == 2 || auth()->user()->role_id == 3) {
+            
+            $request->validate([
+                'order_id' => 'required',
+            ]);
+            
+            if ($request->order_id != 1) {
+                $thing->state = 2;
+            } else {
+                $thing->state = 1;
+            }
+            
+            $thing->update($request->all());
+            
+            return back();
         } else {
-            $thing->state = 1;
+            abort(403);
         }
-
-        $thing->update($request->all());
-
-        return back();
     }
 
     public function exportPdf(Order $order)

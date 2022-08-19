@@ -57,6 +57,7 @@ Route::get('/order/history', [OrderController::class, 'orderHistory'])->name('or
 Route::get('/order/excel', [OrderController::class, 'exportExcel'])->name('orders.excel')->middleware('auth');
 Route::post('/order/excel/import', [OrderController::class, 'importExcel'])->name('orders.import.excel')->middleware('auth');
 Route::put('/order/action/{thing}/', [OrderController::class, 'thingOrder'])->name('order.thingOrder')->middleware('auth');
+Route::put('order/add_thing/{order}', [OrderController::class, 'otherThings'])->name('order.otherThings')->middleware('auth');
 Route::resource('order', OrderController::class);
 Route::get('/order/{order}/pdf', [OrderController::class, 'exportPdf'])->name('order.pdf');
 

@@ -194,4 +194,23 @@ class OrderController extends Controller
 
         return back()->with('message', 'Importación de ordenes completado');
     }
+
+    public function otherThings(Request $request, Order $order)
+    {
+        if (auth()->user()->role_id == 2 || auth()->user()->role_id == 3) {
+
+            $request->validate([
+                'other_things' => 'required'
+            ]);
+
+            $order->update([
+                'other_things' => $request->other_things
+            ] + $request->all());
+
+            return "HI";
+
+        } else {
+            abort(403);
+        }
+    }
 }

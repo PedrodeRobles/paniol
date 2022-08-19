@@ -20,6 +20,7 @@ class Order extends Model
         'user_id',
         'person_id',
         'return',
+        'other_things',
     ];
 
     public function things()

@@ -81,8 +81,8 @@
                 </div>
     
                 <div>
-                    <h3>Si el objeto no se encuentra registrado podes registrarlo manualmente</h3>
-                    <form action="">
+                    <h3>Si el objeto no se encuentra registrado podes agregarlo a la orden manualmente</h3>
+                    <form action="{{ route('order.otherThings', $order->id) }}" method="POST" enctype="multipart/form-data">
                         <textarea 
                             cols="30" 
                             rows="2" 
@@ -90,7 +90,9 @@
                             class="bg-gray-700 rounded-md"
                             name="other_things"
                         ></textarea>
-                        <button>Agregar</button>
+                        @csrf
+                        @method('PUT')
+                        <button type="submit">Agregar</button>
                     </form>
                 </div>
 

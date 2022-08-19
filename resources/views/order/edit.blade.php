@@ -71,7 +71,7 @@
     
         {{-- Search form --}}
         <div class="mt-4 sm:ml-4 ml-2">
-            <div class="space-y-2 md:flex  md:items-center">
+            <div class="space-y-2 md:flex md:items-center">
                 <div>
                     <h2 class="text-xl mb-2">Buscar Material</h2>
                     <form>
@@ -80,19 +80,26 @@
                     </form>
                 </div>
     
-                <div>
-                    <h3>Si el objeto no se encuentra registrado podes agregarlo a la orden manualmente</h3>
+                <div class="md:ml-48">
+                    <h3 class="w-72">
+                        Si el objeto no se encuentra registrado podes agregarlo a la orden manualmente
+                    </h3>
                     <form action="{{ route('order.otherThings', $order->id) }}" method="POST" enctype="multipart/form-data">
                         <textarea 
-                            cols="30" 
+                            cols="34" 
                             rows="2" 
                             placeholder="Agregar manualmente"
-                            class="bg-gray-700 rounded-md"
+                            class="bg-gray-700 rounded-md mt-2"
                             name="other_things"
                         ></textarea>
                         @csrf
                         @method('PUT')
-                        <button type="submit">Agregar</button>
+                        <div>
+                            <button 
+                                type="submit"
+                                class="bg-blue-500 p-2 rounded-md"
+                            >Agregar</button>
+                        </div>
                     </form>
                 </div>
 

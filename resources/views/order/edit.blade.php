@@ -71,11 +71,30 @@
     
         {{-- Search form --}}
         <div class="mt-4 sm:ml-4 ml-2">
-            <h2 class="text-xl mb-2">Buscar Material</h2>
-            <form>
-                <input class="bg-gray-700 rounded-md py-1 mb-2" type="search" name="search" placeholder="Buscar" class="rounded-md py-1 text-black">
-                <button type="submit" class="bg-gray-600 rounded py-1 px-1">Buscar</button>
-            </form>
+            <div class="space-y-2 md:flex  md:items-center">
+                <div>
+                    <h2 class="text-xl mb-2">Buscar Material</h2>
+                    <form>
+                        <input class="bg-gray-700 rounded-md py-1 mb-2" type="search" name="search" placeholder="Buscar" class="rounded-md py-1 text-black">
+                        <button type="submit" class="bg-gray-600 rounded py-1 px-1">Buscar</button>
+                    </form>
+                </div>
+    
+                <div>
+                    <h3>Si el objeto no se encuentra registrado podes registrarlo manualmente</h3>
+                    <form action="">
+                        <textarea 
+                            cols="30" 
+                            rows="2" 
+                            placeholder="Agregar manualmente"
+                            class="bg-gray-700 rounded-md"
+                            name="other_things"
+                        ></textarea>
+                        <button>Agregar</button>
+                    </form>
+                </div>
+
+            </div>
         </div>
 
         {{-- TABLA DE THINGS --}}

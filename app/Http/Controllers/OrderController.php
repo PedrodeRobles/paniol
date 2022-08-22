@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\Person;
 use App\Models\Thing;
-use App\Models\User;
 use App\Models\History;
 use Illuminate\Http\Request;
 
@@ -19,7 +18,9 @@ class OrderController extends Controller
     public function index()
     {
         if (auth()->user()->role_id == 2 ||  auth()->user()->role_id == 3) {
-            $orders = Order::latest()->get();
+            $orders = Order::latest()
+                ->where('type', 1)
+                ->get();
             $things = Thing::all();
             $people = Person::latest()->get();
             
@@ -76,19 +77,22 @@ class OrderController extends Controller
     public function edit(Order $order, Request $request)
     {
         if (auth()->user()->role_id == 2 || auth()->user()->role_id == 3) {
-            
-            $query = trim($request->get('search'));
-            
-            $things =Thing::where('name', 'LIKE', '%' . $query . '%')
-            ->orWhere('identifier', 'LIKE', '%' . $query . '%')
-            ->orderBy('id', 'asc')
-            ->get();
-            
-            return view('order.edit', [
-                'things' => $things,
-                'search' => $query,
-                'order'  => $order,
-            ]);
+            if ($order->type == 1) {
+                $query = trim($request->get('search'));
+                
+                $things =Thing::where('name', 'LIKE', '%' . $query . '%')
+                ->orWhere('identifier', 'LIKE', '%' . $query . '%')
+                ->orderBy('id', 'asc')
+                ->get();
+                
+                return view('order.edit', [
+                    'things' => $things,
+                    'search' => $query,
+                    'order'  => $order,
+                ]);
+            } else {
+                abort(404);
+            }
         } else {
             abort(403);
         }
@@ -223,7 +227,9 @@ class OrderController extends Controller
             ->orWhere('name', 'Netbook 2020')
             ->get();
 
-        $orders = Order::latest()->get();
+        $orders = Order::latest()
+            ->where('type', 2)
+            ->get();
 
         return view('order.intern', compact('things', 'orders'));
     }
@@ -239,19 +245,24 @@ class OrderController extends Controller
 
     public function addThingsToIntern(Order $order, Request $request)
     {
-        $query = trim($request->get('search'));
+        if($order->type == 2) {
+
+            $query = trim($request->get('search'));
             
-        $things =Thing::where('name', 'LIKE', '%' . $query . '%')
-        ->orWhere('identifier', 'LIKE', '%' . $query . '%')
-        ->orWhere('description', 'LIKE', '%' . $query . '%')
-        ->orderBy('id', 'asc')
-        ->get();
-        
-        return view('order.editIntern', [
-            'things' => $things,
-            'search' => $query,
-            'order'  => $order,
-        ]);
+            $things =Thing::where('name', 'LIKE', '%' . $query . '%')
+            ->orWhere('identifier', 'LIKE', '%' . $query . '%')
+            ->orWhere('description', 'LIKE', '%' . $query . '%')
+            ->orderBy('id', 'asc')
+            ->get();
+            
+            return view('order.editIntern', [
+                'things' => $things,
+                'search' => $query,
+                'order'  => $order,
+            ]);
+        } else {
+            abort(404);
+        }
     }
 
 }

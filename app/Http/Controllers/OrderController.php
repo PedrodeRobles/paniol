@@ -233,9 +233,10 @@ class OrderController extends Controller
     public function addIntern()
     {
         $order = Order::create([
-            'user_id' => auth()->user()->id,
-            'person_id' => 1,
+            'user_id'    => auth()->user()->id,
+            'person_id'  => 1,
             'identifier' => 'INTERN',
+            'type'       => 2
         ]);
 
         History::create([

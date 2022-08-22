@@ -58,10 +58,10 @@ Route::get('/order/excel', [OrderController::class, 'exportExcel'])->name('order
 Route::post('/order/excel/import', [OrderController::class, 'importExcel'])->name('orders.import.excel')->middleware('auth');
 Route::put('/order/action/{thing}/', [OrderController::class, 'thingOrder'])->name('order.thingOrder')->middleware('auth');
 Route::put('order/add_thing/{order}', [OrderController::class, 'otherThings'])->name('order.otherThings')->middleware('auth');
-Route::resource('order', OrderController::class);
 Route::get('intern', [OrderController::class, 'intern'])->name('order.intern')->middleware('auth');
 Route::post('intern', [OrderController::class, 'addIntern'])->name('order.addIntern')->middleware('auth');
 Route::get('intern/edit/{order}', [OrderController::class, 'addThingsToIntern'])->name('order.addThingsToIntern')->middleware('auth');
+Route::resource('order', OrderController::class);
 Route::get('/order/{order}/pdf', [OrderController::class, 'exportPdf'])->name('order.pdf');
 
 Route::get('/backup-excel', function () {

@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\History;
 
 class CreateHistoriesTable extends Migration
 {
@@ -23,6 +24,13 @@ class CreateHistoriesTable extends Migration
 
             $table->timestamps();
         });
+
+        History::create([
+            'user'             => 'ADMIN',
+            'person_name'      => 'ADMIN',
+            'person_last_name' => 'ADMIN',
+            'identifier'       => 'DEFAULT'
+        ]);
     }
 
     /**

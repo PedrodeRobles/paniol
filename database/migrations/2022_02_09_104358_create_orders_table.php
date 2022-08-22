@@ -34,6 +34,7 @@ class CreateOrdersTable extends Migration
             'person_id'  => 1,
             'identifier' => 'ADMIN',
         ]);
+
     }
 
     /**

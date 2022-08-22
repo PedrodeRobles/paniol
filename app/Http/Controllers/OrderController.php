@@ -240,10 +240,11 @@ class OrderController extends Controller
         ]);
 
         History::create([
-            'user' => $order->user->name,
-            'identifier' => $order->identifier,
-            'person_name' => $order->person->name,
+            'user'             => $order->user->name,
+            'identifier'       => $order->identifier,
+            'person_name'      => $order->person->name,
             'person_last_name' => $order->person->last_name,
+            'type'             => 2
         ]);
 
         return redirect()->route('order.addThingsToIntern', ['order' => $order->id]);

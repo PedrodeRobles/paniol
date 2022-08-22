@@ -16,6 +16,7 @@ class History extends Model
         'user',
         'person_name',
         'person_last_name',
+        'type',
     ];
 
     public function things()

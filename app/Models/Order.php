@@ -21,6 +21,7 @@ class Order extends Model
         'person_id',
         'return',
         'other_things',
+        'type',
     ];
 
     public function things()

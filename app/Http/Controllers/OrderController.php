@@ -106,28 +106,24 @@ class OrderController extends Controller
             $things = Thing::where('order_id', $order->id)->get();
             $things->toQuery()->update([
                 'order_id' => 1,
-            'state' => 1,
-        ]);
+                'state' => 1,
+            ]);
 
-        $order->return = 2;
-        $order->update();
-        
-        foreach ($things as $thing) {
-            if ($request->order_id != 1) {
-                $thing->histories()->attach($order->id); //history_id
-            } else {
-                $thing->histories()->detach($order->id); //history_id
-            }
-        }
-
-        $histories = History::where('id', $order->id)->get();
-        $histories->toQuery()->update([
-            'updated_at' => $order->updated_at,
-        ]);
-        // foreach ($histories as $history) {
-            //     dd($history->id);
-            // }
+            $order->return = 2;
+            $order->update();
             
+            foreach ($things as $thing) {
+                if ($request->order_id != 1) {
+                    $thing->histories()->attach($order->id); //history_id
+                } else {
+                    $thing->histories()->detach($order->id); //history_id
+                }
+            }
+
+            $histories = History::where('id', $order->id)->get();
+            $histories->toQuery()->update([
+                'updated_at' => $order->updated_at,
+            ]);
             
             return redirect()->route('order.index');
         } else {
@@ -236,10 +232,17 @@ class OrderController extends Controller
 
     public function addIntern()
     {
-        Order::create([
+        $order = Order::create([
             'user_id' => auth()->user()->id,
             'person_id' => 1,
             'identifier' => 'INTERN',
+        ]);
+
+        History::create([
+            'user' => $order->user->name,
+            'identifier' => $order->identifier,
+            'person_name' => $order->person->name,
+            'person_last_name' => $order->person->last_name,
         ]);
     }
 

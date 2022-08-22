@@ -123,6 +123,7 @@ class OrderController extends Controller
             $histories = History::where('id', $order->id)->get();
             $histories->toQuery()->update([
                 'updated_at' => $order->updated_at,
+                'other_things' => $order->other_things,
             ]);
             
             return redirect()->route('order.index');
@@ -208,7 +209,7 @@ class OrderController extends Controller
                 'other_things' => $request->other_things
             ] + $request->all());
 
-            return "HI";
+            return back();
 
         } else {
             abort(403);
@@ -219,15 +220,11 @@ class OrderController extends Controller
 
     public function intern() 
     {
-        $things = Thing::where('name', 'Netbook')
-            ->orWhere('name', 'Netbook 2020')
-            ->get();
-
         $orders = Order::latest()
             ->where('type', 2)
             ->get();
 
-        return view('order.intern', compact('things', 'orders'));
+        return view('order.intern', compact('orders'));
     }
 
     public function addIntern()

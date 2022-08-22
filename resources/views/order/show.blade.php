@@ -68,6 +68,10 @@
                         <p class="ml-2">({{ $thing->identifier }})</p>
                     </div>
                 @endforeach
+
+                <div>
+                    {{ $order->other_things }}
+                </div>
             </div>
         </div>
     </div>

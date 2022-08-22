@@ -12,12 +12,14 @@
 </header>
 <body class="bg-slate-800">
     <div class="grid grid-cols-1 lg:grid-cols-4 gap-14 my-10 mx-6">
+        <a href="{{ route('order.intern') }}" class="bg-blue-600 hover:bg-blue-500 text-white text-center rounded py-4 px-6 text-2xl shadow-lg">Interno</a>
+
         <a href="{{ route('thing.index') }}" class="bg-blue-600 hover:bg-blue-500 text-white text-center rounded py-4 px-6 text-2xl shadow-lg">Objetos</a>
-        
+
         <a href="{{ route('robotics') }}" class="bg-blue-600 hover:bg-blue-500 text-white text-center rounded py-4 px-6 text-2xl shadow-lg">Robótica</a>
 
         <a href="{{ route('order.index') }}" class="bg-blue-600 hover:bg-blue-500 text-white text-center rounded py-4 px-6 text-2xl shadow-lg">Ordenes</a>
-            
+
         <a href="{{ route('people.index') }}" class="bg-blue-600 hover:bg-blue-500 text-white text-center rounded py-4 px-6 text-2xl shadow-lg">Personal</a>
 
         <a href="{{ route('type.index') }}" class="bg-blue-600 hover:bg-blue-500 text-white text-center rounded py-4 px-6 text-2xl shadow-lg">Tipos de elementos</a>

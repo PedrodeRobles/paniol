@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Person;
 
 class CreatePeopleTable extends Migration
 {
@@ -22,6 +23,12 @@ class CreatePeopleTable extends Migration
 
             $table->timestamps();
         });
+
+        Person::create([
+            'name'      => 'ADMIN',
+            'last_name' => 'ADMIN',
+            'place'     => 'place',
+        ]);
     }
 
     /**

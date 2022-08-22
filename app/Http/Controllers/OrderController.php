@@ -195,6 +195,7 @@ class OrderController extends Controller
         return back()->with('message', 'Importación de ordenes completado');
     }
 
+    //Add some things that aren´t registered
     public function otherThings(Request $request, Order $order)
     {
         if (auth()->user()->role_id == 2 || auth()->user()->role_id == 3) {
@@ -212,5 +213,11 @@ class OrderController extends Controller
         } else {
             abort(403);
         }
+    }
+
+    public function intern() 
+    {
+        $things = Thing::all();
+        
     }
 }

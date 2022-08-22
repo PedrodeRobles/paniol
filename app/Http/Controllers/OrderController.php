@@ -215,9 +215,43 @@ class OrderController extends Controller
         }
     }
 
+    /*Internal orders */ 
+
     public function intern() 
     {
-        $things = Thing::all();
-        
+        $things = Thing::where('name', 'Netbook')
+            ->orWhere('name', 'Netbook 2020')
+            ->get();
+
+        $orders = Order::latest()->get();
+
+        return view('order.intern', compact('things', 'orders'));
     }
+
+    public function addIntern()
+    {
+        Order::create([
+            'user_id' => auth()->user()->id,
+            'person_id' => 1,
+            'identifier' => 'INTERN',
+        ]);
+    }
+
+    public function addThingsToIntern(Order $order, Request $request)
+    {
+        $query = trim($request->get('search'));
+            
+        $things =Thing::where('name', 'LIKE', '%' . $query . '%')
+        ->orWhere('identifier', 'LIKE', '%' . $query . '%')
+        ->orWhere('description', 'LIKE', '%' . $query . '%')
+        ->orderBy('id', 'asc')
+        ->get();
+        
+        return view('order.editIntern', [
+            'things' => $things,
+            'search' => $query,
+            'order'  => $order,
+        ]);
+    }
+
 }

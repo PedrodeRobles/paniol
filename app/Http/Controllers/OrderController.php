@@ -245,6 +245,8 @@ class OrderController extends Controller
             'person_name' => $order->person->name,
             'person_last_name' => $order->person->last_name,
         ]);
+
+        return redirect()->route('order.addThingsToIntern', ['order' => $order->id]);
     }
 
     public function addThingsToIntern(Order $order, Request $request)

@@ -19,6 +19,19 @@
         <h1 class="text-4xl">Historial de ordenes</h1>
     </div>
 
+    <div class="flex justify-center space-x-4 lg:space-x-14">
+        <div>
+            <a href="" class="p-1 bg-blue-500 hover:bg-blue-400 rounded-md">
+                Ordenes internas
+            </a>
+        </div>
+        <div>
+            <a href="" class="p-1 bg-blue-500 hover:bg-blue-400 rounded-md">
+                Ordenes externas
+            </a>
+        </div>
+    </div>
+
     {{-- TABLA DE ORDENES --}}
     <div class="lg:flex lg:justify-center">
         <div class="overflow-auto rounded-lg shadow mt-6 border-2 border-gray-300 mx-2 mb-10 lg:w-3/4 2xl:w-8/12">

@@ -21,12 +21,12 @@
 
     <div class="flex justify-center space-x-4 lg:space-x-14">
         <div>
-            <a href="" class="p-1 bg-blue-500 hover:bg-blue-400 rounded-md">
+            <a href="{{ route('histories.intern') }}" class="p-1 bg-blue-500 hover:bg-blue-400 rounded-md">
                 Ordenes internas
             </a>
         </div>
         <div>
-            <a href="" class="p-1 bg-blue-500 hover:bg-blue-400 rounded-md">
+            <a href="{{ route('histories.extern') }}" class="p-1 bg-blue-500 hover:bg-blue-400 rounded-md">
                 Ordenes externas
             </a>
         </div>

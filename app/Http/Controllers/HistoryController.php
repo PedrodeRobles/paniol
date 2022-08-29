@@ -40,4 +40,18 @@ class HistoryController extends Controller
     {
         return Excel::download(new HistoryExport, 'histories-list.xlsx');
     }
+
+    public function intern()
+    {
+        $histories = History::where('type', 2)->get();
+        dd($histories);
+        return view('history.intern', compact('histories'));
+    }
+
+    public function extern()
+    {
+        $histories = History::where('type', 1)->get();
+        
+        return view('history.extern', compact('histories'));
+    }
 }

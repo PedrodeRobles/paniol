@@ -8,6 +8,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\RoleController;
+use App\Models\History;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,6 +74,8 @@ Route::get('/backup', function () {
 })->middleware('auth');
 
 Route::get('/history/excel', [HistoryController::class, 'exportExcel'])->name('histories.excel')->middleware('auth');
+Route::get('history/intern', [HistoryController::class, 'intern'])->name('histories.intern')->middleware('auth');
+Route::get('history/extern', [HistoryController::class, 'extern'])->name('histories.extern')->middleware('auth');
 Route::resource('history', HistoryController::class);
 
 Route::get('roles', [RoleController::class, 'index'])->name('roles')->middleware('auth');

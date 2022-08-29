@@ -43,14 +43,14 @@ class HistoryController extends Controller
 
     public function intern()
     {
-        $histories = History::where('type', 2)->get();
-        dd($histories);
+        $histories = History::where('type', 2)->latest()->paginate(10);
+        
         return view('history.intern', compact('histories'));
     }
 
     public function extern()
     {
-        $histories = History::where('type', 1)->get();
+        $histories = History::where('type', 1)->latest()->paginate(10);
         
         return view('history.extern', compact('histories'));
     }
